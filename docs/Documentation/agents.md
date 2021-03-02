@@ -13,7 +13,7 @@ Refer to the agent configuration section to customize the configuration.
 ```console
 C:\appcontrol>xcAgent --install --servicename XComponentAppControlAgent
 XComponent App Control Agent, version 1.0.0-R1
-Copyright � Invivoo Software 2020
+Copyright Invivoo Software 2020
 XComponent App Control service name: XComponentAppControlAgentXComponent App Control service display name: XComponent APP Control AgentXComponentAppControlAgent is installed.
 ```
 
@@ -34,7 +34,7 @@ Copyright � Invivoo Software 2020
 
 ## ENTERPRISE LINUX (EL8)
 
-To install XComponent� AppControl Agent under EL8, untar the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/xcagent_el8_1_0.tar) into an installation directory (Tarball file).
+To install XComponent AppControl Agent under EL8, untar the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/xcagent_el8_1_0.tar) into an installation directory (Tarball file).
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
 

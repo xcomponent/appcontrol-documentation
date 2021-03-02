@@ -1,6 +1,6 @@
 ## XComponent Appcontrol Documentation
 
-![logo](../images/logo.svg)
+![logo](images//logo.svg)
 
 AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.
 Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute custom actions on your production systems.
@@ -13,7 +13,7 @@ AppControls empowers your teams, increases their confidence level and lowers the
 - Eliminate human error when restarting
 - Keep operational procedures tested and up-to-date
 
-![Screenshot](../images/screenshot.png)
+![Screenshot](images//screenshot.png)
 
 App Control allows you to both monitor the status of applications in real time but **above all to act** when an icident occurs.
 Where monitoring software signals you problems, App Control offers to correct them.
@@ -39,24 +39,24 @@ In this situation, there are 2 issues:
 
 --> APP CONTROL has detected the issues.
 
-![Diagnostic](../images/diagnostic.png)
+![Diagnostic](images//diagnostic.png)
 
 #### 2. Resolution
 
 1. APP CONTROL stops orphans components
 
-![Resolution1](../images/resolution1.png)
+![Resolution1](images//resolution1.png)
 
 2. Healthy situation, we ready to restore the services
 
-![Resolution2](../images/resolution2.png)
+![Resolution2](images//resolution2.png)
 
 3. Restart by branch
-   ![Restart](../images/restart.png)
+   ![Restart](images//restart.png)
 
 4. Normal situation
 
-![Normal](../images/normal.png)
+![Normal](images//normal.png)
 
 ## Get Started
 
@@ -70,21 +70,21 @@ On the App Control website, go to the Import Application and select "Use Default
 Because you don't have installed your own agent yet, select "Use Default Agent".
 Click on **Import** button.
 
-![Sceenshot Menu](../images/sceenshot_menu.png)
+![Sceenshot Menu](images//sceenshot_menu.png)
 
 Go the dashboard, and select the helloworld application by clicking on the checkbox.
 Then click on the load button.
-![Dashboard1](../images/dashboard1.png)
+![Dashboard1](images//dashboard1.png)
 
 Your application is loaded:
-![Dashboard2](../images/dashboard2.png)
+![Dashboard2](images//dashboard2.png)
 
 Click on the map button:
 
-![Map1](../images/map1.png)
+![Map1](images//map1.png)
 
 Using, the command bar, it's easy to start/stop the Hello World application.
-![Command Bar](../images/command_bar.png)
+![Command Bar](images//command_bar.png)
 
 ## Q/A
 

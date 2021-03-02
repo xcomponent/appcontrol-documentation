@@ -1,13 +1,13 @@
-# XComponent Appcontrol Documentation
+## XComponent Appcontrol Documentation
 
-<center><img src="images/logo.svg" width="20%"> </center>
+![logo](images/logo.svg)
 
 AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.
 Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute custom actions on your production systems.
 
 AppControls empowers your teams, increases their confidence level and lowers their stress during incidents:
 
-# KEY CONCEPTS
+## KEY CONCEPTS
 
 - Find root cause with no human intervention
 - Eliminate human error when restarting
@@ -18,7 +18,7 @@ AppControls empowers your teams, increases their confidence level and lowers the
 App Control allows you to both monitor the status of applications in real time but **above all to act** when an icident occurs.
 Where monitoring software signals you problems, App Control offers to correct them.
 
-# HOW IT WORKS
+## HOW IT WORKS
 
 In APP CONTROL, an application is a hierarchy of components. <br> A component have several commands:
 
@@ -27,10 +27,9 @@ In APP CONTROL, an application is a hierarchy of components. <br> A component ha
 - A stop command
 - And some optionals custom commands
 
-> #### Dependencies behaviour
->
-> A component can only starts if its parent's components are started.
-> A component can only stops if its children's components are stopped.
+- #### Dependencies behaviour
+- A component can only starts if its parent's components are started.
+- A component can only stops if its children's components are stopped.
 
 #### 1. Diagnostic
 
@@ -59,7 +58,7 @@ In this situation, there are 2 issues:
 
 ![Normal](images/normal.png)
 
-# Get Started
+## Get Started
 
 - Go to the [XComponent App Control website](https://appcontrol.xcomponent.com).
 - Log in using a social provider
@@ -87,7 +86,7 @@ Click on the map button:
 Using, the command bar, it's easy to start/stop the Hello World application.
 ![Command Bar](images/command_bar.png)
 
-# Q/A
+## Q/A
 
 1. Does APP Control replace the monitoring tools (Nagios, Centreon, ...) ?
 

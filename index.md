@@ -29,6 +29,7 @@ In APP CONTROL, an application is a hierarchy of components. <br> A component ha
 * A stop command
 * And some optionals custom commands
 
+
 > #### Dependencies behaviour
 > A component can only starts if its parent's components are started. 
 > A component can only stops if its children's components are stopped.

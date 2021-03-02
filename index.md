@@ -1,5 +1,5 @@
 
-#  XComponent Appcontrol Documentation
+##  XComponent Appcontrol Documentation
 
 <center><img src="images/logo.svg" width="20%"> </center>
 
@@ -9,7 +9,7 @@ Supplementing your existing monitoring and supervision tools, AppControl acts on
 
 AppControls empowers your teams, increases their confidence level and lowers their stress during incidents:
 
-# KEY CONCEPTS
+## KEY CONCEPTS
 
 * Find root cause with no human intervention
 * Eliminate human error when restarting
@@ -21,7 +21,7 @@ AppControls empowers your teams, increases their confidence level and lowers the
 App Control allows you to both monitor the status of applications in real time but **above all to act** when an icident occurs.
 Where monitoring software signals you problems, App Control offers to correct them.
 
-# HOW IT WORKS
+## HOW IT WORKS
 
 In APP CONTROL, an application is a hierarchy of components. <br> A component have several commands:
 * A check command to retrieve the current state
@@ -63,7 +63,7 @@ In this situation, there are 2 issues:
 ![Normal](images/normal.png)
 
 
-# Get Started
+## Get Started
 
 * Go to the [XComponent App Control website](https://appcontrol.xcomponent.com).
 * Log in using a social provider
@@ -92,7 +92,7 @@ Using, the command bar, it's easy to start/stop the Hello World application.
 ![Command Bar](images/command_bar.png)
 
 
-# Q/A
+## Q/A
 
 1. Does APP Control replace the monitoring tools (Nagios, Centreon, ...) ?
 

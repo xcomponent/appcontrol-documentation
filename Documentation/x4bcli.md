@@ -6,7 +6,7 @@ Agents can be deployed anywhere on your I.S. They don't need to have an internet
 
 Please refer to the agents installation section for agents installation.
 
-///ARCHITECTURE DIAGRAM - TO DO
+[Network architecture](../images/architectures-X4BCLI.png)
 
 Thanks to X4B CLI, you can deploy your applications in the App Control Cloud Platform with Agents deployed on premises.
 

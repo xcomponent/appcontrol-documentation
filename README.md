@@ -1,22 +1,21 @@
-## XComponent Appcontrol Documentation
+| <img src="images/logo.svg" alt="logo" width="200" /> | <p align="left">AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.<br/><br/>Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute any custom actions, as you wish, on your information system.<br/><br/><br/>AppControls empowers your teams, increases their confidence level and lowers their stress during operations.</p>|
+| --------------------------------------------------------------- | ------------------------------------------------------------ |
+| Public SaaS portal                                              | [X4B SaaS](https://x4b.xcomponent.com) |
+| Others documentations                                           | <br/>- [How to install AppControl Agent to execute the components actions?](https://github.com/xcomponent/appcontrol-documentation/blob/main/Documentation/agents.md)<br>- [How to connect your personal workstation with X4B App Control SaaS for testing?](https://github.com/xcomponent/appcontrol-documentation/blob/main/Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B App Control SaaS?](https://github.com/xcomponent/appcontrol-documentation/blob/main/Documentation/x4bcli.md)<br>- [How to create your application map?](https://github.com/xcomponent/appcontrol-documentation/blob/main/Documentation/map.md)<br/> |
 
-![logo](images/logo.svg)
-
-AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.
-Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute custom actions on your production systems.
-
-AppControls empowers your teams, increases their confidence level and lowers their stress during incidents:
-
-## KEY CONCEPTS
+## OBJECTIVES
 
 - Find root cause with no human intervention
 - Eliminate human error when restarting
 - Keep operational procedures tested and up-to-date
 
-![Screenshot](images/screenshot.png)
-
-App Control allows you to both monitor the status of applications in real time but **above all to act** when an icident occurs.
+App Control allows you to both monitor the status of applications in real time but **above all to act** when an incident occurs.
 Where monitoring software signals you problems, App Control offers to correct them.
+<br>
+<p align="center">
+  <img src="images/screenshot.png" alt="Screenshot" width="50%" height="50%" />
+</p>
+
 
 ## HOW IT WORKS
 
@@ -88,7 +87,7 @@ Using, the command bar, it's easy to start/stop the Hello World application.
 
 ## Q/A
 
-1. Does APP Control replace the monitoring tools (Nagios, Centreon, ...) ?
+1. Does APP Control replace the monitoring tools (Nagios, Centreon, Zabbix, ...) ?
 
 No, App Control is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.
 Indeed, Check commands of App Control can be based of

@@ -39,7 +39,9 @@ The first step is to retrieve the X4B Cli credentials. Navigate to the proxy set
 
 ## Microsoft Windows Platform
  
-On Microsoft Windows, the .NET Framework 4.7.2 or above is required. Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/x4b-cli_1.0.zip).
+On Microsoft Windows, the [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) or above is required .
+
+Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/x4b-cli_2.0.zip).
 
 On a prompt (cmd.exe), execute the following command line.
 Replace MY_ACCESS_KEY, MY_SECRET_ACCESSKEY and MY_PROXY_NAME with the suitable values.

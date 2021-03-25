@@ -5,7 +5,7 @@ The import will create one AppControl component for each host, and one for each 
 
 You can designate one of your servers as a **bastion host**. If you do, it is assumed that you will deploy an AppControl agent on it, and then that server will be used to run remote checks on other hosts, using the ping or ssh commands, for example.
 
-By default, the host components have a check command that does **ping -c 1 <hostname>**. The service components are created with sample check, start, and stop commands that simulate the actual checks using a temporary file. All these default commands assume the agent is running on a linux machine, but you can also configure your map to deploy the agents on Windows servers (see xxx for more details on AppControl agents).
+By default, the host components have a check command that does **ping -c 1 &lt;hostname&gt;**. The service components are created with sample check, start, and stop commands that simulate the actual checks using a temporary file. All these default commands assume the agent is running on a linux machine, but you can also configure your map to deploy the agents on Windows servers (see xxx for more details on AppControl agents).
 ## Importing your setup
 The import tool is a Windows binary that you can download from [here](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/ac_from_centreon.exe). To import your setup, first log on to your Centreon server, and export your configuration to a text file, with the following command:
   
@@ -32,5 +32,5 @@ The **--root-host** option lets you specify one server as being the root, in the
 
 The **--bastion-host** option lets specify one server as being the bastion, as described above.
 
-The **-n** and **-v** options are required, they define the map name and version. If no path is given for the map file, then the file gets created in the current directory, with the name <map_name>,<version>.xml; alternatively, you may specify a different path and name using the **-o** option. 
+The **-n** and **-v** options are required, they define the map name and version. If no path is given for the map file, then the file gets created in the current directory, with the name &lt;map_name&gt;,&lt;version&gt;.xml; alternatively, you may specify a different path and name using the **-o** option. 
   

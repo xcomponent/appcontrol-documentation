@@ -33,4 +33,4 @@ The **--root-host** option lets you specify one server as being the root, in the
 The **--bastion-host** option lets specify one server as being the bastion, as described above.
 
 The **-n** and **-v** options are required, they define the map name and version. If no path is given for the map file, then the file gets created in the current directory, with the name &lt;map_name&gt;,&lt;version&gt;.xml; alternatively, you may specify a different path and name using the **-o** option. 
-  
+   

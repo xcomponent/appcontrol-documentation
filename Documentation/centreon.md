@@ -7,7 +7,7 @@ You can designate one of your servers as a **bastion host**. If you do, it is as
 
 By default, the host components have a check command that does **ping -c 1 <hostname>**. The service components are created with sample check, start, and stop commands that simulate the actual checks using a temporary file. All these default commands assume the agent is running on a linux machine, but you can also configure your map to deploy the agents on Windows servers (see xxx for more details on AppControl agents).
 ## Importing your setup
-The import tool is a Windows binary that you can download from here. To import your setup, first log on to your Centreon server, and export your configuration to a text file, with the following command:
+The import tool is a Windows binary that you can download from [here](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/ac_from_centreon.exe). To import your setup, first log on to your Centreon server, and export your configuration to a text file, with the following command:
   
 ```console
 centreon -u <admin_user> -p <admin_password> -e > centreon_export.txt

@@ -13,9 +13,9 @@
   </auths>
   <app name="cronmap" version="v1" cronref="scheduling">
     <component name="A1" description="A1 component" hostref="LOCAL" authref="LOCAL">
-      <action name="check" value="sandbox.sh check crondemo" />
-      <action name="enable" value="sandbox.sh enable crondemo" />
-      <action name="disable" value="sandbox.sh disable crondemo" />
+      <action name="check" value="cat crondemo" />
+      <action name="enable" value="echo crondemo &gt crondemo" />
+      <action name="disable" value="rm crondemo" />
     </component>
   </app>
 </apps>

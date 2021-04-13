@@ -17,7 +17,7 @@
 | Description                                                     | Links                                                        |
 | --------------------------------------------------------------- | ------------------------------------------------------------ |
 | Public SaaS portal                                              | [X4B SaaS](https://x4b.xcomponent.com) |
-| Other documentations                                           | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B App Control SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B App Control SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [Examples](./examples)
+| Other documentations                                           | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B App Control SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B App Control SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>
 
 ## OBJECTIVES
 

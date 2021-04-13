@@ -8,7 +8,7 @@
   </auths>
   <app name="helloworld" version="v1">
     <component name="hello" description="Hello World" group="Hello group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="file">
-      <action value="more hello.txt" name="check" />
+      <action value="cat hello.txt" name="check" />
       <action value="echo hello &gt; hello.txt" name="enable" />
       <action value="rm hello.txt" name="disable" />
       <action value="echo $(message)" commandname="Say Hello" name="custom">

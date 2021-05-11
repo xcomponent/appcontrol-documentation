@@ -11,7 +11,7 @@ as [iTop](https://www.combodo.com/itop-193) or [EasyVista](https://www.easyvista
 There can be several use cases for integrating AppControl and a cmdb:
 
 * conformity check between operational reality and cmdb referential
-* map provisioning based on cmdb data 
+* map (eg: AppControl Application) provisioning based on cmdb data 
 
 ### Conformity check
 

@@ -64,10 +64,9 @@ are presented with the list of available cmdbs.
 
 Make sure the cmdb server you want to use is up and running at this
 point. Click on its name and press Next. A progress bar indicates that
-validation is taking place (this can take a few moments).
-
-If every element in the map is matched to a corresponding element in the cmdb,
-a message will indicate that the validation has succeeded:
+validation is taking place (this can take a few moments). If every element in
+the map is matched to a corresponding element in the cmdb, a message will
+indicate that the validation has succeeded:
 
 ![CMDB Validation Success](cmdb_valid_success.png)
 
@@ -93,13 +92,13 @@ might require specific work.
 The following table shows the correspondance between AppControl concepts or
 objects, and ServiceNow resources.
 
-| AppControl | ServiceNow Object | Service Table |
+| AppControl | ServiceNow Object | ServiceNow Table |
 | --- | --- | --- |
 | Application | Application  | cmdb_ci_appl |
 | Host | Computer | cmdb_ci_computer |
 | Component | Service | cmdb_ci_service |
 | Component hostref | Computer-Service Relation | cmdb_ci_rel |
-| Action | Commands | RunningProcess | cmdb_running_process |
+| Action | Commands | cmdb_running_process |
 
 ### Representing Components actions in ServiceNow
 
@@ -135,15 +134,15 @@ AppControl XML map file:
 ServiceNow cmdb_running_process table record (extracts):
 
 ```json
-        {
-            "command": "sandbox.sh check inv_pricing_001",
-            "computer": {
-                "link": "https://dev78474.service-now.com/api/now/v1/table/cmdb_ci_computer/8ba1aa202f7320102cd8d49df699b687",
-                "value": "8ba1aa202f7320102cd8d49df699b687"
-            },
-            "name": "check::inv_pricing_001",
-            "parameters": "inv_test_missing_from_map",
-        },
+{
+    "command": "sandbox.sh check inv_pricing_001",
+    "computer": {
+        "link": "https://dev78474.service-now.com/api/now/v1/table/cmdb_ci_computer/8ba1aa202f7320102cd8d49df699b687",
+        "value": "8ba1aa202f7320102cd8d49df699b687"
+    },
+    "name": "check::inv_pricing_001",
+    "parameters": "inv_test_missing_from_map",
+}
 ```
 
 ### Populating your Cmdb

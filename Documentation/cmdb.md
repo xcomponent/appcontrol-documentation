@@ -4,7 +4,7 @@ AppControl can be integrated with a Configuration Management Database (cmdb).
 
 AppControl currently supports [ServiceNow](https://www.servicenow.com/) as a
 cmdb provider, but other providers such
-as [iTop](https://www.combodo.com/itop-193) or [EasyVsta](https://www.easyvista.com/) can also be considered. 
+as [iTop](https://www.combodo.com/itop-193) or [EasyVista](https://www.easyvista.com/) can also be considered. 
 
 ## Use Cases
 

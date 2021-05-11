@@ -108,7 +108,7 @@ server where the component is hosted. This link is represented by a ServiceNow
 
 The actions defined on a Component are stored in the RunningProcess table
 (cmdb_running_process), with a link to the corresponding host. Here's the
-detailed mapping on the fileds of the RunningProcess table:
+detailed mapping on the fields of the RunningProcess table:
 
 | AppControl Element | Field |
 | --- | --- |
@@ -125,7 +125,7 @@ AppControl XML map file:
 <app name="inv_test_missing_from_map" version="1.0">
   <component name="inv_pricing_001" description="An Invivoo component" group="A group"
 	       hostref="inv_host_001" authref="LOCAL"redirectoutput="false" type="file">
-    <action value="sandbox.sh check inv_histo_002" name="check" />
+    <action value="sandbox.sh check inv_pricing_001" name="check" />
     <action value="sandbox.sh enable inv_pricing_001" name="enable" />
     <action value="sandbox.sh disable inv_pricing_001" name="disable" />
   </component>

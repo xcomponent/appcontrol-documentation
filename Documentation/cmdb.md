@@ -67,12 +67,12 @@ point. Click on its name and press Next. A progress bar indicates that
 validation is taking place (this can take a few moments).
 
 If every element in the map is matched to a corresponding element in the cmdb,
-a message will indicate that the validation has succeed:
+a message will indicate that the validation has succeeded:
 
 ![CMDB Validation Success](cmdb_valid_success.png)
 
-If the verifiction process detected configuration information in the cmdb that
-was not in the map (such as Compoennt actions) this will also be indicated:
+If the verification process detected configuration information in the cmdb that
+was not in the map (such as Component actions) this will also be indicated:
 
 ![CMDB Enrichment](cmdb_enrich.png)
 
@@ -94,7 +94,7 @@ The following table shows the correspondance between AppControl concepts or
 objects, and ServiceNow resources.
 
 | AppControl | ServiceNow Object | Service Table |
-| --- | --- |
+| --- | --- | --- |
 | Application | Application  | cmdb_ci_appl |
 | Host | Computer | cmdb_ci_computer |
 | Component | Service | cmdb_ci_service |

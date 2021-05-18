@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="images/logo.svg" alt="logo" width="200" />
 </p>
@@ -9,15 +8,15 @@
   Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute any custom actions, as you wish, on your information system.
   <br>
   <br>
-  AppControls empowers your teams, increases their confidence level and lowers their stress during operations.
+  AppControl empowers your teams, increases their confidence level and lowers their stress during operations.
 </p>
 
 ## USEFUL LINKS
 
-| Description                                                     | Links                                                        |
-| --------------------------------------------------------------- | ------------------------------------------------------------ |
-| Public SaaS portal                                              | [X4B SaaS](https://x4b.xcomponent.com) |
-| Other documentations                                           | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B App Control SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B App Control SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)<br/>
+| Description          | Links                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Public SaaS portal   | [X4B SaaS](https://x4b.xcomponent.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Other documentations | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)<br/> |
 
 ## OBJECTIVES
 
@@ -25,17 +24,17 @@
 - Eliminate human error when restarting
 - Keep operational procedures tested and up-to-date
 
-App Control allows you to both monitor the status of applications in real time but **above all to act** when an incident occurs.
-Where monitoring software signals you problems, App Control offers to correct them.
+AppControl allows you to both monitor the status of applications in real time but **above all to act** when an incident occurs.
+Where monitoring software signals you problems, AppControl offers to correct them.
 <br>
+
 <p align="center">
   <img src="images/screenshot.png" alt="Screenshot" width="50%" height="50%" />
 </p>
 
-
 ## HOW IT WORKS
 
-In APP CONTROL, an application is a hierarchy of components. <br> A component have several commands:
+In AppControl, an application is a hierarchy of components. <br> A component have several commands:
 
 - A check command to retrieve the current state
 - A start command
@@ -52,13 +51,13 @@ In this situation, there are 2 issues:
 
 - 2 components are stopped whereas there parents are started
 
---> APP CONTROL has detected the issues.
+--> AppControl has detected the issues.
 
 ![Diagnostic](images/diagnostic.png)
 
 #### 2. Resolution
 
-1. APP CONTROL stops orphans components
+1. AppControl stops orphans components
 
 ![Resolution1](images/resolution1.png)
 
@@ -75,13 +74,13 @@ In this situation, there are 2 issues:
 
 ## Get Started
 
-- Go to the [XComponent App Control website](https://appcontrol.xcomponent.com).
+- Go to the [XComponent AppControl website](https://appcontrol.xcomponent.com).
 - Log in using a social provider
 - That's all, you are logged!
 
 In the example section, retrieve the helloworld,v1.xml demo application.
 
-On the App Control website, go to the Import Application and select "Use Default Agent".
+On the AppControl website, go to the Import Application and select "Use Default Agent".
 Because you don't have installed your own agent yet, select "Use Default Agent".
 Click on **Import** button.
 
@@ -103,7 +102,7 @@ Using, the command bar, it's easy to start/stop the Hello World application.
 
 ## Q/A
 
-1. Does APP Control replace the monitoring tools (Nagios, Centreon, Zabbix, ...) ?
+1. Does AppControl replace the monitoring tools (Nagios, Centreon, Zabbix, ...) ?
 
-No, App Control is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.
-Indeed, Check commands of App Control can be based of
+No, AppControl is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.
+Indeed, Check commands of AppControl can be based of

@@ -1,4 +1,4 @@
-# APP CONTROL AGENTS
+# AppControl AGENTS
 
 ## Microsoft Windows Platform
 
@@ -12,12 +12,12 @@ Refer to the agent configuration section to customize the configuration.
 
 ```console
 C:\appcontrol>xcAgent --install --servicename XComponentAppControlAgent
-XComponent App Control Agent, version 1.0.0-R1
+XComponent AppControl Agent, version 1.0.0-R1
 Copyright � Invivoo Software 2020
-XComponent App Control service name: XComponentAppControlAgentXComponent App Control service display name: XComponent APP Control AgentXComponentAppControlAgent is installed.
+XComponent AppControl service name: XComponentAppControlAgentXComponent AppControl service display name: XComponent AppControl AgentXComponentAppControlAgent is installed.
 ```
 
-- Start the service **XComponent App Control Agent**
+- Start the service **XComponent AppControl Agent**
 
 ![Agent Service](../images/agent_service.png)
 
@@ -27,7 +27,7 @@ Run cmd.exe and the go the agent folder.
 
 ```console
 C:\appcontrol>xcAgent.exe --console
-XComponent App Control Agent, version 7.0.0-R1
+XComponent AppControl Agent, version 7.0.0-R1
 Copyright � Invivoo Software 2020
 
 ```
@@ -44,7 +44,7 @@ Replace **/usr/src/app/xcagent** by your own installation folder.
 /usr/src/app/xcagent $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/src/app/xcagent/libs
 /usr/src/app/xcagent $ ./xcAgent.bin --file /usr/src/app/xcagent/config.dat
 
-XComponent App Control Agent, version 7.0.0-R1
+XComponent AppControl Agent, version 7.0.0-R1
 Copyright � Invivoo Software 2020
 
 ```
@@ -52,7 +52,7 @@ Copyright � Invivoo Software 2020
 ## AGENTLESS LINUX & UNIX
 
 From an XComponent AppControl Linux agent, you can enable AgentLess mode via SSH2.
-This mode allows a Linux XComponent App Control Agent to forward actions provided by the AppControl server under a non permanent Ssh channel to the IP address and account configured in the agent configuration file.
+This mode allows a Linux XComponent AppControl Agent to forward actions provided by the AppControl server under a non permanent Ssh channel to the IP address and account configured in the agent configuration file.
 Refer to the agent configuration section to customize the configuration.
 
 ## DOCKER INSTALLATION
@@ -90,7 +90,7 @@ root $ docker run -p 12567:12567 xcomponent/appcontrol-agent:1.0
 
 ## Agent Configuration
 
-The default configuration file is name config.dat. It's located near the XComponent App Control Agent configuration file.
+The default configuration file is name config.dat. It's located near the XComponent AppControl Agent configuration file.
 
 ```xml
 <config>

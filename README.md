@@ -13,10 +13,10 @@
 
 ## USEFUL LINKS
 
-| Description | Links |
+| <div style="width:140px"><b>Description</b></div> | <div style="width:300px"><b>Links</b></div> |
 | :---------- | :---- |
 | Public SaaS portal | [X4B SaaS](https://x4b.xcomponent.com) |
-| Other documentations | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)<br/>- [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/> |
+| Other documentations | <ul><li>[How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)</li><li>[How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)</li><li>[How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)</li><li>[How to create your application map?](./Documentation/map.md)</li><li>[How to import your Centreon setup into AppControl?](./Documentation/centreon.md)</li><li>[How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)</li><li>[Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)</li> |
 
 ## OBJECTIVES
 
@@ -57,21 +57,25 @@ In this situation, there are 2 issues:
 
 #### 2. Resolution
 
-1. AppControl stops orphans components
+<ol>
+  <li>AppControl stops orphans components
 
-![Resolution1](images/resolution1.png)
+  ![Resolution1](images/resolution1.png)
+  </li>
 
-2. Healthy situation, we are ready to restore the services
+  <li>Healthy situation, we are ready to restore the services
 
-![Resolution2](images/resolution2.png)
+  ![Resolution2](images/resolution2.png)
+  </li>
+  <li>Restart by branch
 
-3. Restart by branch
+  ![Restart](images/restart.png)
+  </li>
+  <li>Normal situation
 
-![Restart](images/restart.png)
-
-4. Normal situation
-
-![Normal](images/normal.png)
+  ![Normal](images/normal.png)
+  </li>
+</ol>
 
 ## Get Started
 

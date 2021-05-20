@@ -59,19 +59,19 @@ In this situation, there are 2 issues:
 
 1. AppControl stops orphans components
 
-![Resolution1](images/resolution1.png)
+   ![Resolution1](images/resolution1.png)
 
 2. Healthy situation, we are ready to restore the services
 
-![Resolution2](images/resolution2.png)
+   ![Resolution2](images/resolution2.png)
 
 3. Restart by branch
 
-![Restart](images/restart.png)
+   ![Restart](images/restart.png)
 
 4. Normal situation
 
-![Normal](images/normal.png)
+   ![Normal](images/normal.png)
 
 ## Get Started
 

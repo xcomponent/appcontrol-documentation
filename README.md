@@ -13,9 +13,9 @@
 
 ## USEFUL LINKS
 
-| Description          | Links                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Public SaaS portal   | [X4B SaaS](https://x4b.xcomponent.com)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Description | Links |
+| :---------- | :---- |
+| Public SaaS portal | [X4B SaaS](https://x4b.xcomponent.com) |
 | Other documentations | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)<br/>- [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/> |
 
 ## OBJECTIVES
@@ -61,12 +61,13 @@ In this situation, there are 2 issues:
 
 ![Resolution1](images/resolution1.png)
 
-2. Healthy situation, we ready to restore the services
+2. Healthy situation, we are ready to restore the services
 
 ![Resolution2](images/resolution2.png)
 
 3. Restart by branch
-   ![Restart](images/restart.png)
+
+![Restart](images/restart.png)
 
 4. Normal situation
 
@@ -104,5 +105,4 @@ Using, the command bar, it's easy to start/stop the Hello World application.
 
 1. Does AppControl replace the monitoring tools (Nagios, Centreon, Zabbix, ...) ?
 
-No, AppControl is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.
-Indeed, Check commands of AppControl can be based of
+   No, AppControl is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.

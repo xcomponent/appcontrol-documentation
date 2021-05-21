@@ -84,10 +84,10 @@ XComponent For Business by Invivoo Software - 2021
 
 ## Deployment using Docker
 
-The docker image is available on docker hub: [x4b-cli](https://hub.docker.com/r/xcomponent/x4b-cli/tags?page=1&ordering=last_updated)
+The docker image is available on docker hub: [x4b-cli](https://hub.docker.com/r/xcomponent/x4b-cli)
 
 ```console
-docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_PROXY_NAME=MY_PROXY_NAME xcomponent/x4b-cli:1.0
+docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_PROXY_NAME=MY_PROXY_NAME xcomponent/x4b-cli:latest
 ```
 
 If the configuration is correct, you should observe the following lines in the terminal:

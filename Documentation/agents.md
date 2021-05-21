@@ -57,12 +57,12 @@ Refer to the agent configuration section to customize the configuration.
 
 ## DOCKER INSTALLATION
 
-The docker image is the agent is available [here](https://hub.docker.com/r/xcomponent/appcontrol-agent/tags?page=1&ordering=last_updated) on docker hub.
+The docker image of the agent is available [here](https://hub.docker.com/r/xcomponent/appcontrol-agent) on docker hub.
 
 You can pull the docker image using the following command line:
 
 ```console
-root $ docker pull xcomponent/appcontrol-agent:1.0
+root $ docker pull xcomponent/appcontrol-agent:latest
 ```
 
 Environment variables exposed by the docker image are the following:
@@ -85,7 +85,7 @@ Some Technicals Points:
 Running the docker image:
 
 ```console
-root $ docker run -p 12567:12567 xcomponent/appcontrol-agent:1.0
+root $ docker run -p 12567:12567 xcomponent/appcontrol-agent:latest
 ```
 
 ## Agent Configuration

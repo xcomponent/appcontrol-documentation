@@ -74,7 +74,7 @@ for input and output parameters, respectively.
 The `action` element also has a `visibility` attribute, which controls whether
 the action is accessible from outside AppControl or not. The AppControl worker
 only retrieves public tasks, so if a custiom action is to be used with Scenario,
-it is mandatory to specify `visibility=**"public"**`.
+it is mandatory to specify `visibility="public"`.
 
 See the [AppControl map documentation](../map.md) for more details.
 

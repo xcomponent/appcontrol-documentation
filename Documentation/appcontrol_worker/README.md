@@ -23,7 +23,7 @@ running them directly from a worker task:
 # Pre-requisites
 
 This document assumes that you have access to a working X4B installation,
-either [Invivoo's SaaS platform](https://login.xcomponent.com/), or an X4B
+either [Invivoo's SaaS platform](https://x4b.xcomponent.com/), or an X4B
 platform deployed on your premises.
 
 This includes XC Scenario, XC AppControl, and an AppControl worker (detailed
@@ -70,6 +70,13 @@ shell script.
 
 The `action` element can have `parameters` and `outputParameters` sub-elements,
 for input and output parameters, respectively.
+
+The `action` element also has a `visibility` attribute, which controls whether
+the action is accessible from outside AppControl or not. The AppControl worker
+only retrieves public tasks, so if a custiom action is to be used with Scenario,
+it is mandatory to specify `visibility="**public**"`.
+
+See the [AppControl map documentation](../map.md) for more details.
 
 ### Example
 

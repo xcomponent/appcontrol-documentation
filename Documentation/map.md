@@ -115,7 +115,6 @@ These identities will be used by agents.
         <component name="File exist" group="TEST" hostref="LOCAL" authref="LOCAL">
             <action name="check" value="dir componentFile.txt" />
             <action name="enable" value="echo start > componentFile.txt" />
-            <action name="check" value="del /Q componentFile.txt" />
             <action name="custom" visibility="Public" commandname="File search" value="dir $(file)">
                 <parameters>
                     <parameter name="file"

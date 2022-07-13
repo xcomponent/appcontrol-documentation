@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <apps>
-  <hosts>
-    <host hostid="" host="" port="" sslprotocol="" />
-  </hosts>
+ <hosts>
+		<host hostid="LOCAL" host="localhost" port="12567" sslprotocol="Tls12" />
+	</hosts>
   <auths>
     <auth authid="LOCAL" domain="" password="" user="" />
   </auths>

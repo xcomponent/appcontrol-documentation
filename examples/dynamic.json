@@ -1,0 +1,49 @@
+{
+	"dynamicTree": [
+		{
+			"group": "dynamic",
+			"color": "#ca03fc",
+			"type": "service",
+			"name": "dynamic component 1",
+			"parents": [
+				"dyn1"
+			],
+			"state": "Started",
+			"filters": {
+				"dynamicnode": [
+					"dynamic component 1"
+				]
+			},
+			"customActions": [
+				{
+					"customActionName": "echo Action",
+					"customActionCommandLine": "echo $(message)",
+					"parameters": [
+						{
+							"parameterName": "message",
+							"description": "What's the message ?",
+							"defaultValue": "Welcome message",
+							"validationRule": "*",
+							"isEditable": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"group": "dynamic",
+			"color": "#4e66a3",
+			"type": "https://avatars.githubusercontent.com/u/12861392?s=200&v=4",
+			"name": "dynamic component 2",
+			"parents": [
+				"dyn1"
+			],
+			"filters": {
+				"dynamicnode": [
+					"dynamic component 2"
+				]
+			}
+		}
+	],
+	"displayName": "static node dynamic text"
+}

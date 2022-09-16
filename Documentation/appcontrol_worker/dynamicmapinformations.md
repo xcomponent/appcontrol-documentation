@@ -67,4 +67,20 @@ The JSON format is the following:
 ```
 
 A full example is available in this documentation:
-- [Application Xml](../)
+- [Application Xml](../../examples/dynamicdemo.xml)
+- [JSON dynamic data](../../examples/dynamic.json)
+
+The application should be tested this way. 
+
+1. First copy this the link to the application: [Application](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/dynamicdemo.xml)
+2. Go to the **New Application** menu and import the previous application
+   ![Import](../../images/import_dynamic_map.png)
+3. Once the application is loaded go to the **Architecture** menu, you should obtain the following rendering:
+   ![Map](../../images/dynamic_map.png)
+
+On the above screenshot, you can observe that dynamic components are displayed with an 'octagon form' whereas the 'static component' is displayed with a 'square form'.
+
+
+
+
+

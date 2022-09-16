@@ -16,7 +16,10 @@
 | <b>Description</b> | <b>Links</b> |
 | :---------- | :---- |
 | Public SaaS portal | [X4B SaaS](https://x4b.xcomponent.com) |
-| Other documentations | <br/>- [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>- [How to create your application map?](./Documentation/map.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)<br/>- [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/>- [Using the AppControl Worker to implement an XC Scenario task](./Documentation/appcontrol_worker/README.md)<br/> |
+| Getting Started | - [How to create your application map?](./Documentation/map.md)<br/> - [Enrich your application with dynamic informations](./Documentation/appcontrol_worker/dynamicmapinformations.md)<br/>
+| Deploy your own agents | - [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br> - [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>|
+| Advanced | - [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md) |
+| Interactions between AppControl and Scenario |- [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/>- [Using the AppControl Worker to implement an XC Scenario task](./Documentation/appcontrol_worker/README.md)<br/> |
 
 ## OBJECTIVES
 
@@ -79,22 +82,20 @@ In this situation, there are 2 issues:
 - Log in using a social provider
 - That's all, you are logged!
 
-In the example section, retrieve the helloworld,v1.xml demo application.
+In the example section, copy the following link to the demo application: [demo application](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml).
 
-On the AppControl website, go to the Import Application and select "Use Default Agent".
-Because you don't have installed your own agent yet, select "Use Default Agent".
-Click on **Import** button.
+On the AppControl website, go to the Import Application and paste the link of the [demo application](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml).
+
+Follow the wizard (clicking on 'Next' button). In the **'Gateway'** tab select 'X4B SaaS'. On the last tab click on **'Import'**.
+
 
 ![Sceenshot Menu](images/sceenshot_menu.png)
 
-Go the dashboard, and select the helloworld application by clicking on the checkbox.
+Go the **'Overview'**, and select the helloworld application by clicking on the checkbox.
 Then click on the load button.
 ![Dashboard1](images/dashboard1.png)
 
-Your application is loaded:
-![Dashboard2](images/dashboard2.png)
-
-Click on the map button:
+Click on the **'Architecture'** button:
 
 ![Map1](images/map1.png)
 

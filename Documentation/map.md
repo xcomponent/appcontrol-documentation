@@ -1,7 +1,7 @@
-# AppControl ARTEFACTS
+# AppControl Application
 
-Uploaded applications in AppControl are described using an XML file.
-For AppControl, an aplication is a hierarchy set of components.
+In AppControl, applications (also called maps) are described using an XML file.
+For AppControl, an aplication is a hierarchy of components.
 
 This file contains mainly the following informations:
 
@@ -130,6 +130,7 @@ These identities will be used by agents.
    <!-- ... -->
 </apps>
 ```
+### Component properties
 
 | Attribute      | Description                                                                                                                                                                                                                                                                        |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

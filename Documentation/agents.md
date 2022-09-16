@@ -124,3 +124,43 @@ The default configuration file is name config.dat. It's located near the XCompon
 | trustedservers     | List of IP addresses, or Dns names of XComponent AppControl servers authorized to contact the agent (Can be empty)                                                                                                                                                                                             |
 | sshhost            | This parameter allows the agent to perform an SSH session with the account specified in the configuration of the application. The file containing the private key to use is located in the 'sshkeydirectory' directory and bears the name of the targeted user.This property works exclusively on Linux agent. |
 | sshkeydirectory    | Directory for storing Ssh private key files. The name of the expected files must be named with the name of the user targeted by the application configuration. The public key must be present in the ~/ssh/authorized_keys file of the remote account                                                          |
+
+## Environment variables configuration
+
+Config.dat configuration supports environment variables as a value.
+
+ **Under Microsoft Windows:**
+
+In Microsoft Windows, environment variables are defined with the following pattern: %VARIABLE%.
+
+```xml
+<config>
+  <item key="tempdirectory" value="%TEMP%" />
+  <item key="maxlogsizeinmo" value="%MYVALUE%" />
+</config>
+```
+
+**Under Linux/Unix:**
+
+In Linux/Unix, environment variables are defined with the following pattern: $VARIABLE.
+
+```xml
+<config>
+   <item key="tempdirectory" value=”$TEMP" />
+   <item key="maxlogsizeinmo" value="$MYVALUE" />
+</config>
+```
+
+**Note:**
+```
+Each item key of the config.dat file can be overriden  by an environment variable named XC_MYITEMKEYINUPPERCASE. The priority is the following:
+1. If an XC_... variable exists the agent will use it
+2. The values in the config.dat are used only if the XC_... variables don't exist.
+
+Example: 
+if an env variable named XC_TEMPDIRECTORY exists, this value will be used instead of the variable 'tempdirectory' defined in the config.dat.
+
+```
+
+
+

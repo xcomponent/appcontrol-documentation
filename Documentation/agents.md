@@ -1,5 +1,19 @@
 # AppControl AGENTS
 
+## Latest Available versions
+
+| Operating System | Format| Latest version |
+| -----------------|------|------------|
+| Microsoft Windows | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
+| Alpine|  tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/alpine.tar.gz) |
+| Alma Linux| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/almalinux.tar.gz)|
+| Rocky Linux| tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/rockylinux.tar.gz)|
+| Debian| tar.gz| [Dedian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
+| Alpine| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
+| Alma Linux| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
+| Debian| docker| docker pull xcomponent/appcontrol-agent:latest-debian|
+
+
 ## Microsoft Windows Platform
 
 To install XComponent AppControl Agent under Windows OS, unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/xcAgent_win32_1.0.zip) into an installation directory.
@@ -49,9 +63,11 @@ Copyright © Invivoo Software 2020
 
 ```
 
-## ENTERPRISE LINUX (EL8)
+## REDHAT ENTERPRISE LINUX
 
-To install XComponent� AppControl Agent under EL8, untar the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/xcagent_el8_1_0.tar) into an installation directory (Tarball file).
+At the moment RHEL versions of XComponent AppControl Agent are Rocky Linux and Alma Linux.
+
+To install XComponent AppControl Agent under RHEL, untar the following [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/almalinux.tar.gz) into an installation directory (Tarball file).
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
 

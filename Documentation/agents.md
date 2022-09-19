@@ -12,9 +12,26 @@ Refer to the agent configuration section to customize the configuration.
 
 ```console
 C:\appcontrol>xcAgent --install --servicename XComponentAppControlAgent
-XComponent AppControl Agent, version 1.0.0-R1
-Copyright � Invivoo Software 2020
+XComponent App Control Agent, version 9.9
+Copyright © Invivoo Software 2020
 XComponent AppControl service name: XComponentAppControlAgentXComponent AppControl service display name: XComponent AppControl AgentXComponentAppControlAgent is installed.
+```
+
+- We can either specify the display service name during registration: 
+```console
+C:\appcontrol>xcAgent.exe --install --servicename appcontrolagent --servicedisplayname "Agent AppControl"
+XComponent App Control Agent, version 9.9
+Copyright © Invivoo Software 2020
+XComponent App Control service name: appcontrolagent
+XComponent App Control service display name: Agent AppControl
+appcontrolagent is installed.
+```
+- Uninstalling the agent can be done also with the following command line:
+```console
+C:\appcontrol>xcAgent.exe --remove --servicename appcontrolagent
+XComponent App Control Agent, version 9.9
+Copyright © Invivoo Software 2020
+appcontrolagent is removed.
 ```
 
 - Start the service **XComponent AppControl Agent**
@@ -28,7 +45,7 @@ Run cmd.exe and the go the agent folder.
 ```console
 C:\appcontrol>xcAgent.exe --console
 XComponent AppControl Agent, version 7.0.0-R1
-Copyright � Invivoo Software 2020
+Copyright © Invivoo Software 2020
 
 ```
 

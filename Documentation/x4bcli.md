@@ -23,7 +23,7 @@ Thanks to X4B Gateway, you can deploy your applications in the AppControl Cloud 
 
 The first step, is to go log-in on [AppControl](https://appcontrol.xcomponent.com).
 
-1. Navigate to **Gateways** and click on \*\*Register New Gateway"
+1. Navigate to **Gateways** and click on **Register New Gateway**
    ![Agent Proxy Settings](../images/agentproxy1.png)
 
 2. Give a name, to your gateway and validate.

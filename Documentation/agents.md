@@ -71,7 +71,7 @@ Copyright © Invivoo Software 2022
 
 At the moment EL versions of XComponent AppControl Agent are Rocky Linux and Alma Linux.
 
-To install XComponent AppControl Agent under EL, untar the following [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/almalinux.tar.gz) into an installation directory (Tarball file).
+To install XComponent AppControl Agent under EL, untar the following [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux.tar.gz) into an installation directory (Tarball file).
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
 

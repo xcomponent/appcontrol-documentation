@@ -28,10 +28,10 @@ appcontrolagent is installed.
 ```
 - Uninstalling the agent can be done also with the following command line:
 ```console
-C:\appcontrol>xcAgent.exe --remove --servicename appcontrolagent
+C:\appcontrol>xcAgent.exe --uninstall --servicename appcontrolagent
 XComponent App Control Agent, version 9.9
 Copyright © Invivoo Software 2020
-appcontrolagent is removed.
+appcontrolagent has been uninstalled.
 ```
 
 - Start the service **XComponent AppControl Agent**

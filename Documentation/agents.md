@@ -10,8 +10,9 @@
 | Rocky Linux (EL)| tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/rockylinux.tar.gz)|
 | Debian| tar.gz| [Dedian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
 | Alpine| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
-| Alma Linux| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
+| Alma Linux (EL)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
 | Debian| docker| docker pull xcomponent/appcontrol-agent:latest-debian|
+| Rocky Linux (EL)| docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
 
 All binaries versions are listed here: [All binaries versions](https://github.com/xcomponent/appcontrol-documentation/releases/)
 

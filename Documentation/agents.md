@@ -13,6 +13,10 @@
 | Alma Linux| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
 | Debian| docker| docker pull xcomponent/appcontrol-agent:latest-debian|
 
+All binaries versions are listed here: [All binaries versions](https://github.com/xcomponent/appcontrol-documentation/releases/)
+
+All docker versions are listed here: [All docker versions](
+https://hub.docker.com/r/xcomponent/appcontrol-agent/tags)
 
 ## Microsoft Windows Platform
 

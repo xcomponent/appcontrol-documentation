@@ -8,7 +8,7 @@
 | Alpine|  tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/alpine.tar.gz) |
 | Alma Linux (EL)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/almalinux.tar.gz)|
 | Rocky Linux (EL)| tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest//download/rockylinux.tar.gz)|
-| Debian| tar.gz| [Dedian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
+| Debian| tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
 | Alpine| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
 | Alma Linux (EL)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
 | Debian| docker| docker pull xcomponent/appcontrol-agent:latest-debian|

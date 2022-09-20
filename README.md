@@ -18,7 +18,7 @@
 | Public SaaS portal | [X4B SaaS](https://x4b.xcomponent.com) |
 | Getting Started | - [How to create your application map?](./Documentation/map.md)<br/> - [Enrich your application with dynamic informations](./Documentation/appcontrol_worker/dynamicmapinformations.md)<br/>
 | Deploy your own agents | - [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br> - [How to connect your personal workstation with X4B AppControl SaaS for testing?](./Documentation/x4bcli.md)<br>- [How to connect your corporate private network with X4B AppControl SaaS?](./Documentation/x4bcli.md)<br>|
-| Advanced | - [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md) |
+| Advanced | - [AppControl Cli](./Documentation/cli.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md) |
 | Interactions between AppControl and Scenario |- [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/>- [Using the AppControl Worker to implement an XC Scenario task](./Documentation/appcontrol_worker/README.md)<br/> |
 
 ## OBJECTIVES

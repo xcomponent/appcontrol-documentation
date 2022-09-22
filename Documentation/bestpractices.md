@@ -26,7 +26,7 @@ The badges are displayed in the **Agents** view.
 | None|   <img src="../images/silver_medal.png" alt="Screenshot" width="10%" height="10%" />  |
 
 ### Resilience badges
-* The third badge encourages the use of several sites (at least primary and secondary). This declaration of the different sites is configured using the "trustedserver" variable in the agent's config.dat file.
+* The third badge encourages the use of several sites (at least primary and secondary). This declaration of the different sites is configured using the "trustedservers" variable in the agent's config.dat file. If "ignoretrustedservers" a "gold medal" will be displayed.
 
 | Number of servers declared in "trustedserver" | Badge |
 |----------|--------|

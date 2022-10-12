@@ -6,7 +6,7 @@ Dynamic informations are returned by the 'check' command.
 
 To return dynamic informations the 'check' command should log on the standard output some informations. The informations should respect the following format:
 ```xml
-<xcappcontrol> APPCONTROL JSON OBJECT </xcappcontrol>
+<appcontrol> APPCONTROL JSON OBJECT </appcontrol>
 ```
 
 Dynamic informations can enrich the content of the component owning the 'check'. In dynamic informations start/stop commands are not allowed.

@@ -91,6 +91,25 @@ XComponent For Business by Invivoo Software - 2021
 
 ```
 
+## Run the gateway as a Microsoft Windows service
+
+In a prompt with administrative permissions:
+
+```console
+c:\x4b> x4b install -servicename x4bGatewayServiceName  -server "https://appcontrol.xcomponent.com/core" -loglevel "Trace" -access "myAccesToken" -proxyname "myGatewayName" -secret "mySecretToken"
+```
+
+The first parameters to register the gateway as a service is the topshelf syntax: 
+
+[Topshelf Command-Line Reference — Topshelf 3.0 documentation](http://docs.topshelf-project.com/en/latest/overview/commandline.html)
+
+
+The following parameters are specific to the gateway:
+
+-server "https://appcontrol.xcomponent.com/core" -loglevel "Trace" -access "myAccesToken" -proxyname "myGatewayName" -secret "mySecretToken"
+
+
+
 ## Deployment using Docker
 
 The docker image is available on docker hub: [x4b-gateway](https://hub.docker.com/r/xcomponent/xcomponent/x4b-gateway)

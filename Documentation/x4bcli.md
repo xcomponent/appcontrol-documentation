@@ -19,28 +19,28 @@ Please refer to the agents installation section for agents installation.
 
 Thanks to X4B Gateway, you can deploy your applications in the AppControl Cloud Platform with Agents deployed on premises.
 
-#### How it works ?
+#### How does it work ?
 
 The first step, is to go log-in on [AppControl](https://appcontrol.xcomponent.com).
 
 1. Navigate to **Gateways** and click on **Register New Gateway**
    ![Agent Proxy Settings](../images/agentproxy1.png)
 
-2. Give a name, to your gateway and validate.
+2. Give a name to your gateway and validate.
 
-3. Once your gateway is created, an AccessKey and a SecretAccessKey are generated.
+3. Once your gateway is created, an Access Key and a Secret Access Key are generated.
 
 ![Gateway Settings](../images/agentproxy2.png)
 
-4. We are ready to install the X4B Gateway. Please refers to the below documentation for the installation procedure.
-5. Because X4B Gateway communicates with agents you need to install at least one agent.
-6. Once your X4B Gateway and your agent are up and running your are ready to deploy a new application.
+4. We are ready to install the X4B Gateway. Please refer to the below documentation for the installation procedure.
+5. Because X4B Gateway communicates with agents, you need to install at least one agent.
+6. Once your X4B Gateway and your agent are up and running, your are ready to deploy a new application.
 
 ### X4B Gateway installation
 
 The first step is to retrieve the X4B Gateway credentials. Navigate to the **Gateway** page and note the following informations:
 
-- Agent Proxy Name
+- Name
 - Access Key
 - Secret Acces Key
 
@@ -53,10 +53,10 @@ On Microsoft Windows, the [.NET Framework 4.7.2](https://dotnet.microsoft.com/do
 Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip).
 
 On a prompt (cmd.exe), execute the following command line.
-Replace MY_ACCESS_KEY, MY_SECRET_ACCESSKEY and MY_PROXY_NAME with the suitable values.
+Replace MY_ACCESS_KEY, MY_SECRET_ACCESSKEY and MY_GATEWAY_NAME with the suitable values.
 
 ```console
-c:\x4b> x4b appcontrol run -a MY_ACCESS_KEY -p MY_SECRET_ACCESSKEY -n MY_PROXY_NAME -l Trace
+c:\x4b> x4b appcontrol run -a MY_ACCESS_KEY -p MY_SECRET_ACCESSKEY -n MY_GATEWAY_NAME -l Trace
 ```
 
 You can also, set the following environment variables:
@@ -64,7 +64,7 @@ You can also, set the following environment variables:
 ```console
 c:\x4b> set X4B_ACCESS_KEY = MY_ACCESS_KEY
 c:\x4b> set X4B_SECRET_ACCESS_KEY = MY_SECRET_ACCESSKEY
-c:\x4b> set X4B_PROXY_NAME: = MY_PROXY_NAME
+c:\x4b> set X4B_GATEWAY_NAME: = MY_GATEWAY_NAME
 ```
 
 Once these environment variables are set, you can run the gateway using the following command line:
@@ -115,7 +115,7 @@ The following parameters are specific to the gateway:
 The docker image is available on docker hub: [x4b-gateway](https://hub.docker.com/r/xcomponent/xcomponent/x4b-gateway)
 
 ```console
-docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_PROXY_NAME=MY_PROXY_NAME xcomponent/x4b-cli:latest
+docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_GATEWAY_NAME=MY_GATEWAY_NAME xcomponent/x4b-cli:latest
 ```
 
 If the configuration is correct, you should observe the following lines in the terminal:

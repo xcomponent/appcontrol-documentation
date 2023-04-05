@@ -64,7 +64,7 @@ You can also, set the following environment variables:
 ```console
 c:\x4b> set X4B_ACCESS_KEY = MY_ACCESS_KEY
 c:\x4b> set X4B_SECRET_ACCESS_KEY = MY_SECRET_ACCESSKEY
-c:\x4b> set X4B_GATEWAY_NAME: = MY_GATEWAY_NAME
+c:\x4b> set X4B_GATEWAY_NAME = MY_GATEWAY_NAME
 ```
 
 Once these environment variables are set, you can run the gateway using the following command line:

@@ -64,7 +64,7 @@ You can also, set the following environment variables:
 ```console
 c:\x4b> set X4B_ACCESS_KEY = MY_ACCESS_KEY
 c:\x4b> set X4B_SECRET_ACCESS_KEY = MY_SECRET_ACCESSKEY
-c:\x4b> set X4B_GATEWAY_NAME = MY_GATEWAY_NAME
+c:\x4b> set X4B_PROXY_NAME = MY_GATEWAY_NAME
 ```
 
 Once these environment variables are set, you can run the gateway using the following command line:
@@ -84,7 +84,7 @@ If the configuration is correct, you should observe the following lines in the t
 
 
 XComponent For Business by Invivoo Software - 2021
-25/02/2021 09:15:20# X4B Proxy is up and running... (Press Ctrl+C to exit)
+25/02/2021 09:15:20# X4B Gateway is up and running... (Press Ctrl+C to exit)
 25/02/2021 09:15:21# Waiting for websocket connection
 25/02/2021 09:15:39# HeartBeat successfully published
 25/02/2021 09:15:39# Websocket connection established
@@ -115,7 +115,7 @@ The following parameters are specific to the gateway:
 The docker image is available on docker hub: [x4b-gateway](https://hub.docker.com/r/xcomponent/xcomponent/x4b-gateway)
 
 ```console
-docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_GATEWAY_NAME=MY_GATEWAY_NAME xcomponent/x4b-cli:latest
+docker run -e X4B_ACCESS_KEY=MY_ACCESS_KEY -e X4B_SECRET_ACCESS_KEY=MY_SECRET_ACCESSKEY -e X4B_PROXY_NAME=MY_GATEWAY_NAME xcomponent/x4b-cli:latest
 ```
 
 If the configuration is correct, you should observe the following lines in the terminal:

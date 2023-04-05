@@ -21,7 +21,7 @@ https://hub.docker.com/r/xcomponent/appcontrol-agent/tags)
 
 ## Microsoft Windows Platform
 
-To install XComponent AppControl Agent under Windows OS, unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/xcAgent_win32_1.0.zip) into an installation directory.
+To install XComponent AppControl Agent under Windows OS, unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) into an installation directory.
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
 

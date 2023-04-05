@@ -42,7 +42,7 @@ The first step is to retrieve the X4B Gateway credentials. Navigate to the **Gat
 
 - Name
 - Access Key
-- Secret Acces Key
+- Secret Access Key
 
 ![Agent Proxy Settings](../images/agentproxy3.png)
 

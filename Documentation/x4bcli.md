@@ -56,7 +56,7 @@ On a prompt (cmd.exe), execute the following command line.
 Replace MY_ACCESS_KEY, MY_SECRET_ACCESSKEY and MY_GATEWAY_NAME with the suitable values.
 
 ```console
-c:\x4b> x4b appcontrol run -a MY_ACCESS_KEY -p MY_SECRET_ACCESSKEY -n MY_GATEWAY_NAME -l Trace
+c:\x4b> x4b run gateway -a MY_ACCESS_KEY -k MY_SECRET_ACCESSKEY -p MY_GATEWAY_NAME [-l Trace]
 ```
 
 You can also, set the following environment variables:
@@ -65,12 +65,6 @@ You can also, set the following environment variables:
 c:\x4b> set X4B_ACCESS_KEY = MY_ACCESS_KEY
 c:\x4b> set X4B_SECRET_ACCESS_KEY = MY_SECRET_ACCESSKEY
 c:\x4b> set X4B_PROXY_NAME = MY_GATEWAY_NAME
-```
-
-Once these environment variables are set, you can run the gateway using the following command line:
-
-```console
-c:\x4b> x4b appcontrol run -l Trace
 ```
 
 If the configuration is correct, you should observe the following lines in the terminal:
@@ -96,19 +90,12 @@ XComponent For Business by Invivoo Software - 2021
 In a prompt with administrative permissions:
 
 ```console
-c:\x4b> x4b install -servicename x4bGatewayServiceName  -server "https://appcontrol.xcomponent.com/core" -loglevel "Trace" -access "myAccesToken" -proxyname "myGatewayName" -secret "mySecretToken"
+c:\x4b> x4b install -servicename x4bGatewayServiceName
 ```
 
 The first parameters to register the gateway as a service is the topshelf syntax: 
 
 [Topshelf Command-Line Reference — Topshelf 3.0 documentation](http://docs.topshelf-project.com/en/latest/overview/commandline.html)
-
-
-The following parameters are specific to the gateway:
-
--server "https://appcontrol.xcomponent.com/core" -loglevel "Trace" -access "myAccesToken" -proxyname "myGatewayName" -secret "mySecretToken"
-
-
 
 ## Deployment using Docker
 
@@ -134,4 +121,42 @@ XComponent For Business by Invivoo Software - 2021
 25/02/2021 09:15:39# HeartBeat successfully published
 25/02/2021 09:15:39# Websocket connection established
 
+```
+
+## Display environment variables
+
+```console
+c:\x4b>x4b env
+```
+
+## Install and run the gateway with docker and builtin command of the gateway
+
+```console
+c:\x4b>x4b run docker -a|--accesskey <accesskey> -k|--secretaccesskey <secretaccesskey> -p|--gatewayname <gatewayname> [-l|--loglevel <loglevel>] [-i|--imagetag <imagetag>] [-u|--urlserver <urlserver>]
+```
+
+## Remove Appcontrol Gateway service from the workstation
+
+```console
+c:\x4b>x4b uninstall -servicename x4bGatewayServiceName
+```
+
+## Remove Appcontrol Gateway container running with Docker
+
+```console
+c:\x4b>x4b uninstall docker -c|--containername MY_GATEWAY_NAME
+```
+
+## Display Help
+
+x4b -v|--version
+x4b [command] -h
+x4b subcommand [command] -h|--help
+
+```console
+c:\x4b>x4b -h // display list of commands available
+c:\x4b>x4b run -h // display help for command run 
+c:\x4b>x4b run docker -h //display help for the subcommand
+c:\x4b>x4b run gateway -h // display help for the subcommand  
+c:\x4b>x4b uninstall docker -h // display help for this specific command
 ```

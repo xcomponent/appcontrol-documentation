@@ -1,10 +1,14 @@
 # Running AppControl Locally with Docker Compose
 
-[Pour une version française de ce document, voir README.fr.md]
+*[Pour une version française de ce document, voir standalone.fr.md]*
 
 This package lets you install and run Invivoo's X4B AppControl software locally
-on a Windows PC.
-To install XComponent AppControl in standalone under Windows OS, unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/appcontrol-standalone.zip) into an installation directory.
+on a Windows PC. To install X4B AppControl in standalone under Windows
+OS, unzip the
+following
+[file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/appcontrol-standalone.zip) into
+an installation directory, and move into that directory.
+
 
 ## What is AppControl?
 
@@ -58,7 +62,7 @@ You will need [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 on your PC. Invivoo recommends choosing **WSL 2** over Hyper-V for the Linux
 virtualization (see installation instructions below).
 
-You will need at least 16 Gb of RAM and XXX Gb of available disk space.
+You will need at least 16 Gb of RAM and 5 Gb of available disk space.
 
 ### Installation Instructions
 
@@ -93,7 +97,7 @@ run` command. Subsequent runs will reuse the locally-stored images.
 When the command has finished executing, you should see an output like the
 following:
 
-```console
+``` console
  - Network appcontrol-compose_default                  Created                            0.8s
  - Container appcontrol-compose-rabbit-1               Started                            8.4s
  - Container appcontrol-compose-gateway-1              Started                            8.5s
@@ -166,3 +170,4 @@ To completely remove AppControl, run the following command:
 ```bash
 docker-compose -f appcontrol.yml -f appcontrol-images.yml rm
 ```
+

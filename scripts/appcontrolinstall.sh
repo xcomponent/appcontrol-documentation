@@ -67,9 +67,8 @@ mkdir -p "$APP_FOLDER"
 # Download the tar.gz archive
 ARCHIVE_FULL_PATH="$APP_FOLDER/$ARCHIVE_NAME"
 
-if [[ $BINARY_NAME == *"alpine"* ]]; then
-  apk update
-  apk add curl libstdc++ libgcc
+if [[ $ARCHIVE_NAME == *"alpine"* ]]; then
+  apk add libstdc++ libgcc
 fi
 
 curl -s -L "$ROOT_DOWNLOAD_URL/$ARCHIVE_NAME" -o "$ARCHIVE_FULL_PATH" 

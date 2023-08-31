@@ -68,6 +68,7 @@ mkdir -p "$APP_FOLDER"
 ARCHIVE_FULL_PATH="$APP_FOLDER/$ARCHIVE_NAME"
 
 if [[ $ARCHIVE_NAME == *"alpine"* ]]; then
+echo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   apk add libstdc++ libgcc
 fi
 

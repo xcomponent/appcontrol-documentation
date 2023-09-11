@@ -160,3 +160,27 @@ c:\x4b>x4b run docker -h //display help for the subcommand
 c:\x4b>x4b run gateway -h // display help for the subcommand  
 c:\x4b>x4b uninstall docker -h // display help for this specific command
 ```
+
+## Check Appcontrol's Agents communication
+
+The gateway can also be usefull to check the communication between itself and the agent or simply to check if the port of the agent is accessible. Agent can be deployed on the same computer as the gateway or elsewhere in the network.
+
+```console
+c:\x4b>x4b run interactive --host localhost
+```
+
+This is the list of allowed parameters:
+
+| Parameters | Description | Example
+| -----------------|------------|-------------|
+| --host | Agent host name |  x4b run interactive --host MYHOST |
+| --port | Agent port value |  x4b run interactive --host MYHOST --port 12345 |
+| --ssl | Ssl protocol: Tls, Tls12, Tls13 |  x4b run interactive --host MYHOST --port 12345 --ssl Tls12 |
+| --loglevel | Log Level: Error, Info, Trace | x4b run interactive --host MYHOST --port 12345 --ssl Tls12 --loglevel Error |
+
+
+
+
+
+
+

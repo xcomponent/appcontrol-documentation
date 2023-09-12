@@ -1,6 +1,5 @@
 # X4B Gateway
 
-
 ## Latest Available versions
 
 | Operating System | Format| Latest version |
@@ -162,11 +161,13 @@ c:\x4b>x4b uninstall docker -h // display help for this specific command
 ```
 
 ## Check Appcontrol's Agents communication
+<a id="agent-communication"></a>
+The gateway can also be usefull to check is the agent is up and running. Agents can be deployed on the same computer as the gateway or elsewhere in the network.
 
-The gateway can also be usefull to check the communication between itself and the agent or simply to check if the port of the agent is accessible. Agent can be deployed on the same computer as the gateway or elsewhere in the network.
+Imagine, you have deployed an agent in the host 'myhost' and the gateway is deployed elsewhere in the network. Open 'cmd.exe' and enter the following command:
 
 ```console
-c:\x4b>x4b run interactive --host localhost
+c:\x4b>x4b run interactive --host myhost
 ```
 
 This is the list of allowed parameters:
@@ -179,8 +180,157 @@ This is the list of allowed parameters:
 | --loglevel | Log Level: Error, Info, Trace | x4b run interactive --host MYHOST --port 12345 --ssl Tls12 --loglevel Error |
 
 
+If the gateway can't reach the agent, you will obtain the following output:
+
+```console
+c:\x4b>x4b run interactive --host myhost
+Launching gateway in interactive mode...
+ __  ______ ___  __  __ ____   ___  _   _ _____ _   _ _____
+ \ \/ / ___/ _ \|  \/  |  _ \ / _ \| \ | | ____| \ | |_   _|
+  \  / |  | | | | |\/| | |_) | | | |  \| |  _| |  \| | | |
+  /  \ |__| |_| | |  | |  __/| |_| | |\  | |___| |\  | | |
+ /_/\_\____\___/|_|  |_|_|    \___/|_| \_|_____|_| \_| |_|
 
 
+XComponent For Business by Invivoo Software - 2023
+
+12/09/2023 17:08:52# X4B Gateway is up and running... (Press Ctrl+C to exit)
+
+12/09/2023 17:08:55# Connection to agent fails - Retrying in few seconds...
+```
+If the gateway is able to reach the agent, you will obtain the following output:
+
+```console
+C:\>x4b run interactive --host localhost
+Launching gateway in interactive mode...
+ __  ______ ___  __  __ ____   ___  _   _ _____ _   _ _____
+ \ \/ / ___/ _ \|  \/  |  _ \ / _ \| \ | | ____| \ | |_   _|
+  \  / |  | | | | |\/| | |_) | | | |  \| |  _| |  \| | | |
+  /  \ |__| |_| | |  | |  __/| |_| | |\  | |___| |\  | | |
+ /_/\_\____\___/|_|  |_|_|    \___/|_| \_|_____|_| \_| |_|
 
 
+XComponent For Business by Invivoo Software - 2023
+
+12/09/2023 17:11:53# X4B Gateway is up and running... (Press Ctrl+C to exit)
+
+12/09/2023 17:11:54# Connection to agent established
+
+12/09/2023 17:11:54#
+***************************************
+Agent configuration:
+Version=26.0
+Platform=Windows
+Cpu Usage=15%
+networkAddress=0.0.0.0
+port=12567
+logdirectory=C:\tools\appcontrol\xcAgent-binary\./logs
+tempdirectory=C:\Windows\TEMP
+maxlogsizeinmo=5
+nbdaystodeletelogs=10
+redirecterroutput=1
+executionthreshold=200
+loglevel=TRACE
+trustedservers=
+sslprotocol=tls12
+sshkeydirectory
+shell=
+ignoretrustedservers=false
+serviceaccount=
+windows Interpreter=C:\Windows\system32\cmd.exe
+
+***************************************
+
+appControlAgent@localhost %
+```
+
+The gateway is able to reach both  linux and windows agents.
+
+Once you are connected, you can execute commands on agents's host. For example, 'cd, dir, more' for Windows or 'pwd, ls, cat ' under linux.
+
+The commands are executed by the default shell which is 'cmd.exe' for Windows and 'sh or bash' for Linux.
+
+Example with Windows's agent:
+```shell
+appControlAgent@localhost % dir
+
+ Répertoire de C:\tmp\test\xcAgent-binary-Win32
+
+12/09/2023  17:31    <DIR>          .
+12/09/2023  17:31    <DIR>          ..
+11/09/2023  14:15               940 config.dat
+11/09/2023  14:31                87 install.bat
+26/03/2018  23:45         2?094?592 libcrypto-1_1.dll
+26/03/2018  23:45           375?808 libssl-1_1.dll
+12/09/2023  17:32    <DIR>          logs
+26/03/2018  23:45           970?912 msvcr120.dll
+11/09/2023  14:29           953?856 xcAgent.exe
+               6 fichier(s)        4?396?195 octets
+               3 R?p(s)  96?394?911?744 octets libres
+
+appControlAgent@localhost C:\tmp\test\xcAgent-binary-Win32% powershell -c cat config.dat
+
+12/09/2023 17:35:25# <!-- XComponent APP Control Agent Configuration file -->
+<config>
+  <item key="generatebatch" value="false" />
+  <item key="windowsinterpreter" value="%ComSpec%" />
+  <item key="networkAddress" value="0.0.0.0" />
+  <item key="port" value="12567" />
+  <item key="logdirectory" value="./logs" />
+  <item key="tempdirectory" value="%TEMP%" />
+  <item key="maxlogsizeinmo" value="5" />
+  <item key="nbdaystodeletelogs" value="10" />
+  <item key="redirecterroutput" value="true" />
+  <item key="logToStandardOutput" value="true" />
+  <item key="executionthreshold" value="200" />
+  <item key="loglevel" value="TRACE" /> <!-- NONE, INFO, TRACE, ERROR -->
+  <item key="trustedservers" value="" />
+  <item key="ignoretrustedservers" value="false" />
+  <item key="sslprotocol" value="tls12" /> <!-- ssl, tls, tls12, tls13 -->
+  <item key="sshkeydirectory" value="" />  <!-- Linux Only -->
+  <item key="shell" value="" />
+</config>
+
+appControlAgent@localhost C:\tmp\test\xcAgent-binary-Win32%
+```
+
+Example with debian's agent:
+```bash
+appControlAgent@macbook % ls
+
+12/09/2023 17:36:56# config.dat
+config_env.dat
+libs
+logs
+run.sh
+tmp
+xcAgent.bin
+
+appControlAgent@macbook /usr/src/app/xcagent% cat config.dat
+
+12/09/2023 17:37:23# <!-- XComponent APP Control Agent Configuration file -->
+<config>
+  <item key="networkAddress" value="0.0.0.0" />
+  <!--TCP listening port of the agent -->
+  <item key="port" value="12567" />
+  <item key="generatebatch" value="true" />
+  <!--Logs and Tmp directories-->
+  <item key="logdirectory" value="logs" />
+  <item key="tempdirectory" value="tmp" />
+  <item key="maxlogsizeinmo" value="5" />
+  <item key="nbdaystodeletelogs" value="10" />
+   <item key="redirecterroutput" value="true" />
+  <item key="executionthreshold" value="50" />
+   <item key="logToStandardOutput" value="true" />
+  <item key="loglevel" value="TRACE" /> <!-- NONE, INFO, TRACE, ERROR -->
+   <!-- IP address of SSH serveur (unix/linux) -->
+  <item key="sshhost" value="127.0.0.1" />
+  <!-- IP Address or DNS Names of AC2 servers authorized to communicate with the agent -->
+  <item key="trustedservers" value="" />
+  <item key="sslprotocol" value="tls12" />  <!-- ssl, tls, tls12 -->
+  <item key="sshkeydirectory" value="" />  <!-- Linux Only -->
+  <item key="shell" value="" />
+</config>
+appControlAgent@macbook /usr/src/app/xcagent%
+```
 

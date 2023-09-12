@@ -68,6 +68,25 @@ Copyright © Invivoo Software 2022
 
 ```
 
+##### 3. Adding a Microsoft Windows firewall port rule (optional step)
+
+If you need to communicate with the agent from another computer, you should need to create a firewall rule to open the agent's port. 
+
+In the case the agent's port is 12567, the command above creates the correct rule on the firewall.
+
+Run cmd.exe (with Administrative permissions) and then execute the following command.
+
+```console
+C:\>netsh advfirewall firewall add rule name="AppControl-AgentRule" dir=in action=allow protocol=TCP localport=12567	
+
+```
+
+You can check that the rule is correctly created with this command:
+
+```console
+C:\>netsh advfirewall firewall show rule name="AppControl-AgentRule"
+```
+
 ## ENTERPRISE LINUX
 
 At the moment EL versions of XComponent AppControl Agent are Rocky Linux and Alma Linux.
@@ -201,5 +220,40 @@ if an env variable named XC_TEMPDIRECTORY exists, this value will be used instea
 
 ```
 
+## Checking that agent's port is opened
 
+In some situations, we need to check that the agent's port is correctly bind and accessible from another computer.
 
+1. Checking that the agent binds on its port (locally):
+
+```console
+curl localhost:12567
+```
+If the agent is running, the expected message is:
+```console
+curl: (52) Empty reply from server
+```
+If the agent is not running, the  message is:
+```console
+curl: (7) Failed to connect to localhost port 12567 after 2267 ms: Couldn't connect to server
+```
+
+2. Checking that the agent binds on its port (from a remote machine):
+
+```console
+curl mymachine:12567
+```
+If the agent is running, the expected message is:
+```console
+curl: (52) Empty reply from server
+```
+If the agent is not running, the  message is:
+```console
+curl: (7) Failed to connect to mymachine port 12567 after 2267 ms: Couldn't connect to server
+```
+
+**Note:**
+```
+You can use the AppControl Gateway to both check agent connectivity and also to execute commands on the agent host.
+```
+Please refer to the following [link](x4bcli.md#agent-communication)

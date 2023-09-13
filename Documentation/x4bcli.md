@@ -47,6 +47,11 @@ The first step is to retrieve the X4B Gateway credentials. Navigate to the **Gat
 
 ## Microsoft Windows Platform
 
+**Note:**
+```
+We recommand to use cmd.exe as a shell to install the agent. We don't offer the support for installation through powershell.
+```
+
 On Microsoft Windows, the [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) or above is required .
 
 Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip).

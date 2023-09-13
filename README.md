@@ -102,8 +102,3 @@ Click on the **'Architecture'** button:
 Using, the command bar, it's easy to start/stop the Hello World application.
 ![Command Bar](images/command_bar.png)
 
-## Q/A
-
-1. Does AppControl replace the monitoring tools (Nagios, Centreon, Zabbix, ...) ?
-
-   No, AppControl is not intended to replace these tools. It is possible to rely on these probes and add additional action commands.

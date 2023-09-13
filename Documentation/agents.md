@@ -1,18 +1,19 @@
-# AppControl AGENTS
+# AppControl Agents
+
 
 ## Latest Available versions
 
-| Operating System | Format| Latest version |
-| -----------------|------|------------|
-| Microsoft Windows | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
-| Alpine|  tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/alpine.tar.gz) |
-| Alma Linux (EL)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux.tar.gz)|
-| Rocky Linux (EL)| tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/rockylinux.tar.gz)|
-| Debian| tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
-| Alpine| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
-| Alma Linux (EL)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
-| Debian| docker| docker pull xcomponent/appcontrol-agent:latest-debian|
-| Rocky Linux (EL)| docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
+| Operating System | Version | Format| Latest version |
+| -----------------|------|------|------------|
+| Microsoft Windows | All Versions  | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
+| Alpine| 3.16.2 |tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/alpine.tar.gz) |
+| Alma Linux (EL)| 8 (Compatibility with RedHat 8)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux.tar.gz)|
+| Rocky Linux (EL)| 8 (Compatibility with RedHat 8) | tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/rockylinux.tar.gz)|
+| Debian| 11.5 | tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
+| Alpine| alpine:3.16.2| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
+| Alma Linux (EL)| almalinux:8 (Compatibility with RedHat 8)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
+| Debian| debian:11.5-slim |docker| docker pull xcomponent/appcontrol-agent:latest-debian|
+| Rocky Linux (EL)| rockylinux:8 (Compatibility with RedHat 8)|docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
 
 All binaries versions are listed here: [All binaries versions](https://github.com/xcomponent/appcontrol-documentation/releases/)
 
@@ -21,11 +22,19 @@ https://hub.docker.com/r/xcomponent/appcontrol-agent/tags)
 
 ## Microsoft Windows Platform
 
+**Note:**
+```
+We recommand to use cmd.exe as a shell to install the agent. We don't offer the support for installation through powershell.
+```
+
 To install XComponent AppControl Agent under Windows OS, unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) into an installation directory.
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
+You have 2 options:
+  - Install an run the agent as a Microsoft Windows Service
+  - Run the agent in interactive mode (in a cmd.exe)
 
-##### 1. Install the agent as a Microsoft Windows Service
+### Option 1. Install and start the agent as a Microsoft Windows Service
 
 - To register the program in the service registry of the Microsoft� Windows machine execute the following command in a prompt (cmd.exe) with administrative permissions:
 
@@ -57,7 +66,7 @@ appcontrolagent has been uninstalled.
 
 ![Agent Service](../images/agent_service.png)
 
-##### 2. Start the agent from prompt (cmd.exe)
+### Option 2. Run the agent in interactive mode from a prompt (cmd.exe)
 
 Run cmd.exe and the go the agent folder.
 
@@ -68,7 +77,7 @@ Copyright © Invivoo Software 2022
 
 ```
 
-##### 3. Adding a Microsoft Windows firewall port rule (optional step)
+### Adding a Microsoft Windows firewall port rule (optional step)
 
 If you need to communicate with the agent from another computer, you should need to create a firewall rule to open the agent's port. 
 
@@ -87,7 +96,14 @@ You can check that the rule is correctly created with this command:
 C:\>netsh advfirewall firewall show rule name="AppControl-AgentRule"
 ```
 
-## ENTERPRISE LINUX
+Please refer to the following [link](#agent-port) to check if the agent port is reachable.
+
+**Note:**
+```
+If you are using another firewall or and anti-virus, you should refer to the corresponding documentation.
+```
+
+## Enterprise Linux
 
 At the moment EL versions of XComponent AppControl Agent are Rocky Linux and Alma Linux.
 
@@ -95,24 +111,24 @@ To install XComponent AppControl Agent under EL, untar the following [Alma tar.g
 The configuration file (** config.dat **) is located in the same directory.
 Refer to the agent configuration section to customize the configuration.
 
-Replace **/usr/src/app/xcagent** by your own installation folder.
+Replace **/home/xc/xcagent** by your own installation folder.
 
 ```console
-/usr/src/app/xcagent $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/src/app/xcagent/libs
-/usr/src/app/xcagent $ ./xcAgent.bin --file /usr/src/app/xcagent/config.dat
+/home/xc/xcagent $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/xc/xcagent/libs
+/home/xc/xcagent $ ./xcAgent.bin --file /home/xc/xcagent/config.dat
 
 XComponent AppControl Agent, version 7.0.0-R1
 Copyright � Invivoo Software 2022
 
 ```
 
-## AGENTLESS LINUX & UNIX
+## Agentless Linux & Unix
 
 From an XComponent AppControl Linux agent, you can enable AgentLess mode via SSH2.
 This mode allows a Linux XComponent AppControl Agent to forward actions provided by the AppControl server under a non permanent Ssh channel to the IP address and account configured in the agent configuration file.
 Refer to the agent configuration section to customize the configuration.
 
-## DOCKER INSTALLATION
+## Docker Installation
 
 The docker image of the agent is available [here](https://hub.docker.com/r/xcomponent/appcontrol-agent) on docker hub.
 
@@ -189,23 +205,25 @@ Config.dat configuration supports environment variables as a value.
 
  **Under Microsoft Windows:**
 
-In Microsoft Windows, environment variables are defined with the following pattern: %VARIABLE%.
+In config.dat you can use environment variables with the following pattern: %VARIABLE%.
 
 ```xml
 <config>
+...
   <item key="tempdirectory" value="%TEMP%" />
-  <item key="maxlogsizeinmo" value="%MYVALUE%" />
+...
 </config>
 ```
 
 **Under Linux/Unix:**
 
-In Linux/Unix, environment variables are defined with the following pattern: $VARIABLE.
+In config.dat you can use environment variables with the following pattern: $VARIABLE.
 
 ```xml
 <config>
+...
    <item key="tempdirectory" value=”$TEMP" />
-   <item key="maxlogsizeinmo" value="$MYVALUE" />
+...
 </config>
 ```
 
@@ -221,7 +239,7 @@ if an env variable named XC_TEMPDIRECTORY exists, this value will be used instea
 ```
 
 ## Checking that agent's port is opened
-
+<a id="agent-port"></a>
 In some situations, we need to check that the agent's port is correctly bind and accessible from another computer.
 
 1. Checking that the agent binds on its port (locally):
@@ -247,7 +265,7 @@ If the agent is running, the expected message is:
 ```console
 curl: (52) Empty reply from server
 ```
-If the agent is not running, the  message is:
+If the agent is not running or unreachable (for example behind a firewall), the  message is:
 ```console
 curl: (7) Failed to connect to mymachine port 12567 after 2267 ms: Couldn't connect to server
 ```

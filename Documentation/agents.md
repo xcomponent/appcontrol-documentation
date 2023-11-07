@@ -5,8 +5,8 @@
 
 | Operating System | Version | Format| Latest version |
 | -----------------|------|------|------------|
-| Microsoft Windows 32 bits | All Versions  | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
-| Microsoft Windows 64 bits | All Versions  | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win64.zip) |  
+| Microsoft Windows 32 bits | All Versions  | zip | [Windows Agent32 Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
+| Microsoft Windows 64 bits | All Versions  | zip | [Windows Agent64 Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win64.zip) |  
 | Alpine| 3.18.3 |tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/alpine.tar.gz) |
 | Alma Linux (EL)| 8.8 (Compatibility with RedHat 8)| tar.gz| [Alma8 tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux8.tar.gz)|
 | Alma Linux (EL)| 9.2 (Compatibility with RedHat 9)| tar.gz| [Alma9 tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux9.tar.gz)|

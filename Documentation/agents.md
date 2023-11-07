@@ -6,14 +6,19 @@
 | Operating System | Version | Format| Latest version |
 | -----------------|------|------|------------|
 | Microsoft Windows | All Versions  | zip | [Windows Agent Zip](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip) |  
-| Alpine| 3.16.2 |tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/alpine.tar.gz) |
-| Alma Linux (EL)| 8 (Compatibility with RedHat 8)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux.tar.gz)|
-| Rocky Linux (EL)| 8 (Compatibility with RedHat 8) | tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/rockylinux.tar.gz)|
-| Debian| 11.5 | tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
-| Alpine| alpine:3.16.2| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
-| Alma Linux (EL)| almalinux:8 (Compatibility with RedHat 8)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
+| Alpine| 3.18.3 |tar.gz| [Alpine tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/alpine.tar.gz) |
+| Alma Linux (EL)| 8.8 (Compatibility with RedHat 8)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux8.tar.gz)|
+| Alma Linux (EL)| 9.2 (Compatibility with RedHat 9)| tar.gz| [Alma tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/almalinux.tar.gz)|
+| Rocky Linux (EL)| 8.8 (Compatibility with RedHat 8) | tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/rockylinux8.tar.gz)|
+| Rocky Linux (EL)| 9.2 (Compatibility with RedHat 9) | tar.gz| [Rocky Linux](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/rockylinux.tar.gz)|
+| Debian| 11.7 | tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian11.tar.gz)|
+| Debian| 12.1 | tar.gz| [Debian tar.gz](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/debian.tar.gz)|
+| Alpine| alpine:3.18.3| docker| docker pull xcomponent/appcontrol-agent:latest-alpine|
+| Alma Linux (EL)| almalinux:8.8-minimal (Compatibility with RedHat 8)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
+| Alma Linux (EL)| almalinux:9.2-minimal (Compatibility with RedHat 9)| docker| docker pull xcomponent/appcontrol-agent:latest-almalinux|
 | Debian| debian:11.5-slim |docker| docker pull xcomponent/appcontrol-agent:latest-debian|
-| Rocky Linux (EL)| rockylinux:8 (Compatibility with RedHat 8)|docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
+| Rocky Linux (EL)| rockylinux:8.8-minimal (Compatibility with RedHat 8)|docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
+| Rocky Linux (EL)| almalinux:9.2-minimal (Compatibility with RedHat 9)|docker| docker pull xcomponent/appcontrol-agent:latest-rockylinux|
 
 All binaries versions are listed here: [All binaries versions](https://github.com/xcomponent/appcontrol-documentation/releases/)
 

@@ -127,6 +127,18 @@ to access the AppControl webapp. Use the following credentials to login:
 - login: `admin`
 - password: `KoordinatorAdmin`
 
+### How expose AppControl on your local network
+
+In 'appcontrol.yml' yaml file change this :
+authentication:
+environment: - AppsUrlsWhiteList=localhost by [LOCAL-APP-SERVER-IP]
+
+In 'apps.json' file change this :
+"url": "http://localhost:4000" by "url": "http://[LOCAL-APP-SERVER-IP]:4000"
+
+In 'services.json' file change this :
+"login": "http://localhost:4003/login" by "login": "http://[LOCAL-APP-SERVER-IP]:4003/login",
+
 ### Getting Help
 
 Once you're logged into AppControl, you can access the online documentation

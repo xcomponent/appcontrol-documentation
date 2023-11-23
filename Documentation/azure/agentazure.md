@@ -58,7 +58,7 @@ az group create --name [**RESOURCE-GROUP-NAME**] --location [**northeurope par e
 4. Create the managed identity for the resource group:
 
 ```bash
-az identity create –resource-group [**RESOURCE-GROUP-NAME**] --name [**IDENTITY-NAME**]
+az identity create --resource-group [**RESOURCE-GROUP-NAME**] --name [**IDENTITY-NAME**]
 ```
 
 5. Create the virtual network and subnet for the agent and gateway:
@@ -90,13 +90,13 @@ Copy the Docker command line on the gateway line created:
 You obtain that :
 
 ```docker
-docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B\_SECRET\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B\_PROXY\_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL\_API\_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:36.0
+docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:36.0
 ```
 
 In this command, you'll find the parameters to copy and place into the next command to create your gateway container.
 
 ```bash
-az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:36.0 --restart-policy OnFailure --environment-variables X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B\_SECRET\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B\_PROXY\_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL\_API\_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
+az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:36.0 --restart-policy OnFailure --environment-variables X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
 ```
 
 After the container is created and starts automatically, check its operation in Azure by examining the logs.

@@ -47,8 +47,13 @@ The first step is to retrieve the X4B Gateway credentials. Navigate to the **Gat
 
 ## Microsoft Windows Platform
 
-The fastest method, it use execute the following command in a powershell shell with administrative permissions. The following command line will install the gateway and the agent as windows services.
-```powershell
+On Microsoft Windows, the [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) or above is required .
+
+Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip).
+
+
+The fastest method is to execute the following command in a powershell shell with administrative permissions. The following command line will install the gateway and the agent as windows services.
+```console
 PS c:\> irm https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/scripts/appcontrolinstall.ps1 | iex
 ```
 
@@ -57,9 +62,6 @@ PS c:\> irm https://raw.githubusercontent.com/xcomponent/appcontrol-documentatio
 For the other installation procedures listed above, we recommand to use cmd.exe as a shell to install the gateway and the agent. We don't offer the support for installation through powershell.
 ```
 
-On Microsoft Windows, the [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) or above is required .
-
-Most of the time it is already installed. Unzip the following [file](https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip).
 
 On a prompt (cmd.exe), execute the following command line.
 Replace MY_ACCESS_KEY, MY_SECRET_ACCESSKEY and MY_GATEWAY_NAME with the suitable values.

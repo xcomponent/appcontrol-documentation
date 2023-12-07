@@ -54,7 +54,7 @@ Most of the time it is already installed. Unzip the following [file](https://git
 
 The fastest method is to execute the following command in a powershell shell with administrative permissions. The following command line will install the gateway and the agent as windows services.
 ```console
-PS c:\> irm https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/scripts/appcontrolinstall.ps1 | iex
+irm https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/scripts/appcontrolinstall.ps1 | iex
 ```
 
 **Note:**

@@ -100,3 +100,4 @@ sudo launchctl start "$DAEMON_LABEL"
 rm -f "$DOWNLOAD_PATH"
 
 echo "Deployment complete. Daemon is now running."
+

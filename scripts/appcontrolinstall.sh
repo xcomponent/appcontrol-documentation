@@ -94,5 +94,6 @@ chmod +x "$APP_FOLDER/$BINARY_NAME"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$APP_FOLDER/libs
 
 
+
 # Start the binary
 "$APP_FOLDER/$BINARY_NAME"

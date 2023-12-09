@@ -1,12 +1,9 @@
 #!/bin/bash
 
 # Ask the user for input
-echo -n "Enter the gateway name: " 
-read X4B_GATEWAY_NAME
-echo -n "Enter the access key: " 
-read ACCESS_KEY
-echo -n "Enter the secret access key: " 
-read SECRET_ACCESS_KEY
+read -p  "Enter the gateway name: " X4B_GATEWAY_NAME
+read -p  "Enter the access key: "  ACCESS_KEY
+read -p  "Enter the secret access key: "  SECRET_ACCESS_KEY
 
 # Set variables
 AGENT_BINARY_NAME=

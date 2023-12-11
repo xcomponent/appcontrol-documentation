@@ -1,9 +1,52 @@
 #!/bin/bash
 
-# Ask the user for input
-read -p  "Enter the gateway name: " X4B_GATEWAY_NAME
-read -p  "Enter the access key: "  ACCESS_KEY
-read -p  "Enter the secret access key: "  SECRET_ACCESS_KEY
+# Ask the user if they have a registration code
+read -p "Do you have a registration code? (y/n): " HAS_REGISTRATION_CODE
+
+# Check the user's response
+if [ "$HAS_REGISTRATION_CODE" == "y" ]; then
+   
+    read -p  "Enter the registration code: " REGISTRATION_CODE
+    # Set your API endpoint
+    API_ENDPOINT="https://appcontrol.xcomponent.com/core/api/DevicesRegistration"
+
+    HOSTNAME_VAR=$(hostname)
+
+    RegistrationCodeRequest_JSON_DATA="{\"GatewayName\": \"$HOSTNAME_VAR\", \"Code\": \"$REGISTRATION_CODE\"}"
+
+    # Make the POST request using curl
+    RESPONSE=$(curl -s -H "Content-Type: application/json" -H "RegistrationCode: $REGISTRATION_CODE"  -X POST -d "$RegistrationCodeRequest_JSON_DATA" "$API_ENDPOINT")
+
+    # Check if the curl request was successful (HTTP status code 2xx)
+    if [ -n "$RESPONSE" ] && [ $? -eq 0 ]; then
+        # Check if properties "key1" and "key2" exist using jq
+        if jq -e '.Message' <<< "$RESPONSE" >/dev/null; then
+            echo "$RESPONSE" | jq -r '.Message'
+            exit 1;
+        fi
+         if jq -e '.Gateway and .AccessKey and .SecretAccessKey' <<< "$RESPONSE" >/dev/null; then
+            echo "Registration has been successfully done!"
+            brew install jq
+
+            # Extract properties from the JSON response and set environment variables
+            X4B_GATEWAY_NAME=$(echo "$RESPONSE" | jq -r '.Gateway')
+            ACCESS_KEY=$(echo "$RESPONSE" | jq -r '.AccessKey')
+            SECRET_ACCESS_KEY=$(echo "$RESPONSE" | jq -r '.SecretAccessKey')
+        else
+            echo "There's an issue with your registration code. Please check it, and retry later."
+            exit 1
+        fi
+    else
+       echo "There's an issue with your registration code. Please check it, and retry later."
+       exit 1
+    fi
+else
+   # Ask the user for input
+    read -p  "Enter the gateway name: " X4B_GATEWAY_NAME
+    read -p  "Enter the access key: "  ACCESS_KEY
+    read -p  "Enter the secret access key: "  SECRET_ACCESS_KEY
+fi
+
 
 # Set variables
 AGENT_BINARY_NAME=
@@ -42,7 +85,7 @@ sudo mkdir -p "$INSTALL_DIR"
 # Download and unzip the agent
 DOWNLOAD_PATH="/tmp/${AGENT_BINARY_NAME}.zip"
 curl -Ls -o "$DOWNLOAD_PATH" "$AGENT_DOWNLOAD_URL"
-sudo unzip -o "$DOWNLOAD_PATH" -d "$INSTALL_DIR"
+sudo unzip -o "$DOWNLOAD_PATH" -d "$INSTALL_DIR" >/dev/null
 # Clean up - remove the downloaded zip file
 rm -f "$DOWNLOAD_PATH"
 
@@ -58,7 +101,7 @@ fi
 # Download and unzip the gateway
 DOWNLOAD_PATH="/tmp/x4bgateway.zip"
 curl -Ls -o "$DOWNLOAD_PATH" "$GATEWAY_DOWNLOAD_URL"
-sudo unzip -o "$DOWNLOAD_PATH" -d "$INSTALL_DIR"
+sudo unzip -o "$DOWNLOAD_PATH" -d "$INSTALL_DIR" >/dev/null
 
 
 # Set permissions for the installation directory
@@ -161,7 +204,7 @@ sudo launchctl load "$GATEWAY_PLIST_FILE"
 # Start the daemon
 sudo launchctl start "$GATEWAY_PLIST_FILE"
 
-echo "Gateway is up and running"
+echo "Gateway $X4B_GATEWAY_NAME is up and running"
 
 
 

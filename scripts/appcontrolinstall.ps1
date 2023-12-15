@@ -1,8 +1,96 @@
-# Check the instructions here on how to use it https://massgrave.dev/
-
-$ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+
+$bannerText = "
+
+**************************************
+
+    AppControl Gateway & Agent installer
+
+**************************************
+
+"
+    Write-Host $bannerText -ForegroundColor White
+    Write-Host
+    Write-Host
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+
+if (-not $isAdmin) {
+    Write-Host "This script requires administrative privileges."
+    $choice = Read-Host "Do you want to relaunch the script as an administrator? (Y/N)"
+
+    if ($choice -eq 'Y' -or $choice -eq 'y') {
+        Start-Process powershell.exe -Verb RunAs -ArgumentList ("-File", "$($MyInvocation.MyCommand.Path)")
+        Exit
+    } else {
+        Write-Host "Exiting the script. Run the script as an administrator to proceed."
+        Exit
+    }
+}
+
+$appcontrolRootUrl = "https://appcontrol.xcomponent.com";
+$appcontrolUrl = "$appcontrolRootUrl/core";
+$apiEndpoint = "$appcontrolUrl/api/DevicesRegistration"
+
+# Make the API request
+$response = Invoke-RestMethod -Uri $apiEndpoint -Method Get
+
+# Assuming the API returns a string, you can access it like this
+$codeString = $response
+
+
+# Display a clickable hyperlink in PowerShell 7 or Windows Terminal
+Write-Host "Please, log-in here " -ForegroundColor Blue -NoNewline
+Write-Host " $appcontrolRootUrl/register/gateways" -NoNewline -ForegroundColor Green
+Write-Host " and enter this code: $codeString"
+
+# Define the interval between each poll (in seconds)
+$pollingInterval = 5
+
+# Function to check the login status
+# Function to check the login status
+function CheckLoginStatus {
+    $body = @{
+        Code = $codeString
+    } | ConvertTo-Json
+    try{
+        $response = Invoke-RestMethod -Uri $apiEndpoint -Method Post -Body $body -ContentType 'application/json'
+        return $response
+    }
+    catch {
+        # Display exception information
+        Write-Host "Exception Type: $($_.Exception.GetType().FullName)"
+        Write-Host "Exception Message: $($_.Exception.Message)"
+        Write-Host "Stack Trace: $($_.Exception.StackTrace)"
+        # You can access other properties of the exception as needed
+    }
+
+}
+
+# Loop until the user is logged in
+while ($true) {
+    $loginStatus = CheckLoginStatus | ConvertTo-Json
+    # Convert back from JSON to a PowerShell object
+    $loginStatusObject =  $loginStatus | ConvertFrom-Json
+    $gatewayProperty = $loginStatusObject.Gateway
+    $accessKeyProperty = $loginStatusObject.AccessKey
+    $secretAccessKeyProperty = $loginStatusObject.SecretAccessKey
+    
+    if ($null -ne $gatewayProperty -and $null -ne $accessKeyProperty -and $null -ne $secretAccessKeyProperty) {
+        Write-Host
+        Write-Host "Registration has been successfully done!"
+
+        # Extract properties from the JSON response and set environment variables
+        $gatewayName = $gatewayProperty
+        $accessKey = $accessKeyProperty
+        $secretAccessKey = $secretAccessKeyProperty
+        break
+    }
+
+    Write-Host "." -NoNewline
+    # If the user is not logged in, wait for the specified interval before the next poll
+    Start-Sleep -Seconds $pollingInterval
+}
 
 $x4bgatewayUrl = 'https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip'
 $appcontrolAgent = 'https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcAgent-binary-Win32.zip'
@@ -10,21 +98,8 @@ $appcontrolAgent = 'https://github.com/xcomponent/appcontrol-documentation/relea
 $agentServiceName="XComponentAppControlAgent"
 $gatewayServiceName="x4bGatewayService"
 
-$bannerText = "
-    
-**************************************
 
-        Filling gateway settings
 
-**************************************
-
-"
-Write-Host $bannerText -ForegroundColor White
-
-# Prompt the user to enter a value for the variable
-$gatewayName = Read-Host "Gateway name"
-$accessKey = Read-Host "Gateway Access Key"
-$secretAccessKey = Read-Host "Gateway Secret Access Key"
 
 
 # Build the full path to the %APPDATA% directory
@@ -94,7 +169,7 @@ Write-Host "Installing gateway service... "  -NoNewline  -ForegroundColor Yellow
 # Start the process
 $x4bprocess = New-Object System.Diagnostics.Process 
 $x4bprocess.StartInfo.FileName = "$gatewayDataPath\x4b.exe" 
-$x4bprocess.StartInfo.Arguments = "install -servicename x4bGatewayService -a $accessKey -p $gatewayName -k $secretAccessKey"
+$x4bprocess.StartInfo.Arguments = "install -servicename x4bGatewayService -a $accessKey -p $gatewayName -k $secretAccessKey -u $appcontrolUrl"
 $x4bprocess.StartInfo.UseShellExecute = $false
 $x4bprocess.StartInfo.RedirectStandardOutput = $false
 $x4bprocess.StartInfo.RedirectStandardError = $false

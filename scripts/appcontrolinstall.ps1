@@ -15,20 +15,35 @@ $bannerText = "
     Write-Host
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
+# Get the full path of the script
 $scriptPath = $MyInvocation.MyCommand.Path
+
+# Check if the script is running locally
+$isLocalExecution = $scriptPath -eq $ExecutionContext.SessionState.Path.CurrentLocation.Path
+
+# Check if the script is running with administrative privileges
+$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-not $isAdmin) {
     Write-Host "This script requires administrative privileges."
-    $choice = Read-Host "Do you want to relaunch the script as an administrator? (Y/N)"
+    if($isLocalExecution)
+    {
+        $choice = Read-Host "Do you want to relaunch the script as an administrator? (Y/N)"
 
-    if ($choice -eq 'Y' -or $choice -eq 'y') {
-        Write-Host "Relaunching script with elevated privileges..."
-        Start-Process powershell.exe -Verb RunAs -ArgumentList "-File $scriptPath"
-        Exit
-    } else {
-        Write-Host "Exiting the script. Run the script as an administrator to proceed."
-        Exit
+        if ($choice -eq 'Y' -or $choice -eq 'y') {
+            Write-Host "Relaunching script with elevated privileges..."
+            Start-Process powershell.exe -Verb RunAs -ArgumentList "-File $scriptPath"
+            Exit
+        } else {
+            Write-Host "Exiting the script. Run the script as an administrator to proceed."
+            Exit
+        }
     }
+    else {
+            Write-Host "Exiting the script. Run the script as an administrator to proceed."
+            Exit
+        }
+    
 }
 
 $appcontrolRootUrl = "https://appcontrol.xcomponent.com";

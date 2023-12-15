@@ -15,12 +15,15 @@ $bannerText = "
     Write-Host
 $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
+$scriptPath = $MyInvocation.MyCommand.Path
+
 if (-not $isAdmin) {
     Write-Host "This script requires administrative privileges."
     $choice = Read-Host "Do you want to relaunch the script as an administrator? (Y/N)"
 
     if ($choice -eq 'Y' -or $choice -eq 'y') {
-        Start-Process powershell.exe -Verb RunAs -ArgumentList ("-File", "$($MyInvocation.MyCommand.Path)")
+        Write-Host "Relaunching script with elevated privileges..."
+        Start-Process powershell.exe -Verb RunAs -ArgumentList "-File $scriptPath"
         Exit
     } else {
         Write-Host "Exiting the script. Run the script as an administrator to proceed."

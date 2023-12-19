@@ -7,14 +7,9 @@
 - Gateway :
 
 ```bash
-docker pull xcomponent/x4b-gateway
+docker pull xcomponent/x4b-gateway:latest
 ```
 
-- Azure Agent :
-
-```bash
-docker pull xcomponent/agent-debian12-azure:36.0
-```
 
 ### Azure Documentation
 

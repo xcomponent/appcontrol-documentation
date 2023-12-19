@@ -61,25 +61,13 @@ az group create --name [**RESOURCE-GROUP-NAME**] --location [**northeurope par e
 az identity create --resource-group [**RESOURCE-GROUP-NAME**] --name [**IDENTITY-NAME**]
 ```
 
-5. Create the virtual network and subnet for the agent and gateway:
+5. Create the virtual network and subnet for the gateway:
 
 ```bash
 az network vnet create --name [**VNET-NAME**] --resource-group [**RESOURCE-GROUP-NAME**] --address-prefix 10.0.0.0/16 --subnet-name [**SUBNET-NAME**] --subnet-prefixes 10.0.0.0/24
 ```
 
-6. Create the agent's container instance:
-
-```bash
-az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-NAME**] --image docker.io/xcomponent/agent-debian12-azure:36.0 --assign-identity --scope /subscriptions/[**SUBSCRIPTION-ID**]/resourcegroups/[**RESOURCE-GROUP-NAME**] --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
-```
-
-Once the container is set up, check the logs to ensure a successful startup. Retrieve the IP assigned to your container for use in the AppControl map.
-
-![](container_created.png)
-
-Also remember to retrieve the IP given to your container, it will be used when using this agent in an AppControl map. The IP is visible from the summary view of the container.
-
-7. Add a gateway record on the AppControl platform.
+6. Add a gateway record on the AppControl platform.
 
 ![](gateway_creation.png)
 
@@ -90,13 +78,13 @@ Copy the Docker command line on the gateway line created:
 You obtain that :
 
 ```docker
-docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:36.0
+docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:latest
 ```
 
 In this command, you'll find the parameters to copy and place into the next command to create your gateway container.
 
 ```bash
-az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:36.0 --restart-policy OnFailure --environment-variables X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
+az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:latest --restart-policy OnFailure --environment-variables X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
 ```
 
 After the container is created and starts automatically, check its operation in Azure by examining the logs.
@@ -115,7 +103,7 @@ Here's an example that supervises an Azure function:
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <apps>
  <hosts>
-  <host hostid="agent-azure" host="[IP-AGENT]" port="12567" sslprotocol="Tls12" />
+  <host hostid="agent-azure" host="localhost" port="12567" sslprotocol="Tls12" />
  </hosts>
  <auths>
   <auth authid="LOCAL" domain="" password="" user="" />

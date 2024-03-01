@@ -5,6 +5,7 @@
 			"color": "#ca03fc",
 			"type": "service",
 			"name": "dynamic component 1",
+			"progressPercentage": 60,
 			"parents": [
 				"Demo Dynamic"
 			],

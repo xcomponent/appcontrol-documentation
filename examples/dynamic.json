@@ -2,10 +2,38 @@
 	"dynamicTree": [
 		{
 			"group": "dynamic",
+			"name": "pie chart",
+			"progressPercentage": 60,
+			"parents": [
+				"Demo Dynamic"
+			],
+			"state": "Started",
+			"filters": {
+				"dynamicnode": [
+					"pie"
+				]
+			},
+			"customActions": [
+				{
+					"customActionName": "echo Action",
+					"customActionCommandLine": "echo $(message)",
+					"parameters": [
+						{
+							"parameterName": "message",
+							"description": "What's the message ?",
+							"defaultValue": "Welcome message",
+							"validationRule": "*",
+							"isEditable": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"group": "dynamic",
 			"color": "#ca03fc",
 			"type": "service",
 			"name": "dynamic component 1",
-			"progressPercentage": 60,
 			"parents": [
 				"Demo Dynamic"
 			],

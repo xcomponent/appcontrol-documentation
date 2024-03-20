@@ -1,6 +1,4 @@
 
-![DemoDynamicData](https://appcontrol.dev.xcomponent.com/core/api/badge?applicationName=DemoDynamicData,v1@Frederic%20CARRE)
- and 
 <p align="center">
   <img src="images/logo.svg" alt="logo" width="200" />
 </p>

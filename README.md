@@ -1,6 +1,5 @@
 
-[![fff](https://img.shields.io/badge/test-%3Fstyle=flat&link=https%3A%2F%2Fappcontrol.dev.xcomponent.com%2Fcomponents%2FDemoDynamicData%2Cv1%40Frederic%2520CARRE)](https://appcontrol.dev.xcomponent.com/components/DemoDynamicData,v1@Frederic%20CARRE)
-
+[![fff](https://img.shields.io/badge/test-%3Fstyle=flat&link=https%3A%2F%2Fappcontrol.dev.xcomponent.com%2Fcomponents%2FDemoDynamicData%2Cv1%40Frederic%2520CARRE)]
 just <p align="center">
   <img src="images/logo.svg" alt="logo" width="200" />
 </p>

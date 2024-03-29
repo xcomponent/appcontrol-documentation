@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<apps>
+ <hosts>
+		<host hostid="LOCAL" host="localhost" port="12567" sslprotocol="Tls12" />
+	</hosts>
+  <auths>
+    <auth authid="LOCAL" domain="" password="" user="" />
+  </auths>
+  <app name="helloworld" version="v1">
+    <component name="hello" description="Hello World" group="Hello group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="file">
+      <action value="cat hello.txt" name="check" />
+      <action value="echo hello &gt; hello.txt" name="enable" />
+      <action value="rm hello.txt" name="disable" />
+      <action value="echo $(message)" commandname="Say Hello" name="custom">
+        <parameters>
+          <parameter name="message" value="Hello" canedit="true" validation="*" />
+        </parameters>
+      </action>
+    </component>
+  </app>
+</apps>

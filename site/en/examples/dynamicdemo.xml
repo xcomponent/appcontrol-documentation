@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<apps>
+ <hosts>
+		<host hostid="LOCAL" host="localhost" port="12567" sslprotocol="Tls12" />
+	</hosts>
+  <auths>
+    <auth authid="LOCAL" domain="" password="" user="" />
+  </auths>
+  <app name="DemoDynamicData" version="v1">
+    <component name="Demo Dynamic" hostref="LOCAL" authref="LOCAL" >
+      <action value="echo '&lt;appcontrol&gt;&lt;![CDATA[' &amp;&amp; curl --silent https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/dynamic.json &amp;&amp; echo ']]&gt;&lt;/appcontrol&gt;'" name="check" />
+    </component>
+  </app>
+</apps>

@@ -1,103 +1,43 @@
-<p align="center">
-  <img src="images/logo.svg" alt="logo" width="200" />
-</p>
-<p align="left">
-  AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.
-  <br>
-  <br>
-  Supplementing your existing monitoring and supervision tools, AppControl acts on your applications to restart, repair, execute any custom actions, as you wish, on your information system.
-  <br>
-  <br>
-  AppControl empowers your teams, increases their confidence level and lowers their stress during operations.
-</p>
 
-## USEFUL LINKS
+We are using [Material Theme](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/).
 
-| <b>Description</b>                           | <b>Links</b>                                                                                                                                                                                                                                                      |
-| :------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Public SaaS portal                           | [X4B SaaS](https://x4b.xcomponent.com)                                                                                                                                                                                                                            |
-| Getting Started                              | - [Get started](#get-started)<br/> - [How to create your application map?](./Documentation/map.md)<br/> - [Enrich your application with dynamic informations](./Documentation/appcontrol_worker/dynamicmapinformations.md)<br/>                                   |
-| Deploy your own agents                       | - [How to install AppControl Agent to execute the components actions?](./Documentation/agents.md)<br>- [How to supervise and monitor Azure resources ?](./Documentation/azure/agentazure.md)<br>- [How to install your gateways ?](./Documentation/x4bcli.md)<br> |
-| Install standalone                           | - [How to install AppControl in standalone mode?](./Documentation/standalone.md)                                                                                                                                                                                  |
-| Advanced                                     | - [AppControl Cli](./Documentation/cli.md)<br/>- [How to import your Centreon setup into AppControl?](./Documentation/centreon.md)<br/>- [How to integrate AppControl with a ServiceNow Cmdb?](./Documentation/cmdb.md)                                           |
-| Interactions between AppControl and Scenario | - [Using an OpenFaaS function to implement an XC Scenario task](./Documentation/openfaas/synchronous.md)<br/>- [Using the AppControl Worker to implement an XC Scenario task](./Documentation/appcontrol_worker/README.md)<br/>                                   |
+If we want to version the documentation: [Setting up versioning](https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/)
 
-## OBJECTIVES
+- [Documentation to handle multi-languages](https://github.com/squidfunk/mkdocs-material/discussions/2346)
+- [Documentation on folder structure and overriding](https://squidfunk.github.io/mkdocs-material/customization/#extending-the-theme)
 
-- Find root cause with no human intervention
-- Eliminate human error when restarting
-- Keep operational procedures tested and up-to-date
 
-AppControl allows you to both monitor the status of applications in real time but **above all to act** when an incident occurs.
-Where monitoring software signals you problems, AppControl offers to correct them.
-<br>
+# Local testing
 
-<p align="center">
-  <img src="images/screenshot.png" alt="Screenshot" width="50%" height="50%" />
-</p>
+## Single language with auto-refresh
 
-## HOW IT WORKS
+Using `mkdocs serve` the website will auto refresh if you modify markdown files.
+But you can activate this for a single language.
 
-In AppControl, an application is a hierarchy of components. <br> A component have several commands:
+Execute following command (for english) :
 
-- A check command to retrieve the current state
-- A start command
-- A stop command
-- And some optionals custom commands
+```
+pipenv run mkdocs serve -f config/en/mkdocs.yml
+```
 
-- #### Dependencies behaviour
-- A component can only starts if its parent's components are started.
-- A component can only stops if its children's components are stopped.
+The website will be accessible in local at [http://localhost:8000/](http://localhost:8000/)
 
-#### Diagnostic
+Each time you modify markdown files, the website will be refreshed.
 
-In this situation, there are 2 issues:
 
-- 2 components are stopped whereas there parents are started
+## Multi language
 
---> AppControl has detected the issues.
+Execute following commands :
 
-![Diagnostic](images/diagnostic.png)
+```
+pipenv shell
+mkdocs build -f config/en/mkdocs.yml
+mkdocs build -f config/fr/mkdocs.yml
+python -m http.server 8000 -d site
+```
 
-#### Resolution
+The website will be accessible in local at [http://localhost:8000/en/](http://127.0.0.1:8000/en/)
 
-1. AppControl stops orphans components
+To refreh the website, you'll have to execute again build commands and restart http server.
 
-   ![Resolution1](images/resolution1.png)
-
-2. Healthy situation, we are ready to restore the services
-
-   ![Resolution2](images/resolution2.png)
-
-3. Restart by branch
-
-   ![Restart](images/restart.png)
-
-4. Normal situation
-
-   ![Normal](images/normal.png)
-
-## Get Started
-
-- Go to the [XComponent AppControl website](https://appcontrol.xcomponent.com).
-- Log in using a social provider
-- That's all, you are logged!
-
-In the example section, copy the following link to the demo application: [demo application](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml).
-
-On the AppControl website, go to the Import Application and paste the link of the [demo application](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml).
-
-Follow the wizard (clicking on 'Next' button). In the **'Gateway'** tab select 'X4B SaaS'. On the last tab click on **'Import'**.
-
-![Sceenshot Menu](images/sceenshot_menu.png)
-
-Go the **'Overview'**, and select the helloworld application by clicking on the checkbox.
-Then click on the load button.
-![Dashboard1](images/dashboard1.png)
-
-Click on the **'Architecture'** button:
-
-![Map1](images/map1.png)
-
-Using, the command bar, it's easy to start/stop the Hello World application.
-![Command Bar](images/command_bar.png)
+*Note: you'll not be able to switch languages as URL is not good in local*

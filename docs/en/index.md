@@ -1,7 +1,5 @@
 # Welcome to AppControl Documetation
 
-just
-
   ![logo](images/logo.svg/)
 
 <p align="left">

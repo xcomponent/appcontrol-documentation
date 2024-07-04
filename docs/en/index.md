@@ -1,7 +1,8 @@
-# Welcome to AppControl Documetation
+<h1 style="text-align: center;">AppControl Documentation</h1>
 
-  ![logo](images/logo.svg/)
-
+<figure style="display: flex; justify-content: center;">
+    <img src="images/logo.svg" alt="logo" style="width:200px;height:200px;">
+</figure>
 <p align="left">
   AppControl reduces your applications downtimes by letting you react quickly to an ongoing incident.
   <br>

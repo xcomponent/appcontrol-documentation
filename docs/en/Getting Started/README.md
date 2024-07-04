@@ -14,12 +14,12 @@ Follow the wizard (clicking on 'Next' button). In the **'Gateway'** tab select '
 
 Go the **'Overview'**, and select the helloworld application by clicking on the checkbox.
 Then click on the load button.
-![Dashboard1](../images/dashboard1.png)
+![Dashboard1](../images/dashboard1.PNG)
 
 Click on the **'Architecture'** button:
 
-![Map1](../images/map1.png)
+![Map1](../images/map1.PNG)
 
 Using, the command bar, it's easy to start/stop the Hello World application.
-![Command Bar](../images/command_bar.png)
+![Command Bar](../images/command_bar.PNG)
 

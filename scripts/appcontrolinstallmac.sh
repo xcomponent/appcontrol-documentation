@@ -26,7 +26,7 @@ check_login_status() {
 brew install jq >/dev/null
 
 # Display clickable hyperlink
-echo "Please, log-in here $appcontrolRootUrl/register/gateways and enter this code: $codeString"
+echo "Please, log-in here $appcontrolRootUrl/register/gateways?$codeString&gatewayName=$HOST and enter this code: $codeString"
 
 # Define the interval between each poll (in seconds)
 pollingInterval=5
@@ -125,15 +125,15 @@ sudo chmod -R 755 "$INSTALL_DIR"
 BOOST_VERSION="1.83"
 
 # Install Boost
-brew install boost@$BOOST_VERSION
+brew install boost@$BOOST_VERSION --quiet
 
 # Install libssh2
-brew install libssh2
+brew install libssh2 --quiet
 
 # Install OpenSSL@3
-brew install openssl@3
+brew install openssl@3 --quiet
 
-brew install mono
+brew install mono --quiet
 
 # Set environment variables for the build process
 export LDFLAGS="-L/usr/local/opt/openssl@3/lib"

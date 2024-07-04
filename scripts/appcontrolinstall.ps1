@@ -56,10 +56,12 @@ $response = Invoke-RestMethod -Uri $apiEndpoint -Method Get
 # Assuming the API returns a string, you can access it like this
 $codeString = $response
 
+$machineName = [System.Environment]::MachineName
+
 
 # Display a clickable hyperlink in PowerShell 7 or Windows Terminal
-Write-Host "Please, log-in here " -ForegroundColor Blue -NoNewline
-Write-Host " $appcontrolRootUrl/register/gateways" -NoNewline -ForegroundColor Green
+Write-Host "Please, log-in here " -ForegroundColor Green -NoNewline
+Write-Host " $appcontrolRootUrl/register/gateways?code=$codeString&gatewayName=$machineName" -NoNewline -ForegroundColor Blue
 Write-Host " and enter this code: $codeString"
 
 # Define the interval between each poll (in seconds)

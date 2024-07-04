@@ -29,14 +29,14 @@ Follow the wizard (clicking on 'Next' button). In the **'Gateway'** tab select '
 
 Go the **'Overview'**, and select the helloworld application by clicking on the checkbox.
 Then click on the load button.
-![Dashboard1](images/dashboard1.png)
+![Dashboard1](images/dashboard1.PNG)
 
 Click on the **'Architecture'** button:
 
-![Map1](images/map1.png)
+![Map1](images/map1.PNG)
 
 Using, the command bar, it's easy to start/stop the Hello World application.
-![Command Bar](images/command_bar.png)
+![Command Bar](images/command_bar.PNG)
 
 
 ## Objectives
@@ -50,7 +50,7 @@ Where monitoring software signals you problems, AppControl offers to correct the
 <br>
 
 <p align="center">
-  <img src="../images/screenshot.png" alt="Screenshot" width="50%" height="50%" />
+  <img src="images/screenshot.png" alt="Screenshot" width="50%" height="50%" />
 </p>
 
 ## How it Works

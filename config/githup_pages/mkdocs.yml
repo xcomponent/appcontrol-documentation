@@ -1,41 +1,67 @@
 site_name: AppControl
-docs_dir: '../../docs/en'                           # Where to find the English markdown files
-site_dir: '../../site/en'                      # Where to put the English HTML files
+docs_dir: '../../docs/en' # Where to find the English markdown files
+site_dir: '../../site/en' # Where to put the English HTML files
 site_url: https://xcomponent.github.io/
 repo_url: https://xcomponent.github.io/appcontrol-documentation/
-![Fancy logo](./dark.png#gh-dark-mode-only)
-![Fancy logo](./light.png#gh-light-mode-only)
 
 nav:
-  - Home: index.md
-  - Get started: 
-    - Introduction: Getting Started/README.md
-    - How to create your application map: Getting Started/map.md
-    - Enrich your application with dynamic informations: Getting Started/appcontrol_worker/dynamicmapinformations.md
-  - Deploy your own agents:
-    - How to install AppControl Agent to execute the components actions: agents.md
-    - How to supervise and monitor Azure resources: azure/agentazure.md
-    - How to install your gateways: x4bcli.md
-  - Install standalone: Install standalone/standalone.md
-  - Advanced:
-    - AppControl Cli: cli.md
-    - How to import your Centreon setup into AppControl: centreon.md
-    - How to integrate AppControl with a ServiceNow Cmdb: cmdb.md
-    - Best practices: bestpractices.md
-  - Interactions between AppControl and Scenario:
-    - Using an OpenFaaS function to implement an XC Scenario task: openfaas/synchronous.md
-    - Using the AppControl Worker to implement an XC Scenario task: Getting Started/appcontrol_worker/README.md
-    
-theme: 
-  name: material
-  language: en
-  features:
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.instant.preview
-    - navigation.tracking
+    - Introduction: pages/index.md
+    - Getting Started:
+          - Introduction to AppControl SaaS: pages/gettingStarted
+          - Demo setup with no connection to local infrastructure: pages/gettingStarted/#try-demo
+          - Connecting local infrastructure: pages/gettingStarted/#connecting-to-local-infrastructure
+    - Core Concepts: pages/coreconcepts.md
+    - Create your own application manually:
+          - Introduction: pages/map
+          - YAML Format: pages/map#yaml-format
+          - XML Format: pages/map#xml-format
+          - Built-in wizards: pages/map#built-in-wizards
+          - Enrich your application with dynamic informations: pages/dynamicmapinformations
+    - Create your own application using wizard:
+          - Auto-Generate Application from Running Processes: pages/map/#auto-generate-application-from-running-processes
+          - Auto-Generate Application from Azure Tenant: pages/map/#auto-generate-application-from-azure-tenant
+    - Gateways and Agents Installation in Local Infrastructure:
+          - Introduction: pages/x4bcli
+          - Quick installation: pages/x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos
+          - Gateway installation: pages/x4bcli/#x4b-gateway-custom-installation
+          - Agent installation: pages/agents
+    - Gateways and Agents Installation in Azure: pages/agentazure
+    - Git integration: pages/repo
+    - Advanced:
+          - Install standalone: pages/standalone
+          - AppControl Cli: pages/cli.md
+          - How to import your Centreon setup into AppControl: pages/centreon.md
+          - How to integrate AppControl with a ServiceNow Cmdb: pages/cmdb.md
 
-      
+theme:
+    name: material
+    logo: images/logo2.svg
+    repo: 'github'
+    language: en
+    repo_url: 'https://github.com/xcomponent/appcontrol-documentation'
+    palette:
+        primary: 'green' # Change this to any supported color
+        accent: '#532699' # Secondary color
+    toggle:
+        icon: material/toggle-switch
+        name: Toggle dark mode
+    features:
+        - navigation.instant
+        - navigation.instant.progress
+        - navigation.instant.preview
+        - navigation.tracking
+        - tabs # Enable tabs for navigation
+        - navigation.expand # Automatically expand navigation sections
+
+extra:
+    alternate:
+        - name: English
+          link: /en/
+          lang: en
+        - name: French
+          link: /fr/
+          lang: fr
+
 plugins:
-  - search:  
-      lang: en 
+    - search:
+          lang: en

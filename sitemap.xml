@@ -1,97 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/</loc>
+         <loc>https://xcomponent.github.io/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/</loc>
+         <loc>https://xcomponent.github.io/agentazure/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/dynamicmapinformations/</loc>
+         <loc>https://xcomponent.github.io/agents/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/azure/agentazure/</loc>
+         <loc>https://xcomponent.github.io/bestpractices/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/openfaas/synchronous/</loc>
+         <loc>https://xcomponent.github.io/centreon/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/</loc>
+         <loc>https://xcomponent.github.io/cli/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/agentazure/</loc>
+         <loc>https://xcomponent.github.io/cmdb/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/agents/</loc>
+         <loc>https://xcomponent.github.io/coreconcepts/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/bestpractices/</loc>
+         <loc>https://xcomponent.github.io/dynamicMapInformations/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/centreon/</loc>
+         <loc>https://xcomponent.github.io/gettingStarted/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/cli/</loc>
+         <loc>https://xcomponent.github.io/map/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/cmdb/</loc>
+         <loc>https://xcomponent.github.io/repo/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/coreconcepts/</loc>
+         <loc>https://xcomponent.github.io/standalone/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/pages/dynamicMapInformations/</loc>
-         <lastmod>2024-09-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xcomponent.github.io/pages/gettingStarted/</loc>
-         <lastmod>2024-09-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xcomponent.github.io/pages/map/</loc>
-         <lastmod>2024-09-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xcomponent.github.io/pages/repo/</loc>
-         <lastmod>2024-09-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xcomponent.github.io/pages/standalone/</loc>
-         <lastmod>2024-09-23</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xcomponent.github.io/pages/x4bcli/</loc>
+         <loc>https://xcomponent.github.io/x4bcli/</loc>
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>

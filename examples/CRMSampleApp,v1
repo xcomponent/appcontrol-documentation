@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<apps>
+    <hosts>
+        <host hostid="LOCAL" host="" port="" sslprotocol="Tls12" />
+    </hosts>
+    <auths>
+        <auth authid="LOCAL" domain="" password="" user="" />
+    </auths>
+    <app name="CRMSampleApp" version="v1">
+        <component name="Base de données" description="Sql Server" hostref="LOCAL" authref="LOCAL" type="hdd">
+            <action value="mktemp | xargs -I filePath echo '&lt;xcapptree&gt;&lt;variables&gt;&lt;variable name=&quot;fileFullPath&quot; value=&quot;filePath&quot;/&gt;&lt;/variables&gt;&lt;/xcapptree&gt;'" name="check" />
+        </component>
+        <component name="CRM" description="CRM" hostref="LOCAL" authref="LOCAL" type="service">
+            <father>Base de données</father>
+            <action value="cat $(fileFullPath)" name="check" />
+            <action value="touch $(fileFullPath)" name="enable" />
+            <action value="rm $(fileFullPath)" name="disable" />
+            <action value="echo $(message)" commandname="Test CRM" name="custom">
+                <parameters>
+                    <parameter name="message" value="All is fine" canedit="true" validation="*" />
+                </parameters>
+            </action>
+        </component>
+    </app>
+</apps>

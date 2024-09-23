@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<apps>
+    <hosts>
+        <host hostid="LOCAL" host="" port="" sslprotocol="Tls12" />
+    </hosts>
+    <auths>
+        <auth authid="LOCAL" domain="" password="" user="" />
+    </auths>
+    <app name="EnterpriseSiDemoWin" version="v1">
+        <component name="Base de Données" description="SQL Server" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="https://leadgenapp.io/wp-content/uploads/2022/03/0401f13c0793fb7fefd20e84b93f8d96.png">
+            <action value="dir app-A-component-01" name="check" />
+            <action value="echo app-A-component-01 &gt; app-A-component-01" name="enable" />
+            <action value="del app-A-component-01" name="disable" />
+            <action value="echo $(message)" commandname="echo Action" name="custom">
+                <parameters>
+                    <parameter name="message" value="Welcome message" canedit="true" validation="*" />
+                </parameters>
+            </action>
+        </component>
+        <component name="CRM" description="CRM" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="true" type="browser">
+            <father>Base de Données</father>
+            <action value="dir app-A-component-1.1Q" name="check" />
+            <action value="echo app-A-component-1.1Q &gt;  app-A-component-1.1Q" name="enable" />
+            <action value="del app-A-component-1.1Q" name="disable" />
+        </component>
+        <component name="Compta" description="Service Compta" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="browser">
+            <father>CRM</father>
+            <action value="dir app-A-component-1.1.1Q" name="check" />
+            <action value="echo app-A-component-1.1.1Q &gt; app-A-component-1.1.1Q" name="enable" />
+            <action value="del app-A-component-1.1.1Q" name="disable" />
+        </component>
+        <component name="Paye" description="Service Paye" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="cd">
+            <father>CRM</father>
+            <action value="cat app-A-component-1.1.2Q" name="check" />
+            <action value="echo app-A-component-1.1.2Q &gt; app-A-component-1.1.2Q" name="enable" />
+            <action value="del app-A-component-1.1.2Q" name="disable" />
+        </component>
+        <component name="Gestion des congés" description="Congés" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="chip">
+            <father>CRM</father>
+            <action value="dir app-A-component-1.1.3Q" name="check" />
+            <action value="echo app-A-component-1.1.3Q &gt; app-A-component-1.1.3Q" name="enable" />
+            <action value="del app-A-component-1.1.3Q" name="disable" />
+        </component>
+        <component name="Marketing" description="Marketing" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="cd">
+            <father>Base de Données</father>
+            <action value="dir app-A-component-1.2Q" name="check" />
+            <action value="echo app-A-component-1.2Q &gt; app-A-component-1.2Q" name="enable" />
+            <action value="del app-A-component-1.2Q" name="disable" />
+        </component>
+        <component name="Service D'emailing" description="emails" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="browser">
+            <father>Marketing</father>
+            <action value="dir app-A-component-1.2.1Q" name="check" />
+            <action value="echo app-A-component-1.2.1Q &gt; app-A-component-1.2.1Q" name="enable" />
+            <action value="del app-A-component-1.2.1Q" name="disable" />
+        </component>
+        <component name="SEO" description="SEO" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="cd">
+            <father>Marketing</father>
+            <action value="dir app-A-component-1.2.2Q" name="check" />
+            <action value="echo app-A-component-1.2.2Q &gt; app-A-component-1.2.2Q" name="enable" />
+            <action value="del app-A-component-1.2.2Q" name="disable" />
+        </component>
+        <component name="gestion des évènements" description="Evènements" group="A group" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="chip">
+            <father>Marketing</father>
+            <action value="dir app-A-component-1.2.3Q" name="check" />
+            <action value="echo app-A-component-1.2.3Q &gt; app-A-component-1.2.3Q" name="enable" />
+            <action value="del app-A-component-1.2.3Q" name="disable" />
+        </component>
+    </app>
+</apps>

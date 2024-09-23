@@ -8,3 +8,5 @@
 /.vs/VSWorkspaceState.json
 .DS_Store
 *.bak
+ __pycache__
+ 

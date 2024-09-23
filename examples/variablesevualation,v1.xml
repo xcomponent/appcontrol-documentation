@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<apps>
+	<hosts>
+		<host hostid="agent" host="localhost" port="12567" sslprotocol="Tls12" />
+	</hosts>
+	<auths>
+		<auth authid="LOCAL" domain="" password="" user="" />
+	</auths>
+	<app name="eval_variables" version="v1">
+		<component name="Variables Producer" displayname="This component produces variables (pid,instanceId,filename) on std output" group="Variable group" hostref="agent" authref="LOCAL" redirectoutput="true">
+			<action value="echo '&lt;xcapptree&gt;&lt;variables&gt;&lt;variable name=&quot;pid&quot; value=&quot;5667&quot; /&gt;&lt;variable name=&quot;instanceId&quot; value=&quot;#myInstanceId&quot;/&gt;&lt;variable name=&quot;filename&quot; value=&quot;logs.txt&quot; /&gt;&lt;/variables&gt;&lt;/xcapptree&gt;'" name="check" />
+		</component>
+		<component name="Variable Pid Consumer" displayname="&lt;b&gt;Pid&lt;/b&gt; variable consumer" group="Variable group" hostref="agent" authref="LOCAL" redirectoutput="true">
+			<father>Variables Producer</father>
+			<action value="echo '&lt;xcappmessage&gt;&lt;b&gt;Pid&lt;/b&gt; is &lt;span style=&quot;color:#FF0000;&quot;&gt;$(pid)&lt;/span&gt;&lt;/xcappmessage&gt;'" name="check" />
+		</component>
+		<component name="Variable instanceId Consumer" displayname="&lt;b&gt;instanceId&lt;/b&gt; variable consumer" group="Variable group" hostref="agent" authref="LOCAL" redirectoutput="true">
+			<father>Variables Producer</father>
+			<action value="echo '&lt;xcappmessage&gt;&lt;b&gt;instanceId&lt;/b&gt; is &lt;span style=&quot;color:#FF0000;&quot;&gt;$(instanceId)&lt;/span&gt;&lt;/xcappmessage&gt;'" name="check" />
+		</component>
+		<component name="Variable filename Consumer" displayname="&lt;b&gt;filename&lt;/b&gt; variable consumer" description="This component consumes filename variable" group="Variable group" hostref="agent" authref="LOCAL" redirectoutput="true">
+			<father>Variables Producer</father>
+			<action value="echo '&lt;xcappmessage&gt;&lt;b&gt;filename&lt;/b&gt; is &lt;span style=&quot;color:#FF0000;&quot;&gt;$(filename)&lt;/span&gt;&lt;/xcappmessage&gt;'" name="check" />
+		</component>
+	</app>
+</apps>

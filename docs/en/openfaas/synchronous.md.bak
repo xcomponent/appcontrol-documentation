@@ -48,11 +48,11 @@ pyfunc/requirements.txt
 pyfunc.yml
 ```
 
-Again, this example uses python. Have a look at
+Again, this example uses python, have a look at
 this [page](https://docs.openfaas.com/cli/templates/) to see what other
 languages are available.
 
-Note that for a single language, many templates may be available. The
+Note that even for a single language, many templates may be available. The
 default for python is to use the Classic Watchdog, but the above link lists
 many others.
 
@@ -89,7 +89,7 @@ If you want to use a private registry for your images, this
 has information on how to specify the access credentials. 
 
 XC Scenario defines a label (`Demo` in our example) that is used to filter the
-functions that will be made available. That label must be referenced here so
+functions that will be made available. That label must be referenced here, so
 that your function can be used in XC Scenario. We'll use the
 `labels.com.xcomponent.label` property to specify a value, which has to match
 whatever value was configured in your installation of XC Scenario. Please
@@ -269,7 +269,7 @@ The `com.xcomponent.inputs` properties define function _inputs_, and
 `com.xcomponent.outputs` define function _outputs_. The parameter name is
 appended to the property name, and the value indicates the parameter's type.
 
-All the XC Scenario base types can be used : String, Number, Boolean etc.
+All the XC Scenario base types can be used : String, Number, Boolean.
 
 ### New handler.py
 
@@ -353,7 +353,7 @@ input parameters `n` and `txt`:
 
 ![pyfunc2 task](task_pyfunc2_all.png)
 
-Finally, enter some values, then run the scenario and check the cockpit for the function
+Enter some values, then run the scenario and check the cockpit for the function
 output:
 
 ![pyfunc2 task](task_pyfunc2_run.png)

@@ -70,13 +70,13 @@ Copy the Docker command line on the gateway line created:
 
 ![](copy_command.png)
 
-You should obtain the following :
+You obtain that :
 
 ```docker
 docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:latest
 ```
 
-In this command, you'll find the parameters to copy and paste into the next command to create your gateway container.
+In this command, you'll find the parameters to copy and place into the next command to create your gateway container.
 
 ```bash
 az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:latest --restart-policy OnFailure --environment-variables X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
@@ -86,7 +86,7 @@ After the container is created and starts automatically, check its operation in 
 
 ![](gateway_container.png)
 
-Now check on AppControl to ensure the gateway is accessible.
+And in AppControl to ensure the gateway is accessible.
 
 ![](gateway_started.png)
 

@@ -145,6 +145,43 @@
 </div>
     
     
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
       <div class="md-header__source">
         <a href="https://xcomponent.github.io/appcontrol-documentation/" title="Go to repository" class="md-source" data-md-component="source">
@@ -1309,7 +1346,7 @@ Agents can be deployed anywhere within your Information System (I.S.) to manage 
 <p>Getting Started with Agents
 To begin using agents in your local infrastructure, please refer to the Agents Installation section for step-by-step instructions on installing agents on Windows and Linux environments.</p>
 <p>Please refer to the <a href="#link-to-agents-installation">Agents Installation</a> section for detailed installation instructions.</p>
-<p><img alt="Network architecture" src="../images/architectures-X4BCLI.svg" /></p>
+<p><img alt="Network architecture" src="../architectures-X4BCLI.svg" /></p>
 <p>Thanks to the X4B Gateway, you can deploy your applications in the AppControl Cloud Platform while keeping agents deployed on-premises.</p>
 <h2 id="quick-deployment-of-agents-and-gateways-windows-and-macos">Quick Deployment of Agents and Gateways (Windows and macOS)</h2>
 <p>For both Windows and macOS, there is a quick and efficient way to deploy both agents and the X4B Gateway at the same time. This process requires administrative permissions and will prompt the user to log in to the SaaS platform to link the gateway with their user account.</p>
@@ -1369,14 +1406,14 @@ The X4B Gateway is necessary to take advantage of agents deployed on-premises.</
 <ol>
 <li>
 <p>Click on <strong>Register New Gateway</strong><br />
-<img alt="Gateway Settings" src="../images/agentproxy1.png" /></p>
+<img alt="Gateway Settings" src="../agentproxy1.png" /></p>
 </li>
 <li>
 <p>Provide a name for your gateway and confirm.</p>
 </li>
 <li>
 <p>Once your gateway is created, an Access Key and a Secret Access Key will be generated.<br />
-<img alt="Gateway Settings" src="../images/agentproxy2.png" /></p>
+<img alt="Gateway Settings" src="../agentproxy2.png" /></p>
 </li>
 <li>
 <p>Now, you're ready to install the X4B Gateway. Please refer to the documentation below for the installation procedure.</p>
@@ -1395,7 +1432,7 @@ The X4B Gateway is necessary to take advantage of agents deployed on-premises.</
 <li><strong>Access Key</strong></li>
 <li>
 <p><strong>Secret Access Key</strong></p>
-<p><img alt="Agent Proxy Settings" src="../images/agentproxy3.png" /></p>
+<p><img alt="Agent Proxy Settings" src="../agentproxy3.png" /></p>
 </li>
 </ul>
 <h4 id="microsoft-windows-platform-installation"><strong>Microsoft Windows Platform Installation</strong></h4>

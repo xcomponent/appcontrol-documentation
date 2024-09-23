@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://xcomponent.github.io/Install%20standalone/standalone/">
+        <link rel="canonical" href="https://xcomponent.github.io/pages/standalone/">
       
       
-        <link rel="prev" href="../../x4bcli/">
-      
-      
-        <link rel="next" href="../../cli/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,11 +18,14 @@
     
     
       
-        <title>Install standalone - AppControl</title>
+        <title>Running AppControl Locally with Docker Compose - AppControl</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -55,7 +54,12 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="#532699">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,8 +86,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="AppControl" class="md-header__button md-logo" aria-label="AppControl" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/logo2.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,16 +103,42 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install standalone
+              Running AppControl Locally with Docker Compose
             
           </span>
         </div>
       </div>
     </div>
     
+      
     
-      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/fr/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
     
     
       <label class="md-header__button md-icon" for="__search">
@@ -189,8 +218,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="AppControl" class="md-nav__button md-logo" aria-label="AppControl" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/logo2.svg" alt="logo">
 
     </a>
     AppControl
@@ -217,11 +245,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Home
+    Introduction
   </span>
   
 
@@ -244,14 +272,16 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Get started
+    Getting Started
   </span>
   
 
@@ -261,7 +291,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Get started
+            Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -272,7 +302,134 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Getting%20Started/" class="md-nav__link">
+      <a href="../gettingStarted" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to AppControl SaaS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettingStarted/#try-demo" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Demo setup with no connection to local infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gettingStarted/#connecting-to-local-infrastructure" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Connecting local infrastructure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coreconcepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Core Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Create your own application manually
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Create your own application manually
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -293,11 +450,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Getting%20Started/map/" class="md-nav__link">
+      <a href="../map#yaml-format" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to create your application map
+    YAML Format
   </span>
   
 
@@ -314,7 +471,49 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Getting%20Started/appcontrol_worker/dynamicmapinformations/" class="md-nav__link">
+      <a href="../map#xml-format" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XML Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map#built-in-wizards" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Built-in wizards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamicmapinformations" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -349,24 +548,26 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Deploy your own agents
+    Create your own application using wizard
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Deploy your own agents
+            Create your own application using wizard
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -377,11 +578,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../agents/" class="md-nav__link">
+      <a href="../map/#auto-generate-application-from-running-processes" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to install AppControl Agent to execute the components actions
+    Auto-Generate Application from Running Processes
   </span>
   
 
@@ -398,32 +599,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../azure/agentazure/" class="md-nav__link">
+      <a href="../map/#auto-generate-application-from-azure-tenant" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    How to supervise and monitor Azure resources
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../x4bcli/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    How to install your gateways
+    Auto-Generate Application from Azure Tenant
   </span>
   
 
@@ -444,175 +624,166 @@
       
   
   
+  
+  
     
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
         
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
+        
           
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
-    Install standalone
+    Gateways and Agents Installation in Local Infrastructure
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Gateways and Agents Installation in Local Infrastructure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../x4bcli" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Install standalone
+    Introduction
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../x4bcli/#x4b-gateway-custom-installation" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateway installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agent installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#what-is-appcontrol" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is AppControl?
-    </span>
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#appcontrol-license-and-usage-terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      AppControl License and Usage Terms
-    </span>
-  </a>
   
-</li>
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agentazure" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gateways and Agents Installation in Azure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
       
-        <li class="md-nav__item">
-  <a href="#installing-appcontrol-locally" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing AppControl Locally
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installing AppControl Locally">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation-instructions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation Instructions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation Instructions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#docker-desktop" class="md-nav__link">
-    <span class="md-ellipsis">
-      Docker Desktop
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#appcontrol-with-docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      AppControl with Docker Compose
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-the-web-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using the Web Interface
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getting-help" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Help
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Getting Help">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#test-appcontrol-with-the-helloworld-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test AppControl with the Helloworld map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#stop-uninstall-appcontrol" class="md-nav__link">
-    <span class="md-ellipsis">
-      Stop / Uninstall AppControl
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
-    </ul>
   
-</nav>
-      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repo" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git integration
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -631,10 +802,12 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -645,8 +818,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Advanced
           </label>
@@ -659,7 +832,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cli/" class="md-nav__link">
+      <a href="." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install standalone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -680,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../centreon/" class="md-nav__link">
+      <a href="../centreon/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -701,116 +895,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cmdb/" class="md-nav__link">
+      <a href="../cmdb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     How to integrate AppControl with a ServiceNow Cmdb
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../bestpractices/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Best practices
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Interactions between AppControl and Scenario
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            Interactions between AppControl and Scenario
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../openfaas/synchronous/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using an OpenFaaS function to implement an XC Scenario task
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Getting%20Started/appcontrol_worker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using the AppControl Worker to implement an XC Scenario task
   </span>
   
 
@@ -852,15 +941,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-appcontrol" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is AppControl?
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#appcontrol-license-and-usage-terms" class="md-nav__link">
@@ -992,24 +1072,9 @@ OS, unzip the
 following
 <a href="https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/appcontrol-standalone.zip">file</a> into
 an installation directory, and move into that directory.</p>
-<h2 id="what-is-appcontrol">What is AppControl?</h2>
-<p>Invivoo's <a href="https://x4b.xcomponent.com/">X4B Platform</a> lets companies integrate
-all their business processes, activities, and systems in a global, data-driven
-model, providing multi-team collaboration, profile-based user dashboards, with
-the possibility to trigger actions directly, turning raw data into actionable
-insights. This helps eliminate wasted time and energy, allowing organizations
-to achieve operational efficiency, and succeed in their digital transformation.</p>
-<p><strong>AppControl</strong> is a central component of the X4B Platform. It supports the
-intelligent management and monitoring of your applications and systems, through
-a visual dashboard where the dependencies between the various components of
-your applications are represented as a graph, and used to start and stop
-applications and services in the correct order.</p>
-<p>AppControl comes with a standard set of actions to manage application
-components, and you can add your own custom actions to query specific
-information or trigger specific processing on the application.</p>
 <h2 id="appcontrol-license-and-usage-terms">AppControl License and Usage Terms</h2>
 <p>AppControl is free to use for educational purposes. For production use, please
-contact <a href="mailto:sales@xcomponent.com">Invivoo</a>.</p>
+contact <a href="https://ask.invivoo.com/appcontrol">Invivoo</a>.</p>
 <h2 id="installing-appcontrol-locally">Installing AppControl Locally</h2>
 <p>The AppControl software is delivered as a set of container images, meant to be
 run inside a container orchestrator such
@@ -1036,7 +1101,7 @@ virtualization (see installation instructions below).</p>
 <h4 id="docker-desktop">Docker Desktop</h4>
 <p>To install the latest version of Docker Desktop, follow
 the <a href="https://docs.docker.com/desktop/windows/install/">instructions</a> on their
-web site.</p>
+website.</p>
 <p>In the <strong>System Requirements</strong> section, choose WSL 2 backend, and follow the
 instructions from Microsoft to enable the feature and install WSL.</p>
 <h4 id="appcontrol-with-docker-compose">AppControl with Docker Compose</h4>
@@ -1052,8 +1117,7 @@ one, administrator rights are <strong>not</strong> required), and run the follow
 Invivoo's <a href="https://hub.docker.com/u/xcomponent">DockerHub</a> repository, this may
 take a few minutes. After that, the containers are started with the <code>docker
 run</code> command. Subsequent runs will reuse the locally-stored images.</p>
-<p>When the command has finished executing, you should see an output like the
-following:</p>
+<p>When the command has finished executing, you should see an output similar to this:</p>
 <pre><code class="language-console"> - Network appcontrol-compose_default                  Created                            0.8s
  - Container appcontrol-compose-rabbit-1               Started                            8.4s
  - Container appcontrol-compose-gateway-1              Started                            8.5s
@@ -1087,7 +1151,7 @@ to access the AppControl webapp. Use the following credentials to login:</p>
 <h3 id="getting-help">Getting Help</h3>
 <p>Once you're logged into AppControl, you can access the online documentation
 through the help button (?) on the top right of the screen:</p>
-<p><img alt="Online Documentation" src="../Help_button.png" /></p>
+<p><img alt="Online Documentation" src="/images/Help_button.png" /></p>
 <p>The dropdown menu also lets you contact Invivoo support through email, and join
 our Slack channel for access to the development team.</p>
 <h4 id="test-appcontrol-with-the-helloworld-map">Test AppControl with the Helloworld map</h4>
@@ -1155,7 +1219,7 @@ started:
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking", "tabs", "navigation.expand"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>

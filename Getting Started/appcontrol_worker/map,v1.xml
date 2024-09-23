@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<apps>
+    <hosts>
+        <host hostid="LOCAL" host="localhost" port="12567" sslprotocol="Tls12" />
+    </hosts>
+    <auths>
+        <auth authid="LOCAL" domain="" password="" user="" />
+    </auths>
+    <app name="map" version="v1">
+        <component name="comp" description="Script execution component" hostref="LOCAL" authref="LOCAL" redirectoutput="false" type="file">
+            <action value="echo 1" name="check" />
+
+            <action value="C:\a\bin\calc_script.cmd $(arg)" commandname="calc" name="custom" visibility="public">
+                <parameters>
+                    <parameter name="arg" value="" canedit="true" validation="*" />
+                </parameters>
+            </action>
+
+            <action value="py c:\a\bin\pycalc.py $(operand1) $(operand2)" commandname="prod_div" name="custom" visibility="public">
+                <parameters>
+                    <parameter name="operand1" canedit="true" validation="\d+" />
+                    <parameter name="operand2" canedit="true" validation="\d+" />
+                </parameters>
+                <outputParameters>
+                    <parameter name="product" />
+                    <parameter name="division" />
+                </outputParameters>
+            </action>
+
+        </component>
+    </app>
+</apps>

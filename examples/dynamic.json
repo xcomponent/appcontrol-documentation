@@ -1,0 +1,79 @@
+{
+	"dynamicTree": [
+		{
+			"group": "dynamic",
+			"name": "pie chart",
+			"progressPercentage": 60,
+			"parents": [
+				"Demo Dynamic"
+			],
+			"state": "Started",
+			"filters": {
+				"dynamicnode": [
+					"pie"
+				]
+			},
+			"customActions": [
+				{
+					"customActionName": "echo Action",
+					"customActionCommandLine": "echo $(message)",
+					"parameters": [
+						{
+							"parameterName": "message",
+							"description": "What's the message ?",
+							"defaultValue": "Welcome message",
+							"validationRule": "*",
+							"isEditable": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"group": "dynamic",
+			"color": "#ca03fc",
+			"type": "service",
+			"name": "dynamic component 1",
+			"parents": [
+				"Demo Dynamic"
+			],
+			"state": "Started",
+			"filters": {
+				"dynamicnode": [
+					"dynamic component 1"
+				]
+			},
+			"customActions": [
+				{
+					"customActionName": "echo Action",
+					"customActionCommandLine": "echo $(message)",
+					"parameters": [
+						{
+							"parameterName": "message",
+							"description": "What's the message ?",
+							"defaultValue": "Welcome message",
+							"validationRule": "*",
+							"isEditable": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"group": "dynamic",
+			"color": "#4e66a3",
+			"state": "Started",
+			"type": "https://avatars.githubusercontent.com/u/12861392?s=200&v=4",
+			"name": "dynamic component 2",
+			"parents": [
+				"Demo Dynamic"
+			],
+			"filters": {
+				"dynamicnode": [
+					"dynamic component 2"
+				]
+			}
+		}
+	],
+	"displayName": "This is a dynamic text"
+}

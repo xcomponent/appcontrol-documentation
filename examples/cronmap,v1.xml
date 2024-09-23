@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<apps>
+  <crontable>
+    <cronrules cronid="scheduling">
+      <trigger name="CRON" action="start" expression="0 0/2 * 1/1 * ? *" />
+    </cronrules>
+  </crontable>
+  <hosts>
+    <host hostid="LOCAL" host="127.0.0.1" port="12567" sslprotocol="tls12" />
+  </hosts>
+  <auths>
+    <auth authid="LOCAL" domain="." password="" user="" />
+  </auths>
+  <app name="cronmap" version="v1" cronref="scheduling">
+    <component name="A1" description="A1 component" hostref="LOCAL" authref="LOCAL">
+      <action name="check" value="cat crondemo" />
+      <action name="enable" value="echo crondemo &gt; crondemo" />
+      <action name="disable" value="rm crondemo" />
+    </component>
+  </app>
+</apps>

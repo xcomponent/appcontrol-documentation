@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://xcomponent.github.io/azure/agentazure/">
+        <link rel="canonical" href="https://xcomponent.github.io/pages/coreconcepts/">
       
       
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../cli/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>In AppControl, how supervise and monitor Azure resources - AppControl</title>
+        <title>Core Concepts - AppControl</title>
       
     
     
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#in-appcontrol-how-supervise-and-monitor-azure-resources" class="md-skip">
+        <a href="#core-concepts-of-appcontrol" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              In AppControl, how supervise and monitor Azure resources
+              Core Concepts
             
           </span>
         </div>
@@ -245,7 +249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -302,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/gettingStarted" class="md-nav__link">
+      <a href="../gettingStarted" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -323,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/gettingStarted/#try-demo" class="md-nav__link">
+      <a href="../gettingStarted/#try-demo" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -344,7 +348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/gettingStarted/#connecting-to-local-infrastructure" class="md-nav__link">
+      <a href="../gettingStarted/#connecting-to-local-infrastructure" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -369,10 +373,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../pages/coreconcepts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Core Concepts
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -381,6 +405,155 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Agents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Gateway
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Types:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dependency-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Behavior:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-diagnostics-actions-on-demand-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Diagnostics Actions (On-Demand Actions)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-diagnostics-and-issue-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Diagnostics and Issue Resolution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Diagnostics and Issue Resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-situation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Situation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolution-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resolution Process:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automated-recovery-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Automated Recovery Actions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-application-monitoring-focus" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Application Monitoring Focus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -429,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map" class="md-nav__link">
+      <a href="../map" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -450,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map#yaml-format" class="md-nav__link">
+      <a href="../map#yaml-format" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map#xml-format" class="md-nav__link">
+      <a href="../map#xml-format" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -492,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map#built-in-wizards" class="md-nav__link">
+      <a href="../map#built-in-wizards" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -513,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/dynamicmapinformations" class="md-nav__link">
+      <a href="../dynamicmapinformations" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -578,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map/#auto-generate-application-from-running-processes" class="md-nav__link">
+      <a href="../map/#auto-generate-application-from-running-processes" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -599,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/map/#auto-generate-application-from-azure-tenant" class="md-nav__link">
+      <a href="../map/#auto-generate-application-from-azure-tenant" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -664,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/x4bcli" class="md-nav__link">
+      <a href="../x4bcli" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -685,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos" class="md-nav__link">
+      <a href="../x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -706,7 +879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/x4bcli/#x4b-gateway-custom-installation" class="md-nav__link">
+      <a href="../x4bcli/#x4b-gateway-custom-installation" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -727,7 +900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/agents" class="md-nav__link">
+      <a href="../agents" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -755,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/agentazure" class="md-nav__link">
+      <a href="../agentazure" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -775,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/repo" class="md-nav__link">
+      <a href="../repo" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -832,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/standalone" class="md-nav__link">
+      <a href="../standalone" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -853,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -874,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/centreon/" class="md-nav__link">
+      <a href="../centreon/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -895,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pages/cmdb/" class="md-nav__link">
+      <a href="../cmdb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -943,28 +1116,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#useful-links" class="md-nav__link">
+  <a href="#1-agents" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Links :
+      1. Agents
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Useful Links :">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Gateway
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Applications
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#docker-images" class="md-nav__link">
+  <a href="#command-types" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker Images
+      Command Types:
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#azure-documentation" class="md-nav__link">
+  <a href="#dependency-behavior" class="md-nav__link">
     <span class="md-ellipsis">
-      Azure Documentation
+      Dependency Behavior:
     </span>
   </a>
   
@@ -976,18 +1176,69 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#environment-setup" class="md-nav__link">
+  <a href="#5-diagnostics-actions-on-demand-actions" class="md-nav__link">
     <span class="md-ellipsis">
-      Environment Setup :
+      5. Diagnostics Actions (On-Demand Actions)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-procedure" class="md-nav__link">
+  <a href="#6-diagnostics-and-issue-resolution" class="md-nav__link">
     <span class="md-ellipsis">
-      Installation procedure
+      6. Diagnostics and Issue Resolution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Diagnostics and Issue Resolution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-situation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Situation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resolution-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resolution Process:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automated-recovery-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Automated Recovery Actions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-application-monitoring-focus" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Application Monitoring Focus
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
     </span>
   </a>
   
@@ -1008,100 +1259,71 @@
                   
 
 
-<h1 id="in-appcontrol-how-supervise-and-monitor-azure-resources">In AppControl, how supervise and monitor Azure resources</h1>
-<h2 id="useful-links">Useful Links :</h2>
-<h3 id="docker-images">Docker Images</h3>
+<h1 id="core-concepts-of-appcontrol">Core Concepts of AppControl</h1>
+<p>AppControl is built on a set of core concepts that enable effective monitoring, control, and automation of your applications across both local and cloud-based environments. Understanding these concepts will help you make full use of the platform.</p>
+<hr />
+<h2 id="1-agents">1. Agents</h2>
+<p>AppControl uses <strong>agents</strong> to interact with your local infrastructure. These agents act as the bridge between your on-premises applications and the AppControl SaaS platform. Agents can be installed on both <strong>Windows</strong> and <strong>Linux</strong> systems, allowing for flexible integration with diverse IT environments.</p>
+<hr />
+<h2 id="2-gateway">2. Gateway</h2>
+<p>The <strong>gateway</strong> is the critical link between agents deployed on your local infrastructure and the AppControl SaaS platform. It facilitates secure and reliable communication, ensuring that actions taken on your applications are synchronized with the cloud.</p>
+<hr />
+<h2 id="3-applications">3. Applications</h2>
+<p>In AppControl, an <strong>application</strong> represents a collection of components that need to be monitored and managed. Each application is defined through a <strong>YAML configuration file</strong>, which describes its components and the actions that can be performed on them.</p>
+<hr />
+<h2 id="4-components">4. Components</h2>
+<p>A <strong>component</strong> is a critical part of an application and defines the actions that AppControl can perform. Each component is described by three primary actions: <strong>start</strong>, <strong>stop</strong>, and <strong>check</strong>. In addition, some components may have optional <strong>custom commands</strong>.</p>
+<h3 id="command-types">Command Types:</h3>
 <ul>
-<li>Gateway :</li>
+<li><strong>Check Command</strong>: Retrieves the current state of the component.</li>
+<li><strong>Start Command</strong>: Starts the component, initiating processes or services.</li>
+<li><strong>Stop Command</strong>: Stops the component, halting processes or services.</li>
+<li><strong>Custom Commands</strong>: Optional commands that can be defined based on specific application requirements.</li>
 </ul>
-<pre><code class="language-bash">docker pull xcomponent/x4b-gateway:latest
-</code></pre>
-<h3 id="azure-documentation">Azure Documentation</h3>
+<h3 id="dependency-behavior">Dependency Behavior:</h3>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest">Azure CLI documentation</a></li>
-<li><a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli">Azure CLI Installation</a></li>
+<li><strong>Parent-Child Dependencies</strong>: Components follow a parent-child hierarchy. A component can only start if its <strong>parent components</strong> are already started. Similarly, a component can only stop if its <strong>child components</strong> are already stopped.</li>
+<li><strong>Startup Sequence</strong>: When starting an application, AppControl first starts the parent components and then proceeds to start their child components.</li>
+<li><strong>Shutdown Sequence</strong>: When stopping an application, AppControl stops child components first before stopping their parent components.</li>
 </ul>
-<h2 id="environment-setup">Environment Setup :</h2>
+<hr />
+<h2 id="5-diagnostics-actions-on-demand-actions">5. Diagnostics Actions (On-Demand Actions)</h2>
+<p>AppControl provides <strong>on-demand actions</strong>, also referred to as <strong>diagnostics actions</strong>, which allow you to perform manual checks or gather diagnostic information at any time.</p>
 <ul>
-<li>A dedicated resource group if possible.</li>
-<li>A managed identity within this group. It will be used by the agent when calling "az login."</li>
-<li>A virtual network and subnet to allow defining a private IP for the agent and possible communication between the gateway and the agent.</li>
-<li>Deploy an ACI for the gateway with the desired image.</li>
-<li>Deploy an ACI for the agent with the following image.</li>
+<li><strong>Purpose</strong>: Diagnostics actions help troubleshoot issues, gather performance metrics, or run custom scripts on-demand without waiting for an incident to trigger automated actions.</li>
+<li><strong>Customizable</strong>: You can define these actions in the YAML file and provide flexible input parameters that can be edited by users as needed.</li>
+<li><strong>Example</strong>: A diagnostics action might involve checking log files, gathering system metrics, or testing connectivity between components.</li>
 </ul>
-<p>Note that both ACIs will be in the same subnet, and the agent's ACI should preferably use the managed identity assigned by the system.</p>
-<p>Once this environment is created, you can set up a map in AppControl to supervise the Azure resources you're interested in.</p>
-<h2 id="installation-procedure">Installation procedure</h2>
-<p>Setting up this environment requires the installation of the Azure CLI package. Most actions will be performed through it.</p>
-<ol>
-<li>Authenticate to Azure :</li>
-</ol>
-<pre><code class="language-bash">az login
-</code></pre>
-<ol>
-<li>Set the subscription where you want to set up this environment:</li>
-</ol>
-<pre><code class="language-bash">az account set --subscription [**SUBSCRIPTION-ID**]
-</code></pre>
-<ol>
-<li>Create a resource group in your Azure subscription:</li>
-</ol>
-<pre><code class="language-bash">az group create --name [**RESOURCE-GROUP-NAME**] --location [**northeurope par exemple**]
-</code></pre>
-<ol>
-<li>Create the managed identity for the resource group:</li>
-</ol>
-<pre><code class="language-bash">az identity create --resource-group [**RESOURCE-GROUP-NAME**] --name [**IDENTITY-NAME**]
-</code></pre>
-<ol>
-<li>Create the virtual network and subnet for the gateway:</li>
-</ol>
-<pre><code class="language-bash">az network vnet create --name [**VNET-NAME**] --resource-group [**RESOURCE-GROUP-NAME**] --address-prefix 10.0.0.0/16 --subnet-name [**SUBNET-NAME**] --subnet-prefixes 10.0.0.0/24
-</code></pre>
-<ol>
-<li>Add a gateway record on the AppControl platform.</li>
-</ol>
-<p><img alt="" src="../gateway_creation.png" /></p>
-<p>Copy the Docker command line on the gateway line created:</p>
-<p><img alt="" src="../copy_command.png" /></p>
-<p>You should obtain the following :</p>
-<pre><code class="language-docker">docker run  --name [**YOUR-GATEWAY-NAME**] --hostname [**YOUR-GATEWAY-NAME**] -e X4B\_ACCESS\_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] -e X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] -e APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ xcomponent/x4b-gateway:latest
-</code></pre>
-<p>In this command, you'll find the parameters to copy and paste into the next command to create your gateway container.</p>
-<pre><code class="language-bash">az container create --resource-group [**RESOURCE-GROUP-NAME**] --name [**CONTAINER-GATEWAY-NAME**] --image xcomponent/x4b-gateway:latest --restart-policy OnFailure --environment-variables X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/ --vnet [**VNET-NAME**] --subnet [**SUBNET-NAME**]
-</code></pre>
-<p>After the container is created and starts automatically, check its operation in Azure by examining the logs.</p>
-<p><img alt="" src="../gateway_container.png" /></p>
-<p>Now check on AppControl to ensure the gateway is accessible.</p>
-<p><img alt="" src="../gateway_started.png" /></p>
-<p>You are now ready to create your map in AppControl using this gateway and agent to supervise your Azure infrastructure.</p>
-<p>Here's an example that supervises an Azure function:</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot; ?&gt;
-&lt;apps&gt;
- &lt;hosts&gt;
-  &lt;host hostid=&quot;agent-azure&quot; host=&quot;localhost&quot; port=&quot;12567&quot; sslprotocol=&quot;Tls12&quot; /&gt;
- &lt;/hosts&gt;
- &lt;auths&gt;
-  &lt;auth authid=&quot;LOCAL&quot; domain=&quot;&quot; password=&quot;&quot; user=&quot;&quot; /&gt;
- &lt;/auths&gt;
- &lt;app name=&quot;AZURE MAP&quot; version=&quot;v1&quot;&gt;
-  &lt;component name=&quot;Azure CLI&quot; description=&quot;Azure access&quot; hostref=&quot;agent-azure&quot; authref=&quot;LOCAL&quot; redirectoutput=&quot;false&quot; type=&quot;file&quot;&gt;
-   &lt;action value=&quot;az version&quot; name=&quot;check&quot; /&gt;
-   &lt;action value=&quot;az $(command)&quot; commandname=&quot;Test az cli&quot; name=&quot;custom&quot;&gt;
-    &lt;parameters&gt;
-     &lt;parameter name=&quot;command&quot; value=&quot;account list&quot; canedit=&quot;true&quot; validation=&quot;\*&quot; /&gt;
-    &lt;/parameters&gt;
-   &lt;/action&gt;
-  &lt;/component&gt;
-  &lt;component name=&quot;AzureFunction&quot; description=&quot;Azure Function&quot; hostref=&quot;agent-azure&quot; authref=&quot;LOCAL&quot; redirectoutput=&quot;true&quot; type=&quot;browser&quot;&gt;
-   &lt;father&gt;Azure&lt;/father&gt;
-   &lt;action value=&quot;az functionapp show --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME] --query 'state' | grep -q '&amp;#34;Running&amp;#34;'&quot; name=&quot;check&quot; /&gt;
-   &lt;action value=&quot;az functionapp start --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME]&quot; name=&quot;enable&quot; /&gt;
-   &lt;action value=&quot;az functionapp stop --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME]&quot; name=&quot;disable&quot; /&gt;
-  &lt;/component&gt;
- &lt;/app&gt;
-&lt;/apps&gt;
-</code></pre>
+<hr />
+<h2 id="6-diagnostics-and-issue-resolution">6. Diagnostics and Issue Resolution</h2>
+<p>AppControl includes built-in diagnostics to detect and resolve common issues related to component states, particularly focusing on dependency relationships between components.</p>
+<h3 id="diagnostic-situation">Diagnostic Situation:</h3>
+<ul>
+<li><strong>Orphan Components</strong>: AppControl identifies issues when components are in an incorrect state relative to their parent or child components. For example:<ul>
+<li><strong>Issue 1</strong>: A component is stopped while its parent is running.</li>
+<li><strong>Issue 2</strong>: A component is running while its child components are stopped.
+    In these cases, AppControl flags the issue and provides diagnostic information.</li>
+</ul>
+</li>
+</ul>
+<h3 id="resolution-process">Resolution Process:</h3>
+<ul>
+<li><strong>Stop Orphaned Components</strong>: When an orphaned component is detected (i.e., a component that is running without its necessary parent components), AppControl will stop the orphaned components to maintain consistency.
+    <img alt="Resolution1" src="../../images/resolution1.png" /></li>
+<li><strong>Healthy State</strong>: Once the issues are resolved, the system reaches a <strong>healthy state</strong>, ensuring all components are properly aligned with their parent-child dependencies.
+    <img alt="Resolution2" src="../../images/resolution2.png" /></li>
+<li><strong>Restart by Branch</strong>: AppControl can restart components by "branch," ensuring that all parent and child components are properly started in sequence, maintaining the application's integrity.
+    <img alt="Restart" src="../../images/restart.png" /></li>
+</ul>
+<hr />
+<h2 id="7-automated-recovery-actions">7. Automated Recovery Actions</h2>
+<p>In AppControl, automated recovery actions are designed with caution to prevent escalating issues. By default, <strong>AppControl does not automatically restart components</strong> to avoid the risk of increasing a problem. Instead, AppControl offers a flexible approach where users can define <strong>scheduled auto-restart actions</strong> using built-in <strong>cron expressions</strong>.</p>
+<hr />
+<h2 id="8-application-monitoring-focus">8. Application Monitoring Focus</h2>
+<p>AppControl is different from traditional monitoring solutions because it is <strong>application-centric</strong>. While other tools often focus on infrastructure (e.g., servers and networks), AppControl monitors and manages the actual <strong>applications</strong>, which are the heart of your business.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>Understanding these core concepts will enable you to effectively use AppControl to monitor, manage, and automate your applications. Whether you are working with legacy on-premises systems or cloud-native applications, AppControl’s agents, gateway, and application-centric approach offer the flexibility and control you need to maintain uptime and operational efficiency.</p>
 
 
 

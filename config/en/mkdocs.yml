@@ -35,7 +35,7 @@ nav:
 
 theme:
     name: material
-    logo: images/logo2.svg
+    logo: logo2.svg
     repo: 'github'
     language: en
     repo_url: 'https://github.com/xcomponent/appcontrol-documentation'

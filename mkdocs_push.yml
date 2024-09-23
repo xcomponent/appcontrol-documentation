@@ -33,9 +33,12 @@ nav:
           - How to import your Centreon setup into AppControl: centreon.md
           - How to integrate AppControl with a ServiceNow Cmdb: cmdb.md
 
+markdown_extensions:
+    - attr_list
+
 theme:
     name: material
-    logo: images/logo2.svg
+    logo: logo2.svg
     repo: 'github'
     language: en
     repo_url: 'https://github.com/xcomponent/appcontrol-documentation'

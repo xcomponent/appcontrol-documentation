@@ -70,4 +70,24 @@
          <lastmod>2024-09-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://xcomponent.github.io/Getting%20Started/</loc>
+         <lastmod>2024-09-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/</loc>
+         <lastmod>2024-09-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/dynamicmapinformations/</loc>
+         <lastmod>2024-09-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xcomponent.github.io/openfaas/synchronous/</loc>
+         <lastmod>2024-09-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>

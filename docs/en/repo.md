@@ -8,7 +8,7 @@ AppControl YAML or XML files can be conveniently stored in a Git repository for 
 
 This badge will display the real-time status of your application in your documentation.
 
-![Badges](../images/badges.png)
+![Badges](badges.png)
 
 ## Automating Application Deployment with AppControl APIs
 

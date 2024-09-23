@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://xcomponent.github.io/repo/">
+        <link rel="canonical" href="https://xcomponent.github.io/Getting%20Started/">
       
       
-        <link rel="prev" href="../agentazure/">
-      
-      
-        <link rel="next" href="../standalone/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>Git integration - AppControl</title>
+        <title>Get Started - AppControl</title>
       
     
     
@@ -72,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#git-integration" class="md-skip">
+        <a href="#get-started" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Git integration
+              Get Started
             
           </span>
         </div>
@@ -776,30 +772,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Git integration
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../repo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -808,35 +784,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#automating-application-deployment-with-appcontrol-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automating Application Deployment with AppControl APIs
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -989,23 +936,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#automating-application-deployment-with-appcontrol-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Automating Application Deployment with AppControl APIs
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1019,91 +949,23 @@
                   
 
 
-<h1 id="git-integration">Git integration</h1>
-<p>AppControl YAML or XML files can be conveniently stored in a Git repository for version control and collaboration. Additionally, you can display the live status of your application directly in your documentation by adding a markdown badge link. For example:</p>
-<pre><code class="language-markdown">![My App](https://appcontrol.xcomponent.com/core/api/badge?applicationName=MYAPP,v1@myaccount)
-</code></pre>
-<p>This badge will display the real-time status of your application in your documentation.</p>
-<p><img alt="Badges" src="../badges.png" /></p>
-<h2 id="automating-application-deployment-with-appcontrol-apis">Automating Application Deployment with AppControl APIs</h2>
-<p>AppControl provides powerful APIs that allow for automatic deployment of applications through custom scripts. These scripts can be integrated into your CI/CD pipelines or used for ad-hoc deployments. Below is a generic example of a script that loads and deploys an application map (in YAML or XML format) to AppControl.</p>
-<p><strong>Sample Deployment Script</strong></p>
-<pre><code class="language-bash">#!/usr/bin/env bash
-set -o errexit
-set -o nounset
-
-# API endpoint for AppControl
-export API=${APPCONTROL_HOME:-https://appcontrol.xcomponent.com}/core
-
-debug() {
-    [[ &quot;${DEBUG:-0}&quot; != &quot;0&quot; ]] &amp;&amp; echo &quot;$@&quot;
-}
-
-main() {
-    # Check if the required parameters are passed
-    if [[ $# -lt 2 ]]; then
-        echo &quot;Usage: $0 &lt;map-file&gt; &lt;gateway-name&gt;&quot;
-        exit 1
-    fi
-
-    local mapFile=&quot;$1&quot;
-    local agentProxyName=&quot;$2&quot;
-    local mapFileContents=$(cat &quot;$mapFile&quot;)
-
-    # Extract application name and version from the map file (XML or YAML)
-    local mapName=$(grep &quot;&lt;app name&quot; &quot;$mapFile&quot; | cut -d &quot;\&quot;&quot; -f2)
-    local mapVersion=$(grep &quot;&lt;app name&quot; &quot;$mapFile&quot; | cut -d &quot;\&quot;&quot; -f4)
-    local escapedMapFileContents
-
-    # Check if XML parsing failed (if mapName or mapVersion is empty, fallback to YAML)
-    if [[ -z &quot;$mapName&quot; ]] || [[ -z &quot;$mapVersion&quot; ]]; then
-        echo &quot;XML parsing failed or not XML format. Trying YAML...&quot;
-
-        # Attempt to read the file as YAML using yq
-        mapName=$(yq e '.Name' &quot;$mapFile&quot;)
-        mapVersion=$(yq e '.Version' &quot;$mapFile&quot;)
-
-        if [[ -z &quot;$mapName&quot; ]] || [[ -z &quot;$mapVersion&quot; ]]; then
-            echo &quot;YAML parsing failed. Please check the file format.&quot;
-            exit 1
-        fi
-    fi
-
-    # Escape file contents to be used in the JSON payload
-    escapedMapFileContents=$(echo &quot;$mapFileContents&quot; | jq -aRs .)
-
-    # Prepare the data payload for the API
-    data=$(jq -n --arg xml &quot;$escapedMapFileContents&quot; \
-                    --arg app &quot;$mapName&quot; \
-                    --arg version &quot;$mapVersion&quot; \
-                    --arg gateway &quot;$agentProxyName&quot; \
-                    '{
-                        Xml: $xml,
-                        Application: $app,
-                        Version: $version,
-                        AgentProxyName: $gateway,
-                        LoadMap: &quot;true&quot;,
-                        OverWrite: &quot;true&quot;,
-                        UseDefaultAgent: &quot;false&quot;
-                    }')
-
-    echo &quot;Loading $mapName $mapVersion using gateway $agentProxyName...&quot;
-
-    # Send the API request
-    curl $API/api/Configuration -X PUT \
-         --header &quot;Content-Type: application/json&quot; \
-         --header &quot;Authorization: bearer $AUTH&quot; \
-         --data-binary &quot;$data&quot; \
-         --fail
-}
-
-main &quot;$@&quot;
-
-</code></pre>
-<p><strong>Example of usage</strong></p>
-<pre><code class="language-bash">./deploy_app.sh myapp.yaml Azure_Gateway
-</code></pre>
-<p>This script will upload the myapp.yaml file and use the specified gateway (Azure_Gateway).</p>
+<h1 id="get-started">Get Started</h1>
+<ul>
+<li>Go to the <a href="https://appcontrol.xcomponent.com">XComponent AppControl website</a>.</li>
+<li>Log in using a social provider</li>
+<li>You're done! You can now get started with AppControl</li>
+</ul>
+<p>In the example section, copy the following link to the demo application: <a href="https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml">demo application</a>.</p>
+<p>On the AppControl website, go to the Import Application and paste the link of the <a href="https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/main/examples/helloworld%2Cv1.xml">demo application</a>.</p>
+<p>Follow the wizard (clicking on 'Next' button). In the <strong>'Gateway'</strong> tab select 'X4B SaaS'. On the last tab click on <strong>'Import'</strong>.</p>
+<p><img alt="Sceenshot Menu" src="../images/sceenshot_menu.png" /></p>
+<p>Go the <strong>'Overview'</strong>, and select the helloworld application by clicking on the checkbox.
+Then click on the load button.
+<img alt="Dashboard1" src="../images/dashboard1.png" /></p>
+<p>Next, click on the <strong>'Architecture'</strong> button:</p>
+<p><img alt="Map1" src="../images/map1.png" /></p>
+<p>Using, the command bar, you can now start/stop the Hello World application with ease.
+<img alt="Command Bar" src="../images/command_bar.png" /></p>
 
 
 

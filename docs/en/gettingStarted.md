@@ -35,23 +35,17 @@ function copyLink() {
 
 </br>
 
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="/images/wizard.png" alt="wizard" style="width: 300px; height: auto; margin-right: 15px;" />
-<img src="/images/wizard2.png" alt="wizard2" style="width: 200px; height: auto; margin-right: 15px;" />
-</div>
+![Wizard Image](wizard.png){ :style="width: 300px; height: auto; margin-right: 15px;" }
+![Wizard Image](wizard2.png){ :style="width: 200px; height: auto; margin-right: 15px;" }
 
 Follow the wizard (clicking on 'Next' button). In the **'Agent/Gateway configuration'** section select 'SaaS Gateway'. Then scroll down on the bottom of the page and click on "Create my application".
 
-<div>
-<img src="/images/wizard4.png" alt="wizard" style="width: 500px; height: auto; margin-right: 15px;" />
-</div>
+![Wizard Image](wizard4.png){: style="width: 500px; height: auto; margin-right: 15px;" }
 
 -   **Explore the UI**: Explore monitoring, incident management, and actions.
 
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="/images/dashboard1.PNG" alt="wizard" style="width: 300px; height: auto; margin-right: 15px;" />
-<img src="/images/map1.PNG" alt="wizard2" style="width: 200px; height: auto; margin-right: 15px;" />
-</div>
+![Wizard Image](dashboard1.png){: style="width: 500px; height: auto; margin-right: 15px;" }
+![Wizard Image](map1.png){: style="width: 200px; height: auto; margin-right: 15px;" }
 
 The demo version provides a hands-on look at AppControl’s capabilities.
 

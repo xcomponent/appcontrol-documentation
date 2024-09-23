@@ -65,11 +65,11 @@ AppControl includes built-in diagnostics to detect and resolve common issues rel
 ### Resolution Process:
 
 -   **Stop Orphaned Components**: When an orphaned component is detected (i.e., a component that is running without its necessary parent components), AppControl will stop the orphaned components to maintain consistency.
-    ![Resolution1](../images/resolution1.png)
+    ![Resolution1](images/resolution1.png)
 -   **Healthy State**: Once the issues are resolved, the system reaches a **healthy state**, ensuring all components are properly aligned with their parent-child dependencies.
-    ![Resolution2](../images/resolution2.png)
+    ![Resolution2](images/resolution2.png)
 -   **Restart by Branch**: AppControl can restart components by "branch," ensuring that all parent and child components are properly started in sequence, maintaining the application's integrity.
-    ![Restart](../images/restart.png)
+    ![Restart](images/restart.png)
 
 ---
 

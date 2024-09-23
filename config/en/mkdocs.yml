@@ -5,33 +5,33 @@ site_url: https://xcomponent.github.io/
 repo_url: https://xcomponent.github.io/appcontrol-documentation/
 
 nav:
-    - Introduction: pages/index.md
+    - Introduction: index.md
     - Getting Started:
-          - Introduction to AppControl SaaS: pages/gettingStarted
-          - Demo setup with no connection to local infrastructure: pages/gettingStarted/#try-demo
-          - Connecting local infrastructure: pages/gettingStarted/#connecting-to-local-infrastructure
-    - Core Concepts: pages/coreconcepts.md
+          - Introduction to AppControl SaaS: gettingStarted
+          - Demo setup with no connection to local infrastructure: gettingStarted/#try-demo
+          - Connecting local infrastructure: gettingStarted/#connecting-to-local-infrastructure
+    - Core Concepts: coreconcepts.md
     - Create your own application manually:
-          - Introduction: pages/map
-          - YAML Format: pages/map#yaml-format
-          - XML Format: pages/map#xml-format
-          - Built-in wizards: pages/map#built-in-wizards
-          - Enrich your application with dynamic informations: pages/dynamicmapinformations
+          - Introduction: map
+          - YAML Format: map#yaml-format
+          - XML Format: map#xml-format
+          - Built-in wizards: map#built-in-wizards
+          - Enrich your application with dynamic informations: dynamicmapinformations
     - Create your own application using wizard:
-          - Auto-Generate Application from Running Processes: pages/map/#auto-generate-application-from-running-processes
-          - Auto-Generate Application from Azure Tenant: pages/map/#auto-generate-application-from-azure-tenant
+          - Auto-Generate Application from Running Processes: map/#auto-generate-application-from-running-processes
+          - Auto-Generate Application from Azure Tenant: map/#auto-generate-application-from-azure-tenant
     - Gateways and Agents Installation in Local Infrastructure:
-          - Introduction: pages/x4bcli
-          - Quick installation: pages/x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos
-          - Gateway installation: pages/x4bcli/#x4b-gateway-custom-installation
-          - Agent installation: pages/agents
-    - Gateways and Agents Installation in Azure: pages/agentazure
-    - Git integration: pages/repo
+          - Introduction: x4bcli
+          - Quick installation: x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos
+          - Gateway installation: x4bcli/#x4b-gateway-custom-installation
+          - Agent installation: agents
+    - Gateways and Agents Installation in Azure: agentazure
+    - Git integration: repo
     - Advanced:
-          - Install standalone: pages/standalone
-          - AppControl Cli: pages/cli.md
-          - How to import your Centreon setup into AppControl: pages/centreon.md
-          - How to integrate AppControl with a ServiceNow Cmdb: pages/cmdb.md
+          - Install standalone: standalone
+          - AppControl Cli: cli.md
+          - How to import your Centreon setup into AppControl: centreon.md
+          - How to integrate AppControl with a ServiceNow Cmdb: cmdb.md
 
 theme:
     name: material
@@ -52,6 +52,9 @@ theme:
         - navigation.tracking
         - tabs # Enable tabs for navigation
         - navigation.expand # Automatically expand navigation sections
+
+markdown_extensions:
+    - attr_list
 
 extra:
     alternate:

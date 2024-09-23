@@ -113,7 +113,7 @@ to access the AppControl webapp. Use the following credentials to login:
 Once you're logged into AppControl, you can access the online documentation
 through the help button (?) on the top right of the screen:
 
-![Online Documentation](../images/Help_button.png)
+![Online Documentation](Help_button.png)
 
 The dropdown menu also lets you contact Invivoo support through email, and join
 our Slack channel for access to the development team.

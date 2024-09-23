@@ -13,7 +13,7 @@ To begin using agents in your local infrastructure, please refer to the Agents I
 
 Please refer to the [Agents Installation](#link-to-agents-installation) section for detailed installation instructions.
 
-![Network architecture](../images/architectures-X4BCLI.svg)
+![Network architecture](architectures-X4BCLI.svg)
 
 Thanks to the X4B Gateway, you can deploy your applications in the AppControl Cloud Platform while keeping agents deployed on-premises.
 
@@ -75,12 +75,12 @@ Please refer to the agents installation section for detailed instructions on age
 The first step is to log in and navigate to this page: [AppControl](https://appcontrol.xcomponent.com/gateways).
 
 1. Click on **Register New Gateway**  
-   ![Gateway Settings](../images/agentproxy1.png)
+   ![Gateway Settings](agentproxy1.png)
 
 2. Provide a name for your gateway and confirm.
 
 3. Once your gateway is created, an Access Key and a Secret Access Key will be generated.  
-   ![Gateway Settings](../images/agentproxy2.png)
+   ![Gateway Settings](agentproxy2.png)
 
 4. Now, you're ready to install the X4B Gateway. Please refer to the documentation below for the installation procedure.
 
@@ -96,7 +96,7 @@ The first step is to retrieve the X4B Gateway credentials. Navigate to the **Gat
 -   **Access Key**
 -   **Secret Access Key**
 
-    ![Agent Proxy Settings](../images/agentproxy3.png)
+    ![Agent Proxy Settings](agentproxy3.png)
 
 #### **Microsoft Windows Platform Installation**
 

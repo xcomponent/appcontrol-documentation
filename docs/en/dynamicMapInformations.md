@@ -68,4 +68,4 @@ A full example is available in this documentation:
 
 In this example, dynamic components are displayed with an octagonal shape, while static components are displayed with a square shape.
 
-![Map](../images/dynamic_map.png)
+![Map](dynamic_map.png)

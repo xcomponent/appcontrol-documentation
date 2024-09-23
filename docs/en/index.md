@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: center; align-items: center;">
-  <img src="../images/logo.svg" alt="AppControl Logo" style="width: 50px; height: auto; margin-right: 15px;" />
+  <img src="logo.svg" alt="AppControl Logo" style="width: 50px; height: auto; margin-right: 15px;" />
   <h1 style="margin: 0;">Introducing AppControl</h1>
 </div>
 

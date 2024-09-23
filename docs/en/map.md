@@ -541,10 +541,8 @@ The generated application is capable of **starting, stopping, and checking the s
 -   To start the wizard go to **Overview/New application** and select **Discover your infrastructure**
 -   Select: **From Servers** and then select your gateway and your agent.
 
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="/images/wizardprocess1.png" alt="wizard" style="width: 400px; height: auto; margin-right: 15px;" />
-<img src="/images/wizardprocess2.png" alt="wizard" style="width: 400px; height: auto; margin-right: 15px;" />
-</div>
+![Wizard Image](wizardprocess1.png){: style="width: 400px; height: auto; margin-right: 15px;" }
+![Wizard Image](wizardprocess2.png){: style="width: 400px; height: auto; margin-right: 15px;" }
 
 ### Auto-Generate Application from Azure Tenant
 
@@ -597,8 +595,6 @@ Once you’ve created the Service Principal, you need to provide the credentials
 
 AppControl will use these credentials to authenticate with Azure and retrieve your resources.
 
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="/images/wizardazure.png" alt="wizard" style="width: 400px; height: auto; margin-right: 15px;" />
-</div>
+![Wizard Image](wizardazure.png){: style="width: 400px; height: auto; margin-right: 15px;" }
 
 This feature empowers you to visualize and manage your entire Azure infrastructure directly from AppControl, ensuring real-time control over your cloud assets.

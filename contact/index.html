@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://xcomponent.github.io/agentazure/">
+        <link rel="canonical" href="https://xcomponent.github.io/contact/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Agentazure - AppControl</title>
+        <title>Contact - AppControl</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-image-for-gateway-agent-and-azure-cli-deployment-in-azure" class="md-skip">
+        <a href="#contact-us" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Agentazure
+              Contact
             
           </span>
         </div>
@@ -734,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="." class="md-nav__link">
+      <a href="../agentazure" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -774,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contact" class="md-nav__link">
+      <a href="." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -940,98 +940,11 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docker-image-for-gateway-agent-and-azure-cli-deployment-in-azure" class="md-nav__link">
+  <a href="#contact-us" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure
+      Contact Us
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploying-an-azure-container-with-a-managed-identity-using-appcontrols-docker-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying an Azure Container with a Managed Identity Using AppControl’s Docker Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-create-a-resource-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Create a Resource Group
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-a-managed-identity" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Create a Managed Identity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-assign-the-managed-identity-to-a-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Assign the Managed Identity to a Role
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-create-and-configure-an-azure-container-instance" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Create and Configure an Azure Container Instance
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-verify-the-container-and-managed-identity" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Verify the Container and Managed Identity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-running-azure-cli-commands-from-inside-the-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Running Azure CLI Commands from Inside the Container
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-clean-up-resources-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Clean Up Resources (Optional)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Conclusion
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1050,131 +963,36 @@
                   
 
 
-  <h1>Agentazure</h1>
+  <h1>Contact</h1>
 
-<h2 id="docker-image-for-gateway-agent-and-azure-cli-deployment-in-azure">Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure</h2>
-<p>To simplify the deployment of AppControl’s gateway and agent in Azure, a pre-configured Docker image is available. This image includes:</p>
-<ul>
-<li><strong>AppControl Gateway</strong></li>
-<li><strong>AppControl Agent</strong></li>
-<li><strong>Azure CLI (az cli)</strong></li>
-</ul>
-<p>The goal is to streamline the process of deploying and managing the agent and gateway in an Azure environment. By running this Docker container in <strong>Managed Identity</strong>, the agent will have the capability to execute Azure CLI commands without requiring additional authentication.</p>
-<p><strong>Key Benefits</strong></p>
-<ul>
-<li>
-<p><strong>Pre-configured Environment</strong>: The Docker image includes both the gateway and the agent, along with the Azure CLI, in one cohesive package. This eliminates the need to install and configure each component separately.</p>
-</li>
-<li>
-<p><strong>Managed Identity Integration</strong>: When the Docker container is run with a managed identity, the agent gains access to Azure resources without manual authentication. This allows the agent to execute az commands securely, inheriting the permissions associated with the managed identity.</p>
-</li>
-<li>
-<p><strong>Seamless Deployment</strong>: This image is designed to be used within Azure environments, simplifying the process of deploying the gateway and agent directly in the cloud. You can use the image to monitor and manage your applications and infrastructure easily.</p>
-</li>
-</ul>
-<h3 id="deploying-an-azure-container-with-a-managed-identity-using-appcontrols-docker-image">Deploying an Azure Container with a Managed Identity Using AppControl’s Docker Image</h3>
-<p>This guide will walk you through creating a dedicated resource group, setting up a managed identity, and running a container using AppControl's Docker image, which includes the gateway, agent, and Azure CLI.</p>
-<p><strong>Prerequisites</strong></p>
-<ul>
-<li><strong>Azure CLI</strong> installed on your local machine.</li>
-<li>Azure account with sufficient privileges to create resource groups, managed identities, and run containers.</li>
-</ul>
-<p><strong>Procedure</strong></p>
-<h3 id="1-create-a-resource-group">1. Create a Resource Group</h3>
-<p>First, create a new resource group in Azure. This resource group will house the container and the associated resources.</p>
-<pre><code class="language-bash">az group create --name AppControlResourceGroup --location &lt;your-region&gt;
-</code></pre>
-<p>Replace <strong><your-region></strong> with the desired Azure region (e.g., eastus, westus, westeurope).</p>
-<h3 id="2-create-a-managed-identity">2. Create a Managed Identity</h3>
-<p>Next, create a managed identity that will be used by the container to authenticate and execute Azure commands without requiring credentials.</p>
-<pre><code class="language-bash">az identity create --name AppControlIdentity --resource-group AppControlResourceGroup --location &lt;your-region&gt;
-</code></pre>
-<p>Once the managed identity is created, note down the <strong>client ID</strong> and <strong>principal ID</strong> (also referred to as the object ID) from the output.</p>
-<h3 id="3-assign-the-managed-identity-to-a-role">3. Assign the Managed Identity to a Role</h3>
-<p>Assign the managed identity appropriate roles so that it has permissions to interact with Azure resources. For example, to allow it to manage virtual machines, assign the Virtual Machine Contributor role.</p>
-<pre><code class="language-bash">az role assignment create --assignee &lt;principal-id&gt; --role &quot;Virtual Machine Contributor&quot; --scope /subscriptions/&lt;subscription-id&gt;/resourceGroups/AppControlResourceGroup
-</code></pre>
-<p>Replace:</p>
-<ul>
-<li><strong><principal-id></strong> with the principal ID of the managed identity.</li>
-<li><strong><subscription-id></strong> with your Azure subscription ID.
-    You can also assign different roles depending on what permissions are needed for the agent running in the container.</li>
-</ul>
-<h3 id="4-create-and-configure-an-azure-container-instance">4. Create and Configure an Azure Container Instance</h3>
-<p>Now, deploy an Azure Container Instance using the Docker image that contains the AppControl gateway, agent, and Azure CLI. Make sure to assign the managed identity to this container so it can execute Azure commands without requiring explicit credentials.</p>
-<pre><code class="language-bash">az container create \
-  --resource-group AppControlResourceGroup \
-  --name appcontrol-container \
-  --image xcomponent/x4b-azuregateway:latest \
-  --assign-identity &lt;client-id&gt; \
-  --cpu 1 \
-  --memory 1.5 \
-  --environment-variables AZURE_CLIENT_ID=&lt;client-id&gt; \
-  --location &lt;your-region&gt; \
-  --dns-name-label appcontrol-container-instance \
-  --resource-group [**RESOURCE-GROUP-NAME**] \
-   --restart-policy OnFailure \
-   --environment-variables  AZURE_CLIENT_ID=&lt;client-id&gt; X4B_ACCESS_KEY=[**YOUR-GATEWAY-ACCESS-KEY**] X4B_SECRET_ACCESS_KEY=[**YOUR-GATEWAY-SECRET-KEY**] X4B_PROXY_NAME=[**YOUR-GATEWAY-NAME**] APPCONTROL_API_URL=https://appcontrol.xcomponent.com/core/
-</code></pre>
-<p>Replace:</p>
-<ul>
-<li><strong><client-id></strong> with the client ID of the managed identity.</li>
-<li><strong><your-region></strong> with your preferred Azure region.</li>
-</ul>
-<p>This command will:</p>
-<p>Create a new container instance running the Docker image xcomponent/x4b-azuregateway:latest.
-Assign the managed identity to the container so that it can run Azure CLI commands using the permissions of that identity.
-Allocate 1 CPU and 1.5GB memory for the container.</p>
-<h3 id="5-verify-the-container-and-managed-identity">5. Verify the Container and Managed Identity</h3>
-<p>After running the above command, you can verify that the container is running:</p>
-<pre><code class="language-bash">az container show --resource-group AppControlResourceGroup --name appcontrol-container --query &quot;instanceView.state&quot;
-</code></pre>
-<p>If everything is configured correctly, the container will be in a "Running" state.</p>
-<h3 id="6-running-azure-cli-commands-from-inside-the-container">6. Running Azure CLI Commands from Inside the Container</h3>
-<p>Since the container is running with the managed identity, you can now use the Azure CLI inside the container to manage Azure resources. The managed identity provides seamless access without needing explicit authentication credentials.</p>
-<p>To list virtual machines, for example, you can run the following command inside the container:</p>
-<pre><code class="language-bash">az vm list --output table
-</code></pre>
-<p>The managed identity will use the permissions assigned to it to interact with the Azure resources as needed.</p>
-<h3 id="7-clean-up-resources-optional">7. Clean Up Resources (Optional)</h3>
-<p>Once you're done with the container and managed identity, you can delete the resource group and all its associated resources:</p>
-<pre><code class="language-bash">az group delete --name AppControlResourceGroup --yes --no-wait
-</code></pre>
-<p>This command will remove the resource group, the container, and the managed identity.</p>
-<h3 id="conclusion">Conclusion</h3>
-<p>By following this procedure, you can deploy a container running AppControl’s gateway, agent, and Azure CLI in an Azure environment, using a managed identity for secure, password-less authentication. This setup allows the agent to execute Azure commands seamlessly, simplifying infrastructure management and monitoring.</p>
-<p>For more advanced configurations or additional details, refer to the official Azure and AppControl documentation.</p>
-<p>After the container is created and starts automatically, check its operation in Azure by examining the logs.</p>
-<p>Now check on <a href="https://appcontrol.xcomponent.com/gateways?lng=en">AppControl</a> to ensure the gateway is accessible.</p>
-<p><img alt="Image" src="images/gateway_started.png" /></p>
-<p>You are now ready to create your map in AppControl, utilizing this gateway and agent to monitor your Azure infrastructure.</p>
-<p>Below is an example that supervises an Azure Function:</p>
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot; ?&gt;
-&lt;apps&gt;
- &lt;hosts&gt;
-  &lt;host hostid=&quot;agent-azure&quot; host=&quot;localhost&quot; port=&quot;12567&quot; sslprotocol=&quot;Tls12&quot; /&gt;
- &lt;/hosts&gt;
- &lt;auths&gt;
-  &lt;auth authid=&quot;LOCAL&quot; domain=&quot;&quot; password=&quot;&quot; user=&quot;&quot; /&gt;
- &lt;/auths&gt;
- &lt;app name=&quot;AZURE MAP&quot; version=&quot;v1&quot;&gt;
-  &lt;component name=&quot;Azure CLI&quot; description=&quot;Azure access&quot; hostref=&quot;agent-azure&quot; authref=&quot;LOCAL&quot; redirectoutput=&quot;false&quot; type=&quot;file&quot;&gt;
-   &lt;action value=&quot;az version&quot; name=&quot;check&quot; /&gt;
-   &lt;action value=&quot;az $(command)&quot; commandname=&quot;Test az cli&quot; name=&quot;custom&quot;&gt;
-    &lt;parameters&gt;
-     &lt;parameter name=&quot;command&quot; value=&quot;account list&quot; canedit=&quot;true&quot; validation=&quot;\*&quot; /&gt;
-    &lt;/parameters&gt;
-   &lt;/action&gt;
-  &lt;/component&gt;
-  &lt;component name=&quot;AzureFunction&quot; description=&quot;Azure Function&quot; hostref=&quot;agent-azure&quot; authref=&quot;LOCAL&quot; redirectoutput=&quot;true&quot; type=&quot;browser&quot;&gt;
-   &lt;father&gt;Azure&lt;/father&gt;
-   &lt;action value=&quot;az functionapp show --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME] --query 'state' | grep -q '&amp;#34;Running&amp;#34;'&quot; name=&quot;check&quot; /&gt;
-   &lt;action value=&quot;az functionapp start --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME]&quot; name=&quot;enable&quot; /&gt;
-   &lt;action value=&quot;az functionapp stop --ids /subscriptions/[SUBSCRIPTION-ID]/resourceGroups/[RESOURCE-GROUP-NAME]/providers/Microsoft.Web/sites/[FUNCTION-APP-NAME]&quot; name=&quot;disable&quot; /&gt;
-  &lt;/component&gt;
- &lt;/app&gt;
-&lt;/apps&gt;
-</code></pre>
+<h2 id="contact-us">Contact Us</h2>
+<p>If you have any questions, need support, or want to reach out for any reason, we’re here to help!</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Links</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="Form Icon" height="24px" src="../logo.svg" width="32px" /></td>
+<td style="text-align: left;"><strong>Contact Form</strong></td>
+<td style="text-align: left;"><a href="https://ask.invivoo.com/appcontrol">Fill out our contact form</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Email Icon" height="24px" src="../email.png" width="24px" /></td>
+<td style="text-align: left;"><strong>Email</strong></td>
+<td style="text-align: left;"><a href="mailto:support@appcontrol.com">support@appcontrol.com</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><img alt="Slack Icon" height="24px" src="../slack_logo.svg" width="96px" /></td>
+<td style="text-align: left;"><strong>Slack Community</strong> </br> <p style="text-align: center;"> <a href="http://slack.xcomponent.com/"><img alt="" src="http://slack.xcomponent.com/badge.svg" /></a> </p></td>
+<td style="text-align: left;"><a href="https://slack.xcomponent.com">Join our Slack channel</a></td>
+</tr>
+</tbody>
+</table>
 
 
 

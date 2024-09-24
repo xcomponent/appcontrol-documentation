@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://xcomponent.github.io/agentazure/">
       
       
+        <link rel="prev" href="../agents/">
+      
+      
+        <link rel="next" href="../repo/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Agentazure - AppControl</title>
+        <title>Gateways and Agents Installation in Azure - AppControl</title>
       
     
     
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Agentazure
+              Gateways and Agents Installation in Azure
             
           </span>
         </div>
@@ -276,7 +280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gettingStarted" class="md-nav__link">
+      <a href="../gettingStarted/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -403,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../map" class="md-nav__link">
+      <a href="../map/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -617,7 +621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../x4bcli" class="md-nav__link">
+      <a href="../x4bcli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -680,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../agents" class="md-nav__link">
+      <a href="../agents/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -705,10 +709,28 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="." class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Gateways and Agents Installation in Azure
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -717,6 +739,120 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-image-for-gateway-agent-and-azure-cli-deployment-in-azure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploying-an-azure-container-with-a-managed-identity-using-appcontrols-docker-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying an Azure Container with a Managed Identity Using AppControl’s Docker Image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-resource-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create a Resource Group
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-managed-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create a Managed Identity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-assign-the-managed-identity-to-a-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Assign the Managed Identity to a Role
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-and-configure-an-azure-container-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Create and Configure an Azure Container Instance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verify-the-container-and-managed-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Verify the Container and Managed Identity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-running-azure-cli-commands-from-inside-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Running Azure CLI Commands from Inside the Container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-clean-up-resources-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Clean Up Resources (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -728,7 +864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../repo" class="md-nav__link">
+      <a href="../repo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -748,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contact" class="md-nav__link">
+      <a href="../contact/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -805,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../standalone" class="md-nav__link">
+      <a href="../standalone/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1024,7 +1160,7 @@
                   
 
 
-  <h1>Agentazure</h1>
+  <h1>Gateways and Agents Installation in Azure</h1>
 
 <h2 id="docker-image-for-gateway-agent-and-azure-cli-deployment-in-azure">Docker Image for Gateway, Agent, and Azure CLI Deployment in Azure</h2>
 <p>To simplify the deployment of AppControl’s gateway and agent in Azure, a pre-configured Docker image is available. This image includes:</p>
@@ -1173,6 +1309,44 @@ Allocate 1 CPU and 1.5GB memory for the container.</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../agents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agent installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Agent installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../repo/" class="md-footer__link md-footer__link--next" aria-label="Next: Git integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Git integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

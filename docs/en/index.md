@@ -5,11 +5,9 @@
 
 ## Focused on What Really Matters—Your Applications
 
-<div style="text-align: justify;">
 For small and mid-sized enterprises, the performance and availability of your applications are critical to your business success. That’s why **AppControl** is designed to minimize downtime by enabling fast, automated responses to incidents directly within your applications—whether they are legacy systems or modern cloud-based apps. Unlike many solutions, **AppControl integrates without requiring any modifications to your existing applications**, ensuring a smooth deployment without risking your critical systems.
 </br></br>
 While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, **AppControl takes a different approach**. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul.
-</div>
 
 ## What Makes AppControl Different from Other Solutions
 

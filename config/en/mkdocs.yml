@@ -11,12 +11,12 @@ nav:
           - Demo setup with no connection to local infrastructure: gettingStarted/#try-demo
           - Connecting local infrastructure: gettingStarted/#connecting-to-local-infrastructure
     - Core Concepts: coreconcepts.md
+    - Main Features: mainfeatures.md
     - Create your own application manually:
           - Introduction: map
           - YAML Format: map#yaml-format
           - XML Format: map#xml-format
-          - Built-in wizards: map#built-in-wizards
-          - Enrich your application with dynamic informations: dynamicmapinformations
+          - Enrich your application with dynamic informations: dynamicMapInformations
     - Create your own application using wizard:
           - Auto-Generate Application from Running Processes: map/#auto-generate-application-from-running-processes
           - Auto-Generate Application from Azure Tenant: map/#auto-generate-application-from-azure-tenant
@@ -27,13 +27,17 @@ nav:
           - Agent installation: agents
     - Gateways and Agents Installation in Azure: agentazure
     - Git integration: repo
+    - Contact: contact
     - Advanced:
           - Install standalone: standalone
-          - AppControl Cli: cli.md
           - How to import your Centreon setup into AppControl: centreon.md
           - How to integrate AppControl with a ServiceNow Cmdb: cmdb.md
 
+markdown_extensions:
+    - attr_list
+
 theme:
+    favicon: favicon.png
     name: material
     logo: logo2.svg
     repo: 'github'
@@ -46,6 +50,7 @@ theme:
         icon: material/toggle-switch
         name: Toggle dark mode
     features:
+        - navigation.footer
         - navigation.instant
         - navigation.instant.progress
         - navigation.instant.preview
@@ -53,17 +58,17 @@ theme:
         - tabs # Enable tabs for navigation
         - navigation.expand # Automatically expand navigation sections
 
-markdown_extensions:
-    - attr_list
+copyright: '© 2024 XComponent AppControl. All rights reserved.'
 
 extra:
-    alternate:
-        - name: English
-          link: /en/
-          lang: en
-        - name: French
-          link: /fr/
-          lang: fr
+    generator: false
+    social:
+        - icon: fontawesome/brands/slack
+          link: https://slack.xcomponent.com
+        - icon: fontawesome/brands/readme
+          link: https://ask.invivoo.com/appcontrol
+        - icon: fontawesome/solid/paper-plane
+          link: mailto:support@appcontrol.com
 
 plugins:
     - search:

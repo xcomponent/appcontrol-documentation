@@ -35,8 +35,8 @@ function copyLink() {
 
 </br>
 
-![Wizard Image](wizard.png){ :style="width: 300px; height: auto; margin-right: 15px;" }
-![Wizard Image](wizard2.png){ :style="width: 200px; height: auto; margin-right: 15px;" }
+![Wizard Image](wizard.png){ : style="width: 300px; height: auto; margin-right: 15px;" }
+![Wizard Image2](wizard2.png){ : style="width: 300px; height: auto; margin-right: 50px;" }
 
 Follow the wizard (clicking on 'Next' button). In the **'Agent/Gateway configuration'** section select 'SaaS Gateway'. Then scroll down on the bottom of the page and click on "Create my application".
 
@@ -44,8 +44,8 @@ Follow the wizard (clicking on 'Next' button). In the **'Agent/Gateway configura
 
 -   **Explore the UI**: Explore monitoring, incident management, and actions.
 
-![Wizard Image](dashboard1.png){: style="width: 500px; height: auto; margin-right: 15px;" }
-![Wizard Image](map1.png){: style="width: 200px; height: auto; margin-right: 15px;" }
+![Wizard Image3](dashboard1.png){: style="width: 500px; height: auto; margin-right: 15px;" }
+![Wizard Image4](map1.png){: style="width: 400px; height: auto; margin-right: 15px;" }
 
 The demo version provides a hands-on look at AppControl’s capabilities.
 
@@ -139,8 +139,4 @@ Components:
 
 If you wish to manage applications running in your on-premises environment, AppControl can be connected to your local infrastructure through **agents** and **gateways**. While this is an advanced setup, it allows for seamless integration with both legacy and cloud applications.
 
-For detailed instructions on how to connect to your local infrastructure, including agent installation and gateway setup, please refer to the following pages:
-
--   [Setting up Agents](/pages/agents/)
--   [Configuring the Gateway](/pages/x4bcli/#x4b-gateway-custom-installation)
--   [Full Local Infrastructure Guide](/pages/x4bcli/)
+For detailed instructions on how to connect to your local infrastructure, including agent installation and gateway setup, please refer to the documentation.

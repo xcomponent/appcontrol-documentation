@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://xcomponent.github.io/centreon/">
+        <link rel="canonical" href="https://xcomponent.github.io/agentsdeployment/">
       
       
-        <link rel="prev" href="../standalone/">
+        <link rel="prev" href="../agents/">
       
       
-        <link rel="next" href="../cmdb/">
+        <link rel="next" href="../agentazure/">
       
       
       <link rel="icon" href="../favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>How to import your Centreon setup into AppControl - AppControl</title>
+        <title>Automatic Deployment of Agents - AppControl</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#centreon-import" class="md-skip">
+        <a href="#deploy-agents-automatically-via-the-gateway" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to import your Centreon setup into AppControl
+              Automatic Deployment of Agents
             
           </span>
         </div>
@@ -601,19 +601,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -627,7 +627,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Gateways and Agents Installation in Local Infrastructure
@@ -722,10 +722,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../agentsdeployment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Automatic Deployment of Agents
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -734,6 +752,132 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-agents-automatically-via-the-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Agents Automatically via the Gateway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Agents Automatically via the Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configure-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configure SSH Access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-generate-ssh-keys-private-key-required-by-appcontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Generate SSH Keys (Private Key Required by AppControl)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Generate SSH Keys (Private Key Required by AppControl)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-or-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (or macOS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-using-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Using Git Bash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-using-powershell-windows-1011" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Using PowerShell (Windows 10/11)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-provide-the-private-ssh-key-to-appcontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Provide the Private SSH Key to AppControl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-agents-via-the-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deploy Agents via the Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-troubleshooting-ssh-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Troubleshooting SSH Connection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -810,19 +954,19 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -836,7 +980,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Advanced
@@ -868,30 +1012,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    How to import your Centreon setup into AppControl
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../centreon/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -900,44 +1024,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#appcontrol-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      AppControl map
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#importing-your-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Importing your setup
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -988,8 +1074,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -998,20 +1082,110 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#appcontrol-map" class="md-nav__link">
+  <a href="#deploy-agents-automatically-via-the-gateway" class="md-nav__link">
     <span class="md-ellipsis">
-      AppControl map
+      Deploy Agents Automatically via the Gateway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy Agents Automatically via the Gateway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-configure-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configure SSH Access
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#importing-your-setup" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#2-generate-ssh-keys-private-key-required-by-appcontrol" class="md-nav__link">
     <span class="md-ellipsis">
-      Importing your setup
+      2. Generate SSH Keys (Private Key Required by AppControl)
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Generate SSH Keys (Private Key Required by AppControl)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-or-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (or macOS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-using-git-bash" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Using Git Bash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-using-powershell-windows-1011" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Using PowerShell (Windows 10/11)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-provide-the-private-ssh-key-to-appcontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Provide the Private SSH Key to AppControl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-agents-via-the-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deploy Agents via the Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-troubleshooting-ssh-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Troubleshooting SSH Connection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1030,33 +1204,109 @@
                   
 
 
-<h1 id="centreon-import">Centreon Import</h1>
-<p>The X4B platform includes a mechanism for importing your current Centreon (or Nagios) setup. This allows you to start off with a draft AppControl map file which includes all the hosts and services that you have defined in your Centreon configuration.</p>
-<h2 id="appcontrol-map">AppControl map</h2>
-<p>The import will create one AppControl component for each host, and one for each service, with the host component being designated as a parent of the service component. The parent-child relationship denotes a dependency relation, where the child depends on a properly working parent to perform its own function.</p>
-<p>You can designate one of your servers as a <strong>bastion host</strong>. If you do, it is assumed that you will deploy an AppControl agent on it, and then that server will be used to run remote checks on other hosts, using the ping or ssh commands, for example.</p>
-<p>By default, the host components have a check command that does <strong>ping -c 1 &lt;hostname&gt;</strong>. The service components are created with sample check, start, and stop commands that simulate the actual checks using a temporary file. All these default commands assume the agent is running on a linux machine, but you can also configure your map to deploy the agents on Windows servers (see xxx for more details on AppControl agents).</p>
-<h2 id="importing-your-setup">Importing your setup</h2>
-<p>The import tool is a Windows binary that you can download from <a href="https://github.com/xcomponent/appcontrol-documentation/releases/download/1.0/ac_from_centreon.exe">here</a>. To import your setup, first log on to your Centreon server, and export your configuration to a text file, with the following command:</p>
-<pre><code class="language-console">centreon -u &lt;admin_user&gt; -p &lt;admin_password&gt; -e &gt; centreon_export.txt
-</code></pre>
-<p>Second, run the import tool, specifying your export file as the input file:</p>
-<pre><code class="language-console">ac_from_centreon.exe -f centreon_export.txt -n CentreonExported -v 1.0
-</code></pre>
-<p>This creates a file called <strong>CentreonExported,1.0.xml</strong> in the current directory (you are free to pick any name and version you want, see the available options below). You can open this file in the editor of your choice to inspect or edit it, and you can upload it to AppControl with the New button on the AppControl UI.
-Other options are available:</p>
-<pre><code class="language-console">Usage: ac_from_centreon.exe OPTIONS
-Options:
-    -f &lt;filepath&gt;
-    -r | --root-host &lt;hostname&gt;
-    -b | --bastion-host &lt;hostname&gt;
-    -n &lt;map name&gt; (required)
-    -v &lt;version&gt; (required)
-    -o &lt;map_filepath&gt;
-</code></pre>
-<p>The <strong>--root-host</strong> option lets you specify one server as being the root, in the AppControl architecture map, of the servers graph. This indicates that all the other server depend on this one; you would typically choose a server playing some essential role, such as a DNS server.</p>
-<p>The <strong>--bastion-host</strong> option lets specify one server as being the bastion, as described above.</p>
-<p>The <strong>-n</strong> and <strong>-v</strong> options are required, as they define the map name and version. If no path is given for the map file, the file gets created in the current directory with the name &lt;map_name&gt;,&lt;version&gt;.xml; alternatively, you may specify a different path and name using the <strong>-o</strong> option. </p>
+  <h1>Automatic Deployment of Agents</h1>
+
+<h3 id="deploy-agents-automatically-via-the-gateway">Deploy Agents Automatically via the Gateway</h3>
+<p>AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires <strong>SSH access</strong> to the target infrastructure using the <strong>private SSH key</strong>. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment.</p>
+<h4 id="1-configure-ssh-access">1. Configure SSH Access</h4>
+<p>For AppControl to deploy agents automatically, the gateway needs access to the target machines via SSH. Ensure that SSH is properly configured on your target systems.</p>
+<ul>
+<li><strong>Port</strong>: By default, SSH uses port 22, but AppControl allows you to customize this if needed.</li>
+<li><strong>User Permissions</strong>: The user account that AppControl will use for SSH should have the necessary permissions to install and manage agents on the target machine.</li>
+</ul>
+<h4 id="2-generate-ssh-keys-private-key-required-by-appcontrol">2. Generate SSH Keys (Private Key Required by AppControl)</h4>
+<p>To allow AppControl to manage agent deployment via the gateway, the <strong>private SSH key</strong> must be provided. Follow the steps below to generate SSH keys on Linux or Windows.</p>
+<h5 id="linux-or-macos">Linux (or macOS)</h5>
+<p>To generate SSH keys on Linux or macOS:</p>
+<ol>
+<li>Open a terminal.</li>
+<li>
+<p>Run the following command to generate a new SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
+<ul>
+<li><code>-t rsa</code>: Specifies the RSA algorithm.</li>
+<li><code>-b 2048</code>: Specifies the key length (2048 bits).</li>
+<li><code>-f ~/.ssh/appcontrol_key</code>: Saves the key pair to the specified file (<code>appcontrol_key</code>).</li>
+</ul>
+</li>
+<li>
+<p>When prompted for a passphrase, press <strong>Enter</strong> to leave it empty (or add a passphrase if required for extra security).</p>
+</li>
+</ol>
+<p>This command will generate two files:</p>
+<ul>
+<li><strong>Private key</strong>: <code>~/.ssh/appcontrol_key</code></li>
+<li><strong>Public key</strong>: <code>~/.ssh/appcontrol_key.pub</code></li>
+</ul>
+<h5 id="windows">Windows</h5>
+<p>To generate SSH keys on Windows, you can use either <strong>Git Bash</strong> or <strong>PowerShell</strong> (with OpenSSH).</p>
+<h6 id="option-1-using-git-bash">Option 1: Using Git Bash</h6>
+<ol>
+<li>Install <a href="https://gitforwindows.org/">Git for Windows</a> if you haven’t already.</li>
+<li>Open <strong>Git Bash</strong>.</li>
+<li>
+<p>Run the following command to generate an SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
+</li>
+<li>
+<p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if you prefer).</p>
+</li>
+</ol>
+<h6 id="option-2-using-powershell-windows-1011">Option 2: Using PowerShell (Windows 10/11)</h6>
+<ol>
+<li>Open <strong>PowerShell</strong> as an administrator.</li>
+<li>
+<p>Run the following command to generate an SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
+</li>
+</ol>
+<p>This will generate two files:</p>
+<ul>
+<li><strong>Private key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
+<li>
+<p><strong>Public key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key.pub</code></p>
+</li>
+<li>
+<p>When prompted for a passphrase, press <strong>Enter</strong> to skip or provide a passphrase if additional security is needed.</p>
+</li>
+</ul>
+<h4 id="3-provide-the-private-ssh-key-to-appcontrol">3. Provide the Private SSH Key to AppControl</h4>
+<p>AppControl requires the <strong>private SSH key</strong> for authentication during agent deployment. The <strong>public key</strong> is added to the target machines in the <code>~/.ssh/authorized_keys</code> file, and the <strong>private key</strong> remains with AppControl to establish the connection.</p>
+<ol>
+<li><strong>Locate the Private Key</strong>:<ul>
+<li>Linux: <code>~/.ssh/appcontrol_key</code></li>
+<li>Windows: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
+</ul>
+</li>
+<li><strong>Upload the Private Key to AppControl</strong>:<ol>
+<li>Log in to the AppControl dashboard.</li>
+<li>Navigate to <strong>Gateway Configuration</strong> and select the gateway that will manage the agent deployment.</li>
+<li>Upload the private SSH key (<code>appcontrol_key</code>).</li>
+<li>AppControl will securely store the key and use it for deploying agents.</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>: The private SSH key remains confidential and is only used by AppControl to establish a secure SSH connection to the target machines. The corresponding public key should already be added to the <code>~/.ssh/authorized_keys</code> file on the target machines.</p>
+</blockquote>
+<h4 id="4-deploy-agents-via-the-gateway">4. Deploy Agents via the Gateway</h4>
+<p>Once SSH is configured and the private key is provided, follow these steps:</p>
+<ol>
+<li><strong>Select the Target Machines</strong>: In the AppControl dashboard, go to the "Deploy Agents" section and select the machines where agents should be deployed.</li>
+<li><strong>Verify Connectivity</strong>: AppControl will verify the SSH connection to the target machines using the private key.</li>
+<li><strong>Deploy Agents</strong>: Once the connection is established, AppControl will automatically deploy the agents to the selected machines.</li>
+</ol>
+<h4 id="5-troubleshooting-ssh-connection">5. Troubleshooting SSH Connection</h4>
+<p>If you encounter any issues with the SSH connection, check the following:</p>
+<ul>
+<li>Ensure that the private SSH key is properly configured and uploaded.</li>
+<li>Verify that the SSH port and user permissions are correctly set up on the target machine.</li>
+<li>Check firewall rules or network configurations that might block SSH access.</li>
+</ul>
+<hr />
 
 
 
@@ -1086,7 +1336,7 @@ Options:
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../standalone/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Install standalone">
+          <a href="../agents/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agent installation">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1096,20 +1346,20 @@ Options:
                 Previous
               </span>
               <div class="md-ellipsis">
-                Install standalone
+                Agent installation
               </div>
             </div>
           </a>
         
         
           
-          <a href="../cmdb/" class="md-footer__link md-footer__link--next" aria-label="Next: How to integrate AppControl with a ServiceNow Cmdb">
+          <a href="../agentazure/" class="md-footer__link md-footer__link--next" aria-label="Next: Gateways and Agents Installation in Azure">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                How to integrate AppControl with a ServiceNow Cmdb
+                Gateways and Agents Installation in Azure
               </div>
             </div>
             <div class="md-footer__button md-icon">

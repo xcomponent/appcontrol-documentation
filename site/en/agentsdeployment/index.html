@@ -5,32 +5,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="For small and mid-sized enterprises, the performance and availability of your applications are critical to your business success. That’s why AppControl is designed to minimize downtime by enabling fast, automated responses to incidents directly within your applications—whether they are legacy systems or modern cloud-based apps. Unlike many solutions, AppControl integrates without requiring any modifications to your existing applications, ensuring a smooth deployment without risking your critical systems.
-
-While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, AppControl takes a different approach. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul." name="description"/>
-<link href="https://xcomponent.github.io/" rel="canonical"/>
-<link href="gettingStarted/" rel="next"/>
-<link href="favicon.png" rel="icon"/>
+<meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." name="description"/>
+<link href="https://xcomponent.github.io/agentsdeployment/" rel="canonical"/>
+<link href="../agents/" rel="prev"/>
+<link href="../agentazure/" rel="next"/>
+<link href="../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.28" name="generator"/>
-<title>AppControl</title>
-<link href="assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
-<link href="assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<title>Automatic Deployment of Agents - AppControl</title>
+<link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="assets/_mkdocstrings.css" rel="stylesheet"/>
-<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<meta content="Introduction" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/" property="og:url"/><meta content="Introduction" property="og:title"/><meta content="For small and mid-sized enterprises, the performance and availability of your applications are critical to your business success. That’s why AppControl is designed to minimize downtime by enabling fast, automated responses to incidents directly within your applications—whether they are legacy systems or modern cloud-based apps. Unlike many solutions, AppControl integrates without requiring any modifications to your existing applications, ensuring a smooth deployment without risking your critical systems.
-
-While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, AppControl takes a different approach. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul." property="og:description"/><meta content="logo.svg" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/" property="twitter:url"/><meta content="Introduction" property="twitter:title"/><meta content="For small and mid-sized enterprises, the performance and availability of your applications are critical to your business success. That’s why AppControl is designed to minimize downtime by enabling fast, automated responses to incidents directly within your applications—whether they are legacy systems or modern cloud-based apps. Unlike many solutions, AppControl integrates without requiring any modifications to your existing applications, ensuring a smooth deployment without risking your critical systems.
-
-While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, AppControl takes a different approach. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul." property="twitter:description"/><meta content="logo.svg" property="twitter:image"/></head>
+<link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<meta content="Automatic Deployment of Agents" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/agentsdeployment" property="og:url"/><meta content="Automatic Deployment of Agents" property="og:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="og:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/agentsdeployment" property="twitter:url"/><meta content="Automatic Deployment of Agents" property="twitter:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="twitter:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="twitter:image"/></head>
 <body data-md-color-accent="#532699" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#focused-on-what-really-mattersyour-applications">
+<a class="md-skip" href="#deploy-agents-automatically-via-the-gateway">
           Skip to content
         </a>
 </div>
@@ -38,8 +33,8 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="AppControl" class="md-header__button md-logo" data-md-component="logo" href="." title="AppControl">
-<img alt="logo" src="logo2.svg"/>
+<a aria-label="AppControl" class="md-header__button md-logo" data-md-component="logo" href=".." title="AppControl">
+<img alt="logo" src="../logo2.svg"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -54,7 +49,7 @@ While many traditional monitoring solutions focus primarily on servers, networks
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Introduction
+              Automatic Deployment of Agents
             
           </span>
 </div>
@@ -110,8 +105,8 @@ While many traditional monitoring solutions focus primarily on servers, networks
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="AppControl" class="md-nav__button md-logo" data-md-component="logo" href="." title="AppControl">
-<img alt="logo" src="logo2.svg"/>
+<a aria-label="AppControl" class="md-nav__button md-logo" data-md-component="logo" href=".." title="AppControl">
+<img alt="logo" src="../logo2.svg"/>
 </a>
     AppControl
   </label>
@@ -126,55 +121,12 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Introduction
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href=".">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
 <span class="md-ellipsis">
     Introduction
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#focused-on-what-really-mattersyour-applications">
-<span class="md-ellipsis">
-      Focused on What Really Matters—Your Applications
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-makes-appcontrol-different-from-other-solutions">
-<span class="md-ellipsis">
-      What Makes AppControl Different from Other Solutions
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#key-benefits-of-appcontrol">
-<span class="md-ellipsis">
-      Key Benefits of AppControl
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-choose-appcontrol">
-<span class="md-ellipsis">
-      Why Choose AppControl?
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
@@ -191,21 +143,21 @@ While many traditional monitoring solutions focus primarily on servers, networks
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="gettingStarted/">
+<a class="md-nav__link" href="../gettingStarted/">
 <span class="md-ellipsis">
     Introduction to AppControl SaaS
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="gettingStarted/#try-demo">
+<a class="md-nav__link" href="../gettingStarted/#try-demo">
 <span class="md-ellipsis">
     Demo setup with no connection to local infrastructure
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="gettingStarted/#connecting-to-local-infrastructure">
+<a class="md-nav__link" href="../gettingStarted/#connecting-to-local-infrastructure">
 <span class="md-ellipsis">
     Connecting local infrastructure
   </span>
@@ -215,14 +167,14 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="coreconcepts/">
+<a class="md-nav__link" href="../coreconcepts/">
 <span class="md-ellipsis">
     Core Concepts
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="mainfeatures/">
+<a class="md-nav__link" href="../mainfeatures/">
 <span class="md-ellipsis">
     Main Features
   </span>
@@ -243,28 +195,28 @@ While many traditional monitoring solutions focus primarily on servers, networks
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="map/">
+<a class="md-nav__link" href="../map/">
 <span class="md-ellipsis">
     Introduction
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="map#yaml-format">
+<a class="md-nav__link" href="../map#yaml-format">
 <span class="md-ellipsis">
     YAML Format
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="map#xml-format">
+<a class="md-nav__link" href="../map#xml-format">
 <span class="md-ellipsis">
     XML Format
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="dynamicMapInformations/">
+<a class="md-nav__link" href="../dynamicMapInformations/">
 <span class="md-ellipsis">
     Enrich your application with dynamic informations
   </span>
@@ -288,14 +240,14 @@ While many traditional monitoring solutions focus primarily on servers, networks
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="map/#auto-generate-application-from-running-processes">
+<a class="md-nav__link" href="../map/#auto-generate-application-from-running-processes">
 <span class="md-ellipsis">
     Auto-Generate Application from Running Processes
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="map/#auto-generate-application-from-azure-tenant">
+<a class="md-nav__link" href="../map/#auto-generate-application-from-azure-tenant">
 <span class="md-ellipsis">
     Auto-Generate Application from Azure Tenant
   </span>
@@ -304,74 +256,171 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
 <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-ellipsis">
     Gateways and Agents Installation in Local Infrastructure
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             Gateways and Agents Installation in Local Infrastructure
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="x4bcli/">
+<a class="md-nav__link" href="../x4bcli/">
 <span class="md-ellipsis">
     Introduction
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="x4bcli/#quick-deployment-of-agents-and-gateways-windows-and-macos">
+<a class="md-nav__link" href="../x4bcli/#quick-deployment-of-agents-and-gateways-windows-and-macos">
 <span class="md-ellipsis">
     Quick installation
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="x4bcli/#x4b-gateway-custom-installation">
+<a class="md-nav__link" href="../x4bcli/#x4b-gateway-custom-installation">
 <span class="md-ellipsis">
     Gateway installation
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="agents/">
+<a class="md-nav__link" href="../agents/">
 <span class="md-ellipsis">
     Agent installation
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="agentsdeployment/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     Automatic Deployment of Agents
   </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Automatic Deployment of Agents
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deploy-agents-automatically-via-the-gateway">
+<span class="md-ellipsis">
+      Deploy Agents Automatically via the Gateway
+    </span>
+</a>
+<nav aria-label="Deploy Agents Automatically via the Gateway" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-configure-ssh-access">
+<span class="md-ellipsis">
+      1. Configure SSH Access
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-generate-ssh-keys-private-key-required-by-appcontrol">
+<span class="md-ellipsis">
+      2. Generate SSH Keys (Private Key Required by AppControl)
+    </span>
+</a>
+<nav aria-label="2. Generate SSH Keys (Private Key Required by AppControl)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linux-or-macos">
+<span class="md-ellipsis">
+      Linux (or macOS)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#windows">
+<span class="md-ellipsis">
+      Windows
+    </span>
+</a>
+<nav aria-label="Windows" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-1-using-git-bash">
+<span class="md-ellipsis">
+      Option 1: Using Git Bash
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-2-using-powershell-windows-1011">
+<span class="md-ellipsis">
+      Option 2: Using PowerShell (Windows 10/11)
+    </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="agentazure/">
+<a class="md-nav__link" href="#3-provide-the-private-ssh-key-to-appcontrol">
+<span class="md-ellipsis">
+      3. Provide the Private SSH Key to AppControl
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
+<span class="md-ellipsis">
+      4. Deploy Agents via the Gateway
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
+<span class="md-ellipsis">
+      5. Troubleshooting SSH Connection
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../agentazure/">
 <span class="md-ellipsis">
     Gateways and Agents Installation in Azure
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="repo/">
+<a class="md-nav__link" href="../repo/">
 <span class="md-ellipsis">
     Git integration
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="contact/">
+<a class="md-nav__link" href="../contact/">
 <span class="md-ellipsis">
     Contact Us
   </span>
@@ -392,21 +441,21 @@ While many traditional monitoring solutions focus primarily on servers, networks
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="standalone/">
+<a class="md-nav__link" href="../standalone/">
 <span class="md-ellipsis">
     Install standalone
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="centreon/">
+<a class="md-nav__link" href="../centreon/">
 <span class="md-ellipsis">
     How to import your Centreon setup into AppControl
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="cmdb/">
+<a class="md-nav__link" href="../cmdb/">
 <span class="md-ellipsis">
     How to integrate AppControl with a ServiceNow Cmdb
   </span>
@@ -430,32 +479,86 @@ While many traditional monitoring solutions focus primarily on servers, networks
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#focused-on-what-really-mattersyour-applications">
+<a class="md-nav__link" href="#deploy-agents-automatically-via-the-gateway">
 <span class="md-ellipsis">
-      Focused on What Really Matters—Your Applications
+      Deploy Agents Automatically via the Gateway
+    </span>
+</a>
+<nav aria-label="Deploy Agents Automatically via the Gateway" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-configure-ssh-access">
+<span class="md-ellipsis">
+      1. Configure SSH Access
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-makes-appcontrol-different-from-other-solutions">
+<a class="md-nav__link" href="#2-generate-ssh-keys-private-key-required-by-appcontrol">
 <span class="md-ellipsis">
-      What Makes AppControl Different from Other Solutions
+      2. Generate SSH Keys (Private Key Required by AppControl)
+    </span>
+</a>
+<nav aria-label="2. Generate SSH Keys (Private Key Required by AppControl)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linux-or-macos">
+<span class="md-ellipsis">
+      Linux (or macOS)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-benefits-of-appcontrol">
+<a class="md-nav__link" href="#windows">
 <span class="md-ellipsis">
-      Key Benefits of AppControl
+      Windows
+    </span>
+</a>
+<nav aria-label="Windows" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#option-1-using-git-bash">
+<span class="md-ellipsis">
+      Option 1: Using Git Bash
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-choose-appcontrol">
+<a class="md-nav__link" href="#option-2-using-powershell-windows-1011">
 <span class="md-ellipsis">
-      Why Choose AppControl?
+      Option 2: Using PowerShell (Windows 10/11)
     </span>
 </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-provide-the-private-ssh-key-to-appcontrol">
+<span class="md-ellipsis">
+      3. Provide the Private SSH Key to AppControl
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
+<span class="md-ellipsis">
+      4. Deploy Agents via the Gateway
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
+<span class="md-ellipsis">
+      5. Troubleshooting SSH Connection
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -464,46 +567,113 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<div style="display: flex; justify-content: center; align-items: center;">
-<img alt="AppControl Logo" src="logo.svg" style="width: 50px; height: auto; margin-right: 15px;">
-<h1 style="margin: 0;">Introducing AppControl</h1>
-</img></div>
-<h2 id="focused-on-what-really-mattersyour-applications">Focused on What Really Matters—Your Applications</h2>
-<p>For small and mid-sized enterprises, the performance and availability of your applications are critical to your business success. That’s why <strong>AppControl</strong> is designed to minimize downtime by enabling fast, automated responses to incidents directly within your applications—whether they are legacy systems or modern cloud-based apps. Unlike many solutions, <strong>AppControl integrates without requiring any modifications to your existing applications</strong>, ensuring a smooth deployment without risking your critical systems.
-
-While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, <strong>AppControl takes a different approach</strong>. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul.</p>
-<h2 id="what-makes-appcontrol-different-from-other-solutions">What Makes AppControl Different from Other Solutions</h2>
+<h1>Automatic Deployment of Agents</h1>
+<h3 id="deploy-agents-automatically-via-the-gateway">Deploy Agents Automatically via the Gateway</h3>
+<p>AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires <strong>SSH access</strong> to the target infrastructure using the <strong>private SSH key</strong>. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment.</p>
+<h4 id="1-configure-ssh-access">1. Configure SSH Access</h4>
+<p>For AppControl to deploy agents automatically, the gateway needs access to the target machines via SSH. Ensure that SSH is properly configured on your target systems.</p>
 <ul>
-<li><strong>No modifications required</strong>: Unlike other tools, <strong>AppControl integrates directly with your existing applications</strong>, whether legacy or cloud-based, without needing any changes to their structure.</li>
-<li><strong>Application-Centric Approach</strong>: While many competing solutions focus on infrastructure (servers, networks), AppControl is <strong>designed specifically to monitor, manage, and automate your applications</strong>, which are the core of your business.</li>
-<li><strong>Hybrid Environment Management</strong>: Whether you operate on-premise systems or in the cloud, AppControl provides seamless integration and centralized management for applications across complex environments.</li>
-<li><strong>Real-time automation</strong>: With AppControl, responses to incidents are <strong>automated and intelligent</strong>, eliminating human error and reducing downtime.</li>
-<li><strong>Ease of Use</strong>: Unlike traditional tools, <strong>no complex setup</strong> is required. AppControl is easy to install, use, and scale with your growing needs.</li>
-<li><strong>Target audience</strong>: AppControl is ideal for <strong>small and mid-sized enterprises</strong> looking for an application management solution without the complexity of large-scale orchestration tools.</li>
+<li><strong>Port</strong>: By default, SSH uses port 22, but AppControl allows you to customize this if needed.</li>
+<li><strong>User Permissions</strong>: The user account that AppControl will use for SSH should have the necessary permissions to install and manage agents on the target machine.</li>
 </ul>
-<h2 id="key-benefits-of-appcontrol">Key Benefits of AppControl</h2>
+<h4 id="2-generate-ssh-keys-private-key-required-by-appcontrol">2. Generate SSH Keys (Private Key Required by AppControl)</h4>
+<p>To allow AppControl to manage agent deployment via the gateway, the <strong>private SSH key</strong> must be provided. Follow the steps below to generate SSH keys on Linux or Windows.</p>
+<h5 id="linux-or-macos">Linux (or macOS)</h5>
+<p>To generate SSH keys on Linux or macOS:</p>
+<ol>
+<li>Open a terminal.</li>
+<li>
+<p>Run the following command to generate a new SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 <ul>
-<li><strong>Application-Centric</strong>: Focus on what matters most—your applications, not the underlying infrastructure.</li>
-<li><strong>Automated Responses</strong>: Automates incident responses for both legacy and cloud-native applications.</li>
-<li><strong>No Modifications Required</strong>: Integrate your existing systems without any changes.</li>
-<li><strong>Real-Time Control</strong>: Act instantly when issues arise, minimizing impact on your business.</li>
-<li><strong>Ease of Deployment</strong>: Simple installation with quick configuration and minimal effort.</li>
-<li><strong>Scalable</strong>: Adapts to the needs of your business as it grows.</li>
+<li><code>-t rsa</code>: Specifies the RSA algorithm.</li>
+<li><code>-b 2048</code>: Specifies the key length (2048 bits).</li>
+<li><code>-f ~/.ssh/appcontrol_key</code>: Saves the key pair to the specified file (<code>appcontrol_key</code>).</li>
 </ul>
-<h2 id="why-choose-appcontrol">Why Choose AppControl?</h2>
-<p>AppControl is specifically designed for businesses that:</p>
+</li>
+<li>
+<p>When prompted for a passphrase, press <strong>Enter</strong> to leave it empty (or add a passphrase if required for extra security).</p>
+</li>
+</ol>
+<p>This command will generate two files:</p>
 <ul>
-<li><strong>Operate in hybrid environments</strong> and want to modernize their systems without altering their existing infrastructure.</li>
-<li><strong>Don’t need the complexity of traditional infrastructure-focused solutions</strong> and are looking for a simple, effective, application-centric management tool.</li>
-<li><strong>Prioritize application availability and performance</strong> over focusing solely on infrastructure.</li>
+<li><strong>Private key</strong>: <code>~/.ssh/appcontrol_key</code></li>
+<li><strong>Public key</strong>: <code>~/.ssh/appcontrol_key.pub</code></li>
 </ul>
-<p>With AppControl, you’re not just notified of issues—you’re <strong>equipped to solve them</strong>, ensuring the continuous operation of your critical applications and minimizing the impact of disruptions on your business. It’s the ideal solution for companies that want to <strong>modernize without compromise</strong> and focus on what truly matters: their applications.</p>
-<p>Ready to take control of your application reliability? <strong><a href="https://ask.invivoo.com/appcontrol">Request a demo</a></strong> or <strong><a href="https://appcontrol.xcomponent.com/dashboard">Start a free trial today</a></strong>.</p>
+<h5 id="windows">Windows</h5>
+<p>To generate SSH keys on Windows, you can use either <strong>Git Bash</strong> or <strong>PowerShell</strong> (with OpenSSH).</p>
+<h6 id="option-1-using-git-bash">Option 1: Using Git Bash</h6>
+<ol>
+<li>Install <a href="https://gitforwindows.org/">Git for Windows</a> if you haven’t already.</li>
+<li>Open <strong>Git Bash</strong>.</li>
+<li>
+<p>Run the following command to generate an SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
+</li>
+<li>
+<p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if you prefer).</p>
+</li>
+</ol>
+<h6 id="option-2-using-powershell-windows-1011">Option 2: Using PowerShell (Windows 10/11)</h6>
+<ol>
+<li>Open <strong>PowerShell</strong> as an administrator.</li>
+<li>
+<p>Run the following command to generate an SSH key pair:</p>
+<p><code>bash
+ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
+</li>
+</ol>
+<p>This will generate two files:</p>
+<ul>
+<li><strong>Private key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
+<li>
+<p><strong>Public key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key.pub</code></p>
+</li>
+<li>
+<p>When prompted for a passphrase, press <strong>Enter</strong> to skip or provide a passphrase if additional security is needed.</p>
+</li>
+</ul>
+<h4 id="3-provide-the-private-ssh-key-to-appcontrol">3. Provide the Private SSH Key to AppControl</h4>
+<p>AppControl requires the <strong>private SSH key</strong> for authentication during agent deployment. The <strong>public key</strong> is added to the target machines in the <code>~/.ssh/authorized_keys</code> file, and the <strong>private key</strong> remains with AppControl to establish the connection.</p>
+<ol>
+<li><strong>Locate the Private Key</strong>:<ul>
+<li>Linux: <code>~/.ssh/appcontrol_key</code></li>
+<li>Windows: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
+</ul>
+</li>
+<li><strong>Upload the Private Key to AppControl</strong>:<ol>
+<li>Log in to the AppControl dashboard.</li>
+<li>Navigate to <strong>Gateway Configuration</strong> and select the gateway that will manage the agent deployment.</li>
+<li>Upload the private SSH key (<code>appcontrol_key</code>).</li>
+<li>AppControl will securely store the key and use it for deploying agents.</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>: The private SSH key remains confidential and is only used by AppControl to establish a secure SSH connection to the target machines. The corresponding public key should already be added to the <code>~/.ssh/authorized_keys</code> file on the target machines.</p>
+</blockquote>
+<h4 id="4-deploy-agents-via-the-gateway">4. Deploy Agents via the Gateway</h4>
+<p>Once SSH is configured and the private key is provided, follow these steps:</p>
+<ol>
+<li><strong>Select the Target Machines</strong>: In the AppControl dashboard, go to the "Deploy Agents" section and select the machines where agents should be deployed.</li>
+<li><strong>Verify Connectivity</strong>: AppControl will verify the SSH connection to the target machines using the private key.</li>
+<li><strong>Deploy Agents</strong>: Once the connection is established, AppControl will automatically deploy the agents to the selected machines.</li>
+</ol>
+<h4 id="5-troubleshooting-ssh-connection">5. Troubleshooting SSH Connection</h4>
+<p>If you encounter any issues with the SSH connection, check the following:</p>
+<ul>
+<li>Ensure that the private SSH key is properly configured and uploaded.</li>
+<li>Verify that the SSH port and user permissions are correctly set up on the target machine.</li>
+<li>Check firewall rules or network configurations that might block SSH access.</li>
+</ul>
+<hr/>
 <div class="share-buttons">
-<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/agentsdeployment', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet
     </button>
-<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/agentsdeployment', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-linkedin-in"></i> Share
     </button>
 </div>
@@ -514,13 +684,26 @@ While many traditional monitoring solutions focus primarily on servers, networks
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Next: Introduction to AppControl SaaS" class="md-footer__link md-footer__link--next" href="gettingStarted/">
+<a aria-label="Previous: Agent installation" class="md-footer__link md-footer__link--prev" href="../agents/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Agent installation
+              </div>
+</div>
+</a>
+<a aria-label="Next: Gateways and Agents Installation in Azure" class="md-footer__link md-footer__link--next" href="../agentazure/">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 Next
               </span>
 <div class="md-ellipsis">
-                Introduction to AppControl SaaS
+                Gateways and Agents Installation in Azure
               </div>
 </div>
 <div class="md-footer__button md-icon">
@@ -554,7 +737,7 @@ While many traditional monitoring solutions focus primarily on servers, networks
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"base": ".", "features": ["navigation.footer", "navigation.instant", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking", "tabs", "navigation.expand"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "navigation.instant", "navigation.instant.progress", "navigation.instant.preview", "navigation.tracking", "tabs", "navigation.expand"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
 </body>
 </html>

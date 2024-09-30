@@ -40,4 +40,6 @@ The website will be accessible in local at [http://localhost:8000/en/](http://12
 
 To refreh the website, you'll have to execute again build commands and restart http server.
 
+Deployment: mkdocs gh-deploy -f mkdocs_push.yml
+
 *Note: you'll not be able to switch languages as URL is not good in local*

@@ -134,7 +134,7 @@ After the container is created and starts automatically, check its operation in 
 
 Now check on [AppControl](https://appcontrol.xcomponent.com/gateways?lng=en) to ensure the gateway is accessible.
 
-![Image](images/gateway_started.png)
+![Image](gateway_started.png)
 
 You are now ready to create your map in AppControl, utilizing this gateway and agent to monitor your Azure infrastructure.
 

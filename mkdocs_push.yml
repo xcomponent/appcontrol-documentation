@@ -25,9 +25,10 @@ nav:
           - Quick installation: x4bcli/#quick-deployment-of-agents-and-gateways-windows-and-macos
           - Gateway installation: x4bcli/#x4b-gateway-custom-installation
           - Agent installation: agents.md
+          - Automatic Deployment of Agents: agentsdeployment.md
     - Gateways and Agents Installation in Azure: agentazure.md
     - Git integration: repo.md
-    - Contact: contact.md
+    - Contact Us: contact.md
     - Advanced:
           - Install standalone: standalone.md
           - How to import your Centreon setup into AppControl: centreon.md
@@ -71,5 +72,17 @@ extra:
           link: mailto:support@appcontrol.com
 
 plugins:
+    - mkdocstrings
+    - ultralytics:
+          verbose: True
+          enabled: True
+          default_image: 'https://appcontrol.xcomponent.com/favicon.ico'
+          add_desc: True
+          add_image: True
+          add_keywords: True
+          add_share_buttons: True
+          add_authors: False
+          add_json_ld: False
+          add_css: True
     - search:
           lang: en

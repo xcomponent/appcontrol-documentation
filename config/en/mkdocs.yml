@@ -25,6 +25,7 @@ nav:
           - Quick installation: x4bcli#quick-deployment-of-agents-and-gateways-windows-and-macos
           - Gateway installation: x4bcli/#x4b-gateway-custom-installation
           - Agent installation: agents
+          - Automatic Deployment of Agents: agentsdeployment
     - Gateways and Agents Installation in Azure: agentazure
     - Git integration: repo
     - Contact: contact

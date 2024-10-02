@@ -1,6 +1,6 @@
 <div style="display: flex; justify-content: center; align-items: center;">
   <img src="logo.svg" alt="AppControl Logo" style="width: 50px; height: auto; margin-right: 15px;" />
-  <h1 style="margin: 0;">Introducing AppControl</h1>
+  <h1 style="margin: 0;">Introducing XComponent AppControl</h1>
 </div>
 
 ## Focused on What Really Matters—Your Applications

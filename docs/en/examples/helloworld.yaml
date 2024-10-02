@@ -1,0 +1,48 @@
+Name: helloworld
+Version: v1
+Icon:
+  Url: https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/helloappcontrol.png
+NbRetry: 0
+Agents:
+- Name: LOCAL
+  Port: 12567
+  SslProtocol: tls12
+Authentications:
+- Name: LOCAL
+Components:
+- Name: hello
+  Agent:
+    AgentName: LOCAL
+    AuthentificationName: LOCAL
+  CheckFrequency: 0
+  Icon:
+    SystemName: file
+  Group: Hello group
+  Description: Hello World
+  NbRetry: 0
+  Actions:
+  - Name: check hello
+    Type: check
+    Value: cat hello.txt
+    RetryTime: 0
+    Visibility: Private
+  - Name: start hello
+    Type: start
+    Value: echo hello > hello.txt
+    RetryTime: 0
+    Visibility: Private
+  - Name: stop hello
+    Type: stop
+    Value: rm hello.txt
+    RetryTime: 0
+    Visibility: Private
+  - Name: Say Hello
+    Type: custom
+    Value: echo $(message)
+    RetryTime: 0
+    Visibility: Private
+    InputParameters:
+    - Name: message
+      Value: Hello
+      CanEdit: true
+      Validation: '*'

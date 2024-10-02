@@ -6,6 +6,7 @@
 <br/>
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://xcomponent.github.io/appcontrol-documentation/)
+![AppcontrolMap](https://appcontrol.xcomponent.com/core/api/badge?applicationName=GITHUB_DOCUMENTATION,v1@invivoo)
 [![Slack Community](https://slack.xcomponent.com/badge.svg)](http://slack.xcomponent.com/)
 [![GitHub All Releases](https://img.shields.io/github/downloads/xcomponent/appcontrol-documentation/total.svg)](https://github.com/xcomponent/appcontrol-documentation/releases)
 

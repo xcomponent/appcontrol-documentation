@@ -76,7 +76,7 @@ else
     # Intel (x86_64) specific actions
     echo "Running on Intel processor"
     AGENT_BINARY_NAME=xcAgent_macintel
-	AGENT_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcagent_macintel.zip
+	AGENT_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/download/v42.5/xcagent_macintel.zip
 fi
 
 GATEWAY_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip

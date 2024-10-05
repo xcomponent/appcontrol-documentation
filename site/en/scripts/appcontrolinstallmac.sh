@@ -122,7 +122,7 @@ sudo chown -R root:wheel "$INSTALL_DIR"
 sudo chmod -R 755 "$INSTALL_DIR"
 
 # Boost, libssh2, and OpenSSL versions
-BOOST_VERSION="1.83"
+BOOST_VERSION="1.86"
 
 # Install Boost
 brew install boost@$BOOST_VERSION --quiet

@@ -9,4 +9,8 @@
 .DS_Store
 *.bak
  __pycache__
+._.DS_Store
+docs/._.DS_Store
+/_.DS_Store
+/docs/._.DS_Store
  

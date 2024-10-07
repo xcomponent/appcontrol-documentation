@@ -26,7 +26,7 @@ To generate SSH keys on Linux or macOS:
 1. Open a terminal.
 2. Run the following command to generate a new SSH key pair:
 
-    ```bash
+    ```
     ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key
     ```
 
@@ -43,7 +43,7 @@ This command will generate two files:
 
 4. Add the **public key** to the `authorized_keys` file on the target machine:
 
-    ```bash
+    ```
     cat ~/.ssh/appcontrol_key.pub >> ~/.ssh/authorized_keys
     ```
 
@@ -57,7 +57,7 @@ To generate SSH keys on Windows, you can use either **Git Bash** or **PowerShell
 2. Open **Git Bash**.
 3. Run the following command to generate an SSH key pair:
 
-    ```bash
+    ```
     ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key
     ```
 
@@ -65,7 +65,7 @@ To generate SSH keys on Windows, you can use either **Git Bash** or **PowerShell
 
 5. Add the **public key** to the `authorized_keys` file on the target machine:
 
-    ```bash
+    ```
     cat ~/.ssh/appcontrol_key.pub >> ~/.ssh/authorized_keys
     ```
 
@@ -74,7 +74,7 @@ To generate SSH keys on Windows, you can use either **Git Bash** or **PowerShell
 1. Open **PowerShell** as an administrator.
 2. Run the following command to generate an SSH key pair:
 
-    ```bash
+    ```
     ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key
     ```
 
@@ -85,7 +85,7 @@ This will generate two files:
 
 3. Add the **public key** to the `authorized_keys` file on the target machine:
 
-    ```powershell
+    ```
     Get-Content $env:USERPROFILE\.ssh\appcontrol_key.pub | Out-File -Append -Encoding ascii $env:USERPROFILE\.ssh\authorized_keys
     ```
 

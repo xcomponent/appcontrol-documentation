@@ -76,7 +76,7 @@ else
     # Intel (x86_64) specific actions
     echo "Running on Intel processor"
     AGENT_BINARY_NAME=xcAgent_macintel
-	AGENT_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/xcagent_macintel.zip
+	AGENT_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/download/v60.5/xcagent_macintel.zip
 fi
 
 GATEWAY_DOWNLOAD_URL=https://github.com/xcomponent/appcontrol-documentation/releases/latest/download/x4bgateway.zip
@@ -122,7 +122,7 @@ sudo chown -R root:wheel "$INSTALL_DIR"
 sudo chmod -R 755 "$INSTALL_DIR"
 
 # Boost, libssh2, and OpenSSL versions
-BOOST_VERSION="1.83"
+BOOST_VERSION="1.86"
 
 # Install Boost
 brew install boost@$BOOST_VERSION --quiet

@@ -611,8 +611,7 @@
 <li>Open a terminal.</li>
 <li>
 <p>Run the following command to generate a new SSH key pair:</p>
-<p><code>bash
-ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
+<p><code>ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 <ul>
 <li><code>-t rsa</code>: Specifies the RSA algorithm.</li>
 <li><code>-b 2048</code>: Specifies the key length (2048 bits).</li>
@@ -631,8 +630,7 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 </li>
 <li>
 <p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>bash
-cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+<p><code>cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
 </li>
 </ul>
 <h5 id="windows">Windows</h5>
@@ -643,16 +641,14 @@ cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
 <li>Open <strong>Git Bash</strong>.</li>
 <li>
 <p>Run the following command to generate an SSH key pair:</p>
-<p><code>bash
-ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
+<p><code>ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 </li>
 <li>
 <p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if preferred).</p>
 </li>
 <li>
 <p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>bash
-cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+<p><code>cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
 </li>
 </ol>
 <h6 id="option-2-using-powershell-windows-1011">Option 2: Using PowerShell (Windows 10/11)</h6>
@@ -660,8 +656,7 @@ cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
 <li>Open <strong>PowerShell</strong> as an administrator.</li>
 <li>
 <p>Run the following command to generate an SSH key pair:</p>
-<p><code>bash
-ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
+<p><code>ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
 </li>
 </ol>
 <p>This will generate two files:</p>
@@ -672,8 +667,7 @@ ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
 </li>
 <li>
 <p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>powershell
-Get-Content $env:USERPROFILE\.ssh\appcontrol_key.pub | Out-File -Append -Encoding ascii $env:USERPROFILE\.ssh\authorized_keys</code></p>
+<p><code>Get-Content $env:USERPROFILE\.ssh\appcontrol_key.pub | Out-File -Append -Encoding ascii $env:USERPROFILE\.ssh\authorized_keys</code></p>
 </li>
 </ul>
 <hr/>

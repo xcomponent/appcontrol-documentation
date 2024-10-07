@@ -53,7 +53,14 @@ Define and execute custom actions tailored to your application’s needs.
 
 ![operations](customactions.png)
 
-## 5. Notifications
+## 5. Application Sharing Feature
+
+AppControl offers a convenient feature for sharing applications with specific users. This can be done in two ways: either by generating a **sharing code**, which can be distributed among users to access the application, or by sharing the application **directly with a specific user** by entering their username. This feature simplifies collaboration and access management, ensuring the right users can easily interact with the applications they need.
+
+![sharing1](sharing1.png)
+![sharing2](sharing2.png)
+
+## 6. Notifications
 
 Stay informed of application statuses and incidents with integrated notification systems.
 
@@ -63,7 +70,7 @@ Stay informed of application statuses and incidents with integrated notification
 
 ![operations](notifications.png)
 
-## 6. Status Page
+## 7. Status Page
 
 The **Status Page** in AppControl provides a detailed overview of the availability and health of your critical applications. This page displays the **percentage of availability** for each application, allowing you to monitor uptime and quickly identify potential issues over the past few days.
 
@@ -81,11 +88,11 @@ This page helps ensure that your applications maintain high levels of availabili
 
 ![operations](statuspage.png)
 
-## 6. Integration with Legacy and Cloud Applications
+## 8. Integration with Legacy and Cloud Applications
 
 Seamlessly monitor both legacy on-premise applications and cloud-native services without requiring any modifications to existing applications.
 
-## 7. Automated Recovery
+## 9. Automated Recovery
 
 While automated recovery avoids restarting components by default, you can schedule auto restarts using built-in cron expressions to meet your operational needs.
 

@@ -376,11 +376,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-provide-the-private-ssh-key-to-appcontrol">
+<a class="md-nav__link" href="#3-ssh-server-on-windows-optional">
 <span class="md-ellipsis">
-      3. Provide the Private SSH Key to AppControl
+      3. SSH Server on Windows (Optional)
     </span>
 </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
@@ -388,11 +391,19 @@
       4. Deploy Agents via the Gateway
     </span>
 </a>
-</li>
+<nav aria-label="4. Deploy Agents via the Gateway" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
 <span class="md-ellipsis">
       5. Troubleshooting SSH Connection
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-provide-the-private-ssh-key-to-appcontrol">
+<span class="md-ellipsis">
+      6. Provide the Private SSH Key to AppControl
     </span>
 </a>
 </li>
@@ -537,11 +548,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-provide-the-private-ssh-key-to-appcontrol">
+<a class="md-nav__link" href="#3-ssh-server-on-windows-optional">
 <span class="md-ellipsis">
-      3. Provide the Private SSH Key to AppControl
+      3. SSH Server on Windows (Optional)
     </span>
 </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
@@ -549,11 +563,19 @@
       4. Deploy Agents via the Gateway
     </span>
 </a>
-</li>
+<nav aria-label="4. Deploy Agents via the Gateway" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
 <span class="md-ellipsis">
       5. Troubleshooting SSH Connection
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-provide-the-private-ssh-key-to-appcontrol">
+<span class="md-ellipsis">
+      6. Provide the Private SSH Key to AppControl
     </span>
 </a>
 </li>
@@ -570,12 +592,17 @@
 <h1>Automatic Deployment of Agents</h1>
 <h3 id="deploy-agents-automatically-via-the-gateway">Deploy Agents Automatically via the Gateway</h3>
 <p>AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires <strong>SSH access</strong> to the target infrastructure using the <strong>private SSH key</strong>. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment.</p>
+<hr/>
 <h4 id="1-configure-ssh-access">1. Configure SSH Access</h4>
 <p>For AppControl to deploy agents automatically, the gateway needs access to the target machines via SSH. Ensure that SSH is properly configured on your target systems.</p>
 <ul>
 <li><strong>Port</strong>: By default, SSH uses port 22, but AppControl allows you to customize this if needed.</li>
-<li><strong>User Permissions</strong>: The user account that AppControl will use for SSH should have the necessary permissions to install and manage agents on the target machine.</li>
+<li><strong>User Permissions</strong>: The user account that AppControl will use for SSH must have sufficient permissions to install and manage agents on the target machine.</li>
 </ul>
+<blockquote>
+<p><strong>Note</strong>: The <strong>public SSH key</strong> must be added to the <code>~/.ssh/authorized_keys</code> file on the SSH server of the target machines. This ensures that AppControl can authenticate using the corresponding <strong>private SSH key</strong>.</p>
+</blockquote>
+<hr/>
 <h4 id="2-generate-ssh-keys-private-key-required-by-appcontrol">2. Generate SSH Keys (Private Key Required by AppControl)</h4>
 <p>To allow AppControl to manage agent deployment via the gateway, the <strong>private SSH key</strong> must be provided. Follow the steps below to generate SSH keys on Linux or Windows.</p>
 <h5 id="linux-or-macos">Linux (or macOS)</h5>
@@ -593,19 +620,26 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 </ul>
 </li>
 <li>
-<p>When prompted for a passphrase, press <strong>Enter</strong> to leave it empty (or add a passphrase if required for extra security).</p>
+<p>When prompted for a passphrase, press <strong>Enter</strong> to leave it empty (or add a passphrase if extra security is required).</p>
 </li>
 </ol>
 <p>This command will generate two files:</p>
 <ul>
 <li><strong>Private key</strong>: <code>~/.ssh/appcontrol_key</code></li>
-<li><strong>Public key</strong>: <code>~/.ssh/appcontrol_key.pub</code></li>
+<li>
+<p><strong>Public key</strong>: <code>~/.ssh/appcontrol_key.pub</code></p>
+</li>
+<li>
+<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
+<p><code>bash
+cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
+</li>
 </ul>
 <h5 id="windows">Windows</h5>
 <p>To generate SSH keys on Windows, you can use either <strong>Git Bash</strong> or <strong>PowerShell</strong> (with OpenSSH).</p>
 <h6 id="option-1-using-git-bash">Option 1: Using Git Bash</h6>
 <ol>
-<li>Install <a href="https://gitforwindows.org/">Git for Windows</a> if you haven’t already.</li>
+<li>Install <a href="https://gitforwindows.org/">Git for Windows</a> if not already installed.</li>
 <li>Open <strong>Git Bash</strong>.</li>
 <li>
 <p>Run the following command to generate an SSH key pair:</p>
@@ -613,7 +647,12 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
 </li>
 <li>
-<p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if you prefer).</p>
+<p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if preferred).</p>
+</li>
+<li>
+<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
+<p><code>bash
+cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
 </li>
 </ol>
 <h6 id="option-2-using-powershell-windows-1011">Option 2: Using PowerShell (Windows 10/11)</h6>
@@ -632,15 +671,84 @@ ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
 <p><strong>Public key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key.pub</code></p>
 </li>
 <li>
-<p>When prompted for a passphrase, press <strong>Enter</strong> to skip or provide a passphrase if additional security is needed.</p>
+<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
+<p><code>powershell
+Get-Content $env:USERPROFILE\.ssh\appcontrol_key.pub | Out-File -Append -Encoding ascii $env:USERPROFILE\.ssh\authorized_keys</code></p>
 </li>
 </ul>
-<h4 id="3-provide-the-private-ssh-key-to-appcontrol">3. Provide the Private SSH Key to AppControl</h4>
+<hr/>
+<h4 id="3-ssh-server-on-windows-optional">3. SSH Server on Windows (Optional)</h4>
+<p>For Windows systems, you can optionally deploy an SSH server to allow AppControl to connect and manage agents. <strong>OpenSSH Server</strong> is an optional feature in Windows, which you can enable via the following steps:</p>
+<ol>
+<li>Go to <strong>Settings</strong> &gt; <strong>Apps</strong> &gt; <strong>Optional Features</strong>.</li>
+<li>Scroll down and click <strong>Add a feature</strong>.</li>
+<li>Search for <strong>OpenSSH Server</strong>, select it, and click <strong>Install</strong>.</li>
+</ol>
+<blockquote>
+<p>For more detailed instructions, refer to the <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">official Windows documentation</a>.</p>
+</blockquote>
+<p>Once installed, configure the SSH server, and ensure the <strong>public key</strong> is added to the <code>authorized_keys</code> file.</p>
+<hr/>
+<h3 id="4-deploy-agents-via-the-gateway">4. Deploy Agents via the Gateway</h3>
+<p>Once SSH is configured and the private key is provided, follow these steps to deploy agents using the AppControl gateway:</p>
+<ol>
+<li>
+<p><strong>Select the Target Machines</strong>:</p>
+<ul>
+<li>In the AppControl dashboard, go to the <strong>"Deploy Agents"</strong> section and select the machines where agents should be deployed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Verify Connectivity</strong>:</p>
+<ul>
+<li>AppControl will verify the SSH connection to the target machines using the private SSH key.</li>
+</ul>
+</li>
+<li>
+<p><strong>Deploy Agents</strong>:</p>
+<ul>
+<li>Once the connection is established, AppControl will automatically deploy the agents to the selected machines.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Installation Paths</strong>:</p>
+</blockquote>
+<ul>
+<li>On <strong>Windows</strong>: Agents will be installed in <code>C:/ProgramData/appcontrol/agent</code>.</li>
+<li>On <strong>Linux</strong>: The installation folder is <code>/opt/appcontrol/xcagent</code>.</li>
+<li>On <strong>macOS</strong>: The installation folder is <code>~/appcontrol/xcagent</code>.</li>
+</ul>
+<hr/>
+<h4 id="5-troubleshooting-ssh-connection">5. Troubleshooting SSH Connection</h4>
+<p>If you encounter issues with the SSH connection during the deployment process, check the following:</p>
+<ol>
+<li>
+<p><strong>Private SSH Key</strong>:</p>
+<ul>
+<li>Ensure that the private SSH key is properly configured and uploaded to AppControl.</li>
+</ul>
+</li>
+<li>
+<p><strong>SSH Port and User Permissions</strong>:</p>
+<ul>
+<li>Verify that the SSH port and user permissions are correctly set up on the target machine.</li>
+</ul>
+</li>
+<li>
+<p><strong>Firewall and Network Configuration</strong>:</p>
+<ul>
+<li>Check firewall rules or network configurations that might block SSH access to the target machine.</li>
+</ul>
+</li>
+</ol>
+<hr/>
+<h4 id="6-provide-the-private-ssh-key-to-appcontrol">6. Provide the Private SSH Key to AppControl</h4>
 <p>AppControl requires the <strong>private SSH key</strong> for authentication during agent deployment. The <strong>public key</strong> is added to the target machines in the <code>~/.ssh/authorized_keys</code> file, and the <strong>private key</strong> remains with AppControl to establish the connection.</p>
 <ol>
 <li><strong>Locate the Private Key</strong>:<ul>
-<li>Linux: <code>~/.ssh/appcontrol_key</code></li>
-<li>Windows: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
+<li><strong>Linux</strong>: <code>~/.ssh/appcontrol_key</code></li>
+<li><strong>Windows</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
 </ul>
 </li>
 <li><strong>Upload the Private Key to AppControl</strong>:<ol>
@@ -654,21 +762,6 @@ ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
 <blockquote>
 <p><strong>Note</strong>: The private SSH key remains confidential and is only used by AppControl to establish a secure SSH connection to the target machines. The corresponding public key should already be added to the <code>~/.ssh/authorized_keys</code> file on the target machines.</p>
 </blockquote>
-<h4 id="4-deploy-agents-via-the-gateway">4. Deploy Agents via the Gateway</h4>
-<p>Once SSH is configured and the private key is provided, follow these steps:</p>
-<ol>
-<li><strong>Select the Target Machines</strong>: In the AppControl dashboard, go to the "Deploy Agents" section and select the machines where agents should be deployed.</li>
-<li><strong>Verify Connectivity</strong>: AppControl will verify the SSH connection to the target machines using the private key.</li>
-<li><strong>Deploy Agents</strong>: Once the connection is established, AppControl will automatically deploy the agents to the selected machines.</li>
-</ol>
-<h4 id="5-troubleshooting-ssh-connection">5. Troubleshooting SSH Connection</h4>
-<p>If you encounter any issues with the SSH connection, check the following:</p>
-<ul>
-<li>Ensure that the private SSH key is properly configured and uploaded.</li>
-<li>Verify that the SSH port and user permissions are correctly set up on the target machine.</li>
-<li>Check firewall rules or network configurations that might block SSH access.</li>
-</ul>
-<hr/>
 <div class="share-buttons">
 <button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/agentsdeployment', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet

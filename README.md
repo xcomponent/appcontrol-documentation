@@ -18,7 +18,7 @@ AppControl works seamlessly with both legacy and cloud-native applications, offe
 
 **[Try AppControl Now](https://appcontrol.xcomponent.com)** and see how it can simplify your application monitoring.
 
-[![](docs/en/dashboard1.png)](docs/en/appcontrol.mp4)
+<video controls src="https://github.com/xcomponent/appcontrol-documentation/raw/refs/heads/main/docs/en/appcontrol.mp4" title="appcontrol"></video>
 
 ## 🌟 Why AppControl?
 

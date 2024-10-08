@@ -11,6 +11,7 @@
 ![GitHub release](https://img.shields.io/github/v/release/xcomponent/appcontrol-documentation?include_prereleases)
 ![GitHub Release Date](https://img.shields.io/github/release-date/xcomponent/appcontrol-documentation)
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20linux%20%7C%20macOS-informational)
+![Docker AppControl Agents](https://img.shields.io/docker/pulls/xcomponent/appcontrol-agent)
 
 ## 🚀 Introduction
 

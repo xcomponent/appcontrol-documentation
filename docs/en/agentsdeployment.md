@@ -159,3 +159,7 @@ AppControl requires the **private SSH key** for authentication during agent depl
     4. AppControl will securely store the key and use it for deploying agents.
 
 > **Note**: The private SSH key remains confidential and is only used by AppControl to establish a secure SSH connection to the target machines. The corresponding public key should already be added to the `~/.ssh/authorized_keys` file on the target machines.
+
+To open the deployment form, first select the gateway, then navigate to the "Deploy Agent" tab.
+
+![DeploymentForm](deployagent.png)

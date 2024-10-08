@@ -2,7 +2,8 @@ site_name: AppControl
 docs_dir: 'docs/en' # Where to find the English markdown files
 site_dir: 'site/en' # Where to put the English HTML files
 site_url: https://xcomponent.github.io/
-repo_url: https://xcomponent.github.io/appcontrol-documentation/
+repo_url: https://xcomponent.github.io/xcomponent/appcontrol-documentation/
+repo_name: 'GitHub'
 
 nav:
     - Introduction: index.md

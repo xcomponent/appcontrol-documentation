@@ -59,6 +59,37 @@ AppControl addresses key challenges businesses face when managing applications:
 5. **Challenges in Application Scaling and Maintenance**
    As businesses grow, so do the challenges of scaling applications. AppControl's flexible architecture and cross-platform agents make scaling simple, even in complex environments.
 
+## AppControl Feature Gallery
+
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="flex: 1; margin-right: 10px;">
+    <img src="docs/en/dashboard1.png" alt="AppControl Dashboard" width="300"/>
+    <p align="center">Real-time Dashboard</p>
+  </div>
+  <div style="flex: 1;">
+    <img src="docs/en/notifications.png" alt="AppControl Notifications" width="300"/>
+    <p align="center">Instant Notifications</p>
+  </div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; margin-top: 10px;">
+  <div style="flex: 1; margin-right: 10px;">
+    <img src="docs/en/mapview.png" alt="AppControl History" width="300"/>
+    <p align="center">Map View</p>
+  </div>
+  <div style="flex: 1;">
+    <img src="docs/en/customactions.png" alt="AppControl Automation" width="300"/>
+    <p align="center">Automation Tools</p>
+  </div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; margin-top: 10px;">
+  <div style="flex: 1;">
+    <img src="docs/en/history.png" alt="AppControl History" width="300"/>
+    <p align="center">Actions History</p>
+  </div>
+</div>
+
 ## 💡 Use Cases
 
 1. **Critical Business Applications**: Ensure uptime and performance for mission-critical applications like CRM or ERP systems with AppControl’s automated monitoring and recovery.

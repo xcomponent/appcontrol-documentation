@@ -18,6 +18,11 @@ AppControl works seamlessly with both legacy and cloud-native applications, offe
 
 **[Try AppControl Now](https://appcontrol.xcomponent.com)** and see how it can simplify your application monitoring.
 
+<video width="640" height="480" controls>
+  <source src="docs/en/appcontrol.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## 🌟 Why AppControl?
 
 Traditional monitoring tools like Centreon, Zabbix, and Nagios have long been used to track infrastructure metrics, but they often feel outdated, bloated, or too complex for modern cloud environments. They were built at a time when monolithic applications ran on a handful of servers. Today, applications are highly distributed, built on microservices, and hosted in hybrid environments.

@@ -18,10 +18,7 @@ AppControl works seamlessly with both legacy and cloud-native applications, offe
 
 **[Try AppControl Now](https://appcontrol.xcomponent.com)** and see how it can simplify your application monitoring.
 
-<video width="640" height="480" controls>
-  <source src="docs/en/appcontrol.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![](docs/en/dashboard1.png)](docs/en/appcontrol.mp4)
 
 ## 🌟 Why AppControl?
 

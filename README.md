@@ -2,8 +2,7 @@
   <img src="docs/en/logo.svg" alt="AppControl Logo" style="width: 50px; height: auto; margin-right: 15px;" />
   <h1 style="margin: 0;">XComponent AppControl</h1>
 </div>
-<br/>
-<br/>
+<br/><br/>
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://xcomponent.github.io/appcontrol-documentation/)
 ![AppcontrolMap](https://appcontrol.xcomponent.com/core/api/badge?applicationName=GITHUB_DOCUMENTATION,v1@invivoo)
@@ -15,80 +14,97 @@
 
 ## 🚀 Introduction
 
-**[AppControl](https://appcontrol.xcomponent.com)** is a modern, lightweight monitoring solution designed specifically for businesses that want to keep their applications running smoothly with minimal downtime. Traditional monitoring tools focus on infrastructure, but **[AppControl](https://appcontrol.xcomponent.com)** takes a different approach: we follow **your applications**, which are the heart of your business.
+**[AppControl](https://appcontrol.xcomponent.com)** is a modern, lightweight monitoring solution designed to keep your business-critical applications running smoothly with minimal downtime. Unlike traditional tools that focus on infrastructure, **AppControl** takes an application-centric approach to monitoring.
 
-AppControl works seamlessly with both legacy and cloud-native applications, offering powerful monitoring and control capabilities without the complexity of traditional solutions.
+AppControl supports both legacy and cloud-native applications, making it a flexible and powerful solution without the complexity of traditional tools.
 
-**[Try AppControl Now](https://appcontrol.xcomponent.com)** and see how it can simplify your application monitoring.
+**[Try AppControl Now](https://appcontrol.xcomponent.com)** and discover how it can streamline your application monitoring.
 
 ![](docs/en/appcontrol.gif)
 
 ## 🌟 Why AppControl?
 
-Traditional monitoring tools like Centreon, Zabbix, and Nagios have long been used to track infrastructure metrics, but they often feel outdated, bloated, or too complex for modern cloud environments. They were built at a time when monolithic applications ran on a handful of servers. Today, applications are highly distributed, built on microservices, and hosted in hybrid environments.
+Traditional monitoring tools like Centreon, Zabbix, and Nagios can feel outdated, bloated, and overly complex in today's distributed cloud environments. They were built for monolithic applications running on a few servers, but modern applications are distributed, built on microservices, and hosted in hybrid environments.
 
 **AppControl** offers a fresh approach:
 
--   **Application-Centric Monitoring**: Instead of focusing only on servers or infrastructure, AppControl monitors the components of your applications, whether they're cloud-native or legacy.
--   **Simple and Scalable**: Built to be simple for small to medium-sized businesses, but scalable to handle more complex architectures.
--   **Re-use Your Existing Scripts**: If you’re using Centreon, Zabbix, or other APMs, you can re-use your existing monitoring scripts and checks within AppControl. No need to start from scratch.
+-   **Application-Centric Monitoring**: Focus on your applications, not just the infrastructure they run on.
+-   **Simple and Scalable**: Ideal for small to medium-sized businesses, but scalable for more complex environments.
+-   **Re-use Existing Monitoring Scripts**: You don’t have to start from scratch. AppControl can incorporate your existing monitoring scripts from other tools like Centreon or Zabbix.
 
 ## 🎯 Key Features
 
--   **Unified Dashboard**: Monitor the status of your applications in real-time with clear indicators: running, stopped, degraded, or in error.
--   **History & Logs**: Access a comprehensive history of actions taken, incidents, and resolutions.
--   **Automation**: Use built-in tools to automate recovery actions and reduce manual intervention.
--   **Custom Actions**: Perform on-demand diagnostic actions for deeper insight into issues as they arise.
--   **Notifications**: Get alerted instantly via SMS or Microsoft Teams when incidents occur.
--   **Extensibility**: Add custom scripts or monitoring checks—perfect for teams transitioning from other monitoring platforms.
+-   **Unified Dashboard**: Get a real-time view of your applications with status indicators for running, stopped, degraded, or error states.
+-   **Automation**: Automate recovery actions to reduce manual intervention and prevent downtime.
+-   **Custom Actions**: Perform on-demand diagnostic actions for detailed insights.
+-   **Notifications**: Receive alerts via SMS, Teams, or email as soon as incidents occur.
+-   **Extensibility**: Use custom scripts and checks to extend AppControl’s capabilities.
+
+## 🔧 Solving Critical Problems for Your Applications
+
+AppControl addresses key challenges businesses face when managing applications:
+
+1. **Application Downtime and Slow Incident Response**
+   Unplanned downtime can severely impact operations. AppControl’s real-time monitoring and automated recovery help minimize downtime and accelerate incident response.
+
+2. **Complexity of Managing Hybrid Applications**
+   Managing both legacy and cloud-native applications can be complicated. AppControl provides unified monitoring for all your applications, removing the need for multiple tools.
+
+3. **Difficulty in Monitoring Critical Business Applications**
+   Most monitoring tools focus on infrastructure metrics, missing key application-level insights. AppControl prioritizes the health and performance of your business applications.
+
+4. **Lack of Visibility into Application Availability**
+   AppControl tracks and reports application availability, providing the metrics you need to ensure optimal performance and uptime.
+
+5. **Challenges in Application Scaling and Maintenance**
+   As businesses grow, so do the challenges of scaling applications. AppControl's flexible architecture and cross-platform agents make scaling simple, even in complex environments.
 
 ## 💡 Use Cases
 
-1. **Critical Business Applications**: Ensure your CRM, ERP, or any other critical application stays available and operational, no matter the environment. AppControl’s monitoring and automation ensure quick recovery from unexpected failures.
-2. **Hybrid Cloud Applications**: Whether your applications are in the cloud, on-prem, or a mix of both, AppControl provides a unified view of your application status and components, automatically managing dependencies between services.
-
-3. **Legacy Infrastructure Modernization**: If you're modernizing your infrastructure or transitioning to the cloud, AppControl allows you to maintain control over both new and old systems, re-using your legacy scripts without modification.
+1. **Critical Business Applications**: Ensure uptime and performance for mission-critical applications like CRM or ERP systems with AppControl’s automated monitoring and recovery.
+2. **Hybrid Cloud Applications**: Monitor applications hosted across cloud and on-prem environments, with automatic management of dependencies.
+3. **Legacy Infrastructure Modernization**: Modernizing infrastructure can be challenging. AppControl supports legacy systems and allows the re-use of existing scripts, easing the transition to modern infrastructure.
 
 ## 💻 Getting Started
 
-AppControl is available as a SaaS platform, and getting started is simple. You can start monitoring your applications in just a few minutes:
+Getting started with AppControl is straightforward:
 
-1. **Sign up for AppControl** and deploy agents in your infrastructure (Windows/Linux). The agents are lightweight and resource-efficient.
-2. Use our **YAML-based configuration files** to describe your applications and components.
-3. Optionally, use your existing monitoring scripts from other tools like Centreon or Zabbix within AppControl for additional checks.
-4. View the status of your applications via our intuitive dashboard.
+1. **Sign up** and deploy cross-platform agents (Windows/Linux) in your infrastructure.
+2. Configure your applications using **YAML-based files** to define components.
+3. **Reuse existing scripts** from tools like Centreon or Zabbix for additional checks.
+4. Monitor and manage your applications from AppControl’s intuitive dashboard.
 
-For detailed instructions on how to deploy agents, configure applications, or use custom scripts, check out our [documentation](https://xcomponent.github.io/appcontrol-documentation/).
+Find detailed instructions in our [documentation](https://xcomponent.github.io/appcontrol-documentation/).
 
 ## 🛠 How It Works
 
-AppControl is designed to be cross-platform and flexible:
+AppControl operates with a flexible, cross-platform architecture:
 
--   **Agents**: Lightweight agents running on Windows or Linux collect and report status back to AppControl's SaaS platform.
--   **Gateway**: A secure gateway serves as the link between your local infrastructure and our cloud service, ensuring smooth communication.
--   **Applications & Components**: Use YAML files to define your application's structure and dependencies, ensuring that AppControl knows exactly how to start, stop, and monitor each part of your system.
--   **Actionable Insights**: On-demand actions let you perform diagnostics, while automated recovery processes help prevent downtime.
+-   **Agents**: Lightweight agents gather application metrics from your infrastructure.
+-   **Gateway**: Connects your infrastructure to AppControl’s SaaS platform securely.
+-   **Applications & Components**: Applications are described in YAML, outlining their structure and dependencies for easy management.
+-   **Actionable Insights**: Perform diagnostics and set up automated recovery processes to minimize downtime.
 
 ## 📖 Documentation
 
-You can find the full documentation for AppControl, including installation, configuration, and use cases, on our [GitHub Pages](https://xcomponent.github.io/appcontrol-documentation/).
+You can find full documentation, including installation, configuration, and best practices, on our [GitHub Pages](https://xcomponent.github.io/appcontrol-documentation/).
 
 ## 💬 Join the Community
 
-Have a question or need help? Feel free to reach out:
+Need assistance or have questions? Reach out through:
 
--   [Contact Us via Email](mailto:contact@appcontrol.com)
+-   [Contact Us](mailto:contact@appcontrol.com)
 -   [Join our Slack Community](https://your-slack-link)
 -   [Submit an Issue](https://github.com/xcomponent/appcontrol-documentation/issues)
--   [Specific Requests for Your Company or a Dedicated Demo](https://ask.invivoo.com/appcontrol)
+-   [Request a Demo](https://ask.invivoo.com/appcontrol)
 
 ## 🙌 Contributing
 
-We welcome contributions! Feel free to submit pull requests, open issues, or provide feedback.
+We welcome contributions! Submit pull requests, open issues, or provide feedback via GitHub.
 
 ## 📄 License
 
-This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details.
+AppControl is licensed under the Apache License. See the [LICENSE](LICENSE) file for details.
 
 ---
 

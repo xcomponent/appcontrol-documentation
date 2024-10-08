@@ -9,6 +9,8 @@ For small and mid-sized enterprises, the performance and availability of your ap
 </br></br>
 While many traditional monitoring solutions focus primarily on servers, networks, and infrastructure, **AppControl takes a different approach**. We follow the lifeblood of your business: your applications. Whether it's restarting services, executing custom tasks, or applying real-time fixes, AppControl gives you the power to keep your applications running smoothly—without the complexity and overhead of traditional tools that often require a full infrastructure overhaul.
 
+![](appcontrol.gif)
+
 ## What Makes AppControl Different from Other Solutions
 
 -   **No modifications required**: Unlike other tools, **AppControl integrates directly with your existing applications**, whether legacy or cloud-based, without needing any changes to their structure.

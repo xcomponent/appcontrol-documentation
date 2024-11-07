@@ -6,12 +6,12 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." name="description"/>
-<link href="https://xcomponent.github.io/agentsdeployment/" rel="canonical"/>
+<link href="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment/" rel="canonical"/>
 <link href="../agents/" rel="prev"/>
 <link href="../agentazure/" rel="next"/>
 <link href="../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.28" name="generator"/>
-<title>Automatic Deployment of Agents - AppControl</title>
+<title>Automatic Deployment of Agents - XComponent AppControl</title>
 <link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -19,7 +19,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<meta content="Automatic Deployment of Agents" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/agentsdeployment" property="og:url"/><meta content="Automatic Deployment of Agents" property="og:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="og:description"/><meta content="../deployagent.png" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/agentsdeployment" property="twitter:url"/><meta content="Automatic Deployment of Agents" property="twitter:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="twitter:description"/><meta content="../deployagent.png" property="twitter:image"/></head>
+<meta content="Automatic Deployment of Agents" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment" property="og:url"/><meta content="Automatic Deployment of Agents" property="og:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="og:description"/><meta content="../deployagent.png" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment" property="twitter:url"/><meta content="Automatic Deployment of Agents" property="twitter:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="twitter:description"/><meta content="../deployagent.png" property="twitter:image"/></head>
 <body data-md-color-accent="#532699" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -33,7 +33,7 @@
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="AppControl" class="md-header__button md-logo" data-md-component="logo" href=".." title="AppControl">
+<a aria-label="XComponent AppControl" class="md-header__button md-logo" data-md-component="logo" href=".." title="XComponent AppControl">
 <img alt="logo" src="../logo2.svg"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -43,7 +43,7 @@
 <div class="md-header__ellipsis">
 <div class="md-header__topic">
 <span class="md-ellipsis">
-            AppControl
+            XComponent AppControl
           </span>
 </div>
 <div class="md-header__topic" data-md-component="header-topic">
@@ -86,12 +86,12 @@
 </div>
 </div>
 <div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://xcomponent.github.io/xcomponent/appcontrol-documentation/" title="Go to repository">
+<a class="md-source" data-md-component="source" href="https://github.com/xcomponent/appcontrol-documentation" title="Go to repository">
 <div class="md-source__icon md-icon">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
-    GitHub
+    GitHub Project
   </div>
 </a>
 </div>
@@ -105,18 +105,18 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="AppControl" class="md-nav__button md-logo" data-md-component="logo" href=".." title="AppControl">
+<a aria-label="XComponent AppControl" class="md-nav__button md-logo" data-md-component="logo" href=".." title="XComponent AppControl">
 <img alt="logo" src="../logo2.svg"/>
 </a>
-    AppControl
+    XComponent AppControl
   </label>
 <div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://xcomponent.github.io/xcomponent/appcontrol-documentation/" title="Go to repository">
+<a class="md-source" data-md-component="source" href="https://github.com/xcomponent/appcontrol-documentation" title="Go to repository">
 <div class="md-source__icon md-icon">
 <svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
 </div>
 <div class="md-source__repository">
-    GitHub
+    GitHub Project
   </div>
 </a>
 </div>
@@ -759,10 +759,10 @@
 <p>To open the deployment form, first select the gateway, then navigate to the "Deploy Agent" tab.</p>
 <p><img alt="DeploymentForm" src="../deployagent.png"/></p>
 <div class="share-buttons">
-<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/agentsdeployment', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/agentsdeployment', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet
     </button>
-<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/agentsdeployment', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/appcontrol-documentation/agentsdeployment', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-linkedin-in"></i> Share
     </button>
 </div>

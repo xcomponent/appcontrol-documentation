@@ -1,3 +1,62 @@
+# Check if .NET Framework 4.8 is installed
+function Check-DotNetFramework {
+    Write-Host "Checking for .NET Framework 4.8..."
+    $registryPath = "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full"
+    if (Test-Path $registryPath) {
+        $releaseKey = Get-ItemProperty -Path $registryPath | Select-Object -ExpandProperty Release
+        if ($releaseKey -ge 528040) {
+            Write-Host ".NET Framework 4.8 is installed." -ForegroundColor Green
+            return $true
+        } else {
+            Write-Host ".NET Framework 4.8 is NOT installed." -ForegroundColor Red
+            return $false
+        }
+    } else {
+        Write-Host ".NET Framework 4.8 is NOT installed." -ForegroundColor Red
+        return $false
+    }
+}
+
+# Check if .NET 8.0 is installed
+function Check-DotNet8 {
+    Write-Host "Checking for .NET 8.0 SDK..."
+    $dotnetInfo = & dotnet --list-sdks 2>$null
+    if ($dotnetInfo -match "^8\.0\.\d+") {
+        Write-Host ".NET 8.0 SDK is installed." -ForegroundColor Green
+        return $true
+    } else {
+        Write-Host ".NET 8.0 SDK is NOT installed." -ForegroundColor Red
+        return $false
+    }
+}
+
+# Main installation process
+function Start-Installation {
+    $frameworkInstalled = Check-DotNetFramework
+    $dotnet8Installed = Check-DotNet8
+
+    if (-not $frameworkInstalled -or -not $dotnet8Installed) {
+        Write-Host "Some prerequisites are missing. Please install them and rerun this script." -ForegroundColor Yellow
+        if (-not $frameworkInstalled) {
+            Write-Host "Install .NET Framework 4.8 from: https://dotnet.microsoft.com/en-us/download/dotnet-framework" -ForegroundColor Yellow
+        }
+        if (-not $dotnet8Installed) {
+            Write-Host "Install .NET 8.0 SDK from: https://dotnet.microsoft.com/en-us/download/dotnet" -ForegroundColor Yellow
+        }
+        exit 1
+    }
+
+    Write-Host "All prerequisites are installed. Proceeding with the installation..." -ForegroundColor Green
+
+    # Your AppControl installation commands go here
+    # Example:
+    # Write-Host "Installing AppControl..."
+}
+
+# Start the script
+Start-Installation
+
+
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 

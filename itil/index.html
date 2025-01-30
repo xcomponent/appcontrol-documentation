@@ -5,13 +5,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." name="description"/>
-<link href="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment/" rel="canonical"/>
-<link href="../agents/" rel="prev"/>
-<link href="../agentazure/" rel="next"/>
+<meta content="In a standard ITIL approach, ITSM tools (ServiceNow, Jira Service Management, BMC Helix...) are primarily focused on ticket management. They structure incident, problem, and change tracking but have several limitations:" name="description"/>
+<link href="https://xcomponent.github.io/appcontrol-documentation/itil/" rel="canonical"/>
+<link href=".." rel="prev"/>
+<link href="../gettingStarted/" rel="next"/>
 <link href="../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.28" name="generator"/>
-<title>Automatic Deployment of Agents - XComponent AppControl</title>
+<title>AppControl and ITIL - XComponent AppControl</title>
 <link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -19,13 +19,13 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<meta content="Automatic Deployment of Agents" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment" property="og:url"/><meta content="Automatic Deployment of Agents" property="og:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="og:description"/><meta content="../deployagent.png" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/agentsdeployment" property="twitter:url"/><meta content="Automatic Deployment of Agents" property="twitter:title"/><meta content="AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires SSH access to the target infrastructure using the private SSH key. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment." property="twitter:description"/><meta content="../deployagent.png" property="twitter:image"/></head>
+<meta content="AppControl and ITIL" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/itil" property="og:url"/><meta content="AppControl and ITIL" property="og:title"/><meta content="In a standard ITIL approach, ITSM tools (ServiceNow, Jira Service Management, BMC Helix...) are primarily focused on ticket management. They structure incident, problem, and change tracking but have several limitations:" property="og:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/itil" property="twitter:url"/><meta content="AppControl and ITIL" property="twitter:title"/><meta content="In a standard ITIL approach, ITSM tools (ServiceNow, Jira Service Management, BMC Helix...) are primarily focused on ticket management. They structure incident, problem, and change tracking but have several limitations:" property="twitter:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="twitter:image"/></head>
 <body data-md-color-accent="#532699" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#deploy-agents-automatically-via-the-gateway">
+<a class="md-skip" href="#appcontrol-and-itil-a-cross-team-tool-for-incident-management-and-continuous-improvement">
           Skip to content
         </a>
 </div>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Automatic Deployment of Agents
+              AppControl and ITIL
             
           </span>
 </div>
@@ -128,12 +128,94 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../itil/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    AppControl and ITIL
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     AppControl and ITIL
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-gap-in-traditional-itil-approaches">
+<span class="md-ellipsis">
+      🎯 The Gap in Traditional ITIL Approaches
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#appcontrol-a-cross-team-solution-for-itil">
+<span class="md-ellipsis">
+      🚀 AppControl: A Cross-Team Solution for ITIL
+    </span>
+</a>
+<nav aria-label="🚀 AppControl: A Cross-Team Solution for ITIL" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-automatically-linking-incidents-to-it-components">
+<span class="md-ellipsis">
+      1️⃣ Automatically Linking Incidents to IT Components
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-facilitating-cross-team-collaboration">
+<span class="md-ellipsis">
+      2️⃣ Facilitating Cross-Team Collaboration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-accelerating-resolution-and-continuous-improvement">
+<span class="md-ellipsis">
+      3️⃣ Accelerating Resolution and Continuous Improvement
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-an-ideal-itsm-complement-evolved-cmdb">
+<span class="md-ellipsis">
+      4️⃣ An Ideal ITSM Complement (Evolved CMDB)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-choose-appcontrol-in-an-itil-approach">
+<span class="md-ellipsis">
+      🔥 Why Choose AppControl in an ITIL Approach?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#use-case-incident-management-with-appcontrol">
+<span class="md-ellipsis">
+      💡 Use Case: Incident Management with AppControl
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#appcontrol-modernizing-itil-with-an-agile-approach">
+<span class="md-ellipsis">
+      🎯 AppControl: Modernizing ITIL with an Agile Approach
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
@@ -263,15 +345,15 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_8" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
 <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
     Gateways and Agents Installation in Local Infrastructure
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
             Gateways and Agents Installation in Local Infrastructure
@@ -305,120 +387,12 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Automatic Deployment of Agents
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../agentsdeployment/">
 <span class="md-ellipsis">
     Automatic Deployment of Agents
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#deploy-agents-automatically-via-the-gateway">
-<span class="md-ellipsis">
-      Deploy Agents Automatically via the Gateway
-    </span>
-</a>
-<nav aria-label="Deploy Agents Automatically via the Gateway" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-configure-ssh-access">
-<span class="md-ellipsis">
-      1. Configure SSH Access
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2-generate-ssh-keys-private-key-required-by-appcontrol">
-<span class="md-ellipsis">
-      2. Generate SSH Keys (Private Key Required by AppControl)
-    </span>
-</a>
-<nav aria-label="2. Generate SSH Keys (Private Key Required by AppControl)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#linux-or-macos">
-<span class="md-ellipsis">
-      Linux (or macOS)
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#windows">
-<span class="md-ellipsis">
-      Windows
-    </span>
-</a>
-<nav aria-label="Windows" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#option-1-using-git-bash">
-<span class="md-ellipsis">
-      Option 1: Using Git Bash
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#option-2-using-powershell-windows-1011">
-<span class="md-ellipsis">
-      Option 2: Using PowerShell (Windows 10/11)
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-ssh-server-on-windows-optional">
-<span class="md-ellipsis">
-      3. SSH Server on Windows (Optional)
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
-<span class="md-ellipsis">
-      4. Deploy Agents via the Gateway
-    </span>
-</a>
-<nav aria-label="4. Deploy Agents via the Gateway" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
-<span class="md-ellipsis">
-      5. Troubleshooting SSH Connection
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#6-provide-the-private-ssh-key-to-appcontrol">
-<span class="md-ellipsis">
-      6. Provide the Private SSH Key to AppControl
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -497,67 +471,45 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deploy-agents-automatically-via-the-gateway">
+<a class="md-nav__link" href="#the-gap-in-traditional-itil-approaches">
 <span class="md-ellipsis">
-      Deploy Agents Automatically via the Gateway
+      🎯 The Gap in Traditional ITIL Approaches
     </span>
 </a>
-<nav aria-label="Deploy Agents Automatically via the Gateway" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#appcontrol-a-cross-team-solution-for-itil">
+<span class="md-ellipsis">
+      🚀 AppControl: A Cross-Team Solution for ITIL
+    </span>
+</a>
+<nav aria-label="🚀 AppControl: A Cross-Team Solution for ITIL" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1-configure-ssh-access">
+<a class="md-nav__link" href="#1-automatically-linking-incidents-to-it-components">
 <span class="md-ellipsis">
-      1. Configure SSH Access
+      1️⃣ Automatically Linking Incidents to IT Components
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-generate-ssh-keys-private-key-required-by-appcontrol">
+<a class="md-nav__link" href="#2-facilitating-cross-team-collaboration">
 <span class="md-ellipsis">
-      2. Generate SSH Keys (Private Key Required by AppControl)
-    </span>
-</a>
-<nav aria-label="2. Generate SSH Keys (Private Key Required by AppControl)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#linux-or-macos">
-<span class="md-ellipsis">
-      Linux (or macOS)
+      2️⃣ Facilitating Cross-Team Collaboration
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#windows">
+<a class="md-nav__link" href="#3-accelerating-resolution-and-continuous-improvement">
 <span class="md-ellipsis">
-      Windows
-    </span>
-</a>
-<nav aria-label="Windows" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#option-1-using-git-bash">
-<span class="md-ellipsis">
-      Option 1: Using Git Bash
+      3️⃣ Accelerating Resolution and Continuous Improvement
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#option-2-using-powershell-windows-1011">
+<a class="md-nav__link" href="#4-an-ideal-itsm-complement-evolved-cmdb">
 <span class="md-ellipsis">
-      Option 2: Using PowerShell (Windows 10/11)
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-ssh-server-on-windows-optional">
-<span class="md-ellipsis">
-      3. SSH Server on Windows (Optional)
+      4️⃣ An Ideal ITSM Complement (Evolved CMDB)
     </span>
 </a>
 </li>
@@ -565,29 +517,25 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#4-deploy-agents-via-the-gateway">
+<a class="md-nav__link" href="#why-choose-appcontrol-in-an-itil-approach">
 <span class="md-ellipsis">
-      4. Deploy Agents via the Gateway
-    </span>
-</a>
-<nav aria-label="4. Deploy Agents via the Gateway" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#5-troubleshooting-ssh-connection">
-<span class="md-ellipsis">
-      5. Troubleshooting SSH Connection
+      🔥 Why Choose AppControl in an ITIL Approach?
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#6-provide-the-private-ssh-key-to-appcontrol">
+<a class="md-nav__link" href="#use-case-incident-management-with-appcontrol">
 <span class="md-ellipsis">
-      6. Provide the Private SSH Key to AppControl
+      💡 Use Case: Incident Management with AppControl
     </span>
 </a>
 </li>
-</ul>
-</nav>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#appcontrol-modernizing-itil-with-an-agile-approach">
+<span class="md-ellipsis">
+      🎯 AppControl: Modernizing ITIL with an Agile Approach
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -596,180 +544,91 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Automatic Deployment of Agents</h1>
-<h3 id="deploy-agents-automatically-via-the-gateway">Deploy Agents Automatically via the Gateway</h3>
-<p>AppControl simplifies the process of deploying agents in your infrastructure by leveraging the gateway. To automate the deployment of agents, AppControl requires <strong>SSH access</strong> to the target infrastructure using the <strong>private SSH key</strong>. Below are the steps to configure SSH, generate SSH keys on both Linux and Windows, and provide the necessary key to enable automatic deployment.</p>
+<h1 id="appcontrol-and-itil-a-cross-team-tool-for-incident-management-and-continuous-improvement">📌 AppControl and ITIL: A Cross-Team Tool for Incident Management and Continuous Improvement</h1>
+<h2 id="the-gap-in-traditional-itil-approaches">🎯 <strong>The Gap in Traditional ITIL Approaches</strong></h2>
+<p>In a standard ITIL approach, ITSM tools (ServiceNow, Jira Service Management, BMC Helix...) are primarily <strong>focused on ticket management</strong>. They structure incident, problem, and change tracking but have several limitations:</p>
+<ul>
+<li><strong>Fragmented teams</strong>: Operations, Development, Support, and Business often work in silos using different tools.</li>
+<li><strong>Lack of application visibility</strong>: Incidents are often reported without a clear link to the affected components.</li>
+<li><strong>Reactive rather than proactive management</strong>: Incident analysis relies on often incomplete or manual data.</li>
+</ul>
+<p>These limitations lead to wasted time, diagnostic errors, and inefficiencies in incident and problem management.</p>
 <hr/>
-<h4 id="1-configure-ssh-access">1. Configure SSH Access</h4>
-<p>For AppControl to deploy agents automatically, the gateway needs access to the target machines via SSH. Ensure that SSH is properly configured on your target systems.</p>
-<ul>
-<li><strong>Port</strong>: By default, SSH uses port 22, but AppControl allows you to customize this if needed.</li>
-<li><strong>User Permissions</strong>: The user account that AppControl will use for SSH must have sufficient permissions to install and manage agents on the target machine.</li>
-</ul>
-<blockquote>
-<p><strong>Note</strong>: The <strong>public SSH key</strong> must be added to the <code>~/.ssh/authorized_keys</code> file on the SSH server of the target machines. This ensures that AppControl can authenticate using the corresponding <strong>private SSH key</strong>.</p>
-</blockquote>
+<h2 id="appcontrol-a-cross-team-solution-for-itil">🚀 <strong>AppControl: A Cross-Team Solution for ITIL</strong></h2>
+<p>AppControl acts as the <strong>missing link</strong> between ITSM and application management. Its added value is based on <strong>four key pillars</strong>:</p>
+<h3 id="1-automatically-linking-incidents-to-it-components">1️⃣ <strong>Automatically Linking Incidents to IT Components</strong></h3>
+<p>✅ Each incident is <strong>directly associated</strong> with the impacted application components (services, databases, APIs, VMs...).
+✅ Reduced diagnostic time and better understanding of dependencies.</p>
+<h3 id="2-facilitating-cross-team-collaboration">2️⃣ <strong>Facilitating Cross-Team Collaboration</strong></h3>
+<p>✅ A <strong>shared view</strong> of applications between operations, development, support, and business teams.
+✅ Eliminates silos: every team can see the impact of incidents on critical components.</p>
+<h3 id="3-accelerating-resolution-and-continuous-improvement">3️⃣ <strong>Accelerating Resolution and Continuous Improvement</strong></h3>
+<p>✅ <strong>Automation</strong> of information gathering and diagnostics.
+✅ Incident history tracking and <strong>root cause identification</strong> to reduce recurring problems.</p>
+<h3 id="4-an-ideal-itsm-complement-evolved-cmdb">4️⃣ <strong>An Ideal ITSM Complement (Evolved CMDB)</strong></h3>
+<p>✅ AppControl enhances ITIL management by providing a <strong>dynamic SI mapping</strong>.
+✅ A direct link between <strong>incidents, problems, and technical components</strong>, facilitating post-mortem analysis and continuous improvement.</p>
 <hr/>
-<h4 id="2-generate-ssh-keys-private-key-required-by-appcontrol">2. Generate SSH Keys (Private Key Required by AppControl)</h4>
-<p>To allow AppControl to manage agent deployment via the gateway, the <strong>private SSH key</strong> must be provided. Follow the steps below to generate SSH keys on Linux or Windows.</p>
-<h5 id="linux-or-macos">Linux (or macOS)</h5>
-<p>To generate SSH keys on Linux or macOS:</p>
-<ol>
-<li>Open a terminal.</li>
-<li>
-<p>Run the following command to generate a new SSH key pair:</p>
-<p><code>ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
-<ul>
-<li><code>-t rsa</code>: Specifies the RSA algorithm.</li>
-<li><code>-b 2048</code>: Specifies the key length (2048 bits).</li>
-<li><code>-f ~/.ssh/appcontrol_key</code>: Saves the key pair to the specified file (<code>appcontrol_key</code>).</li>
-</ul>
-</li>
-<li>
-<p>When prompted for a passphrase, press <strong>Enter</strong> to leave it empty (or add a passphrase if extra security is required).</p>
-</li>
-</ol>
-<p>This command will generate two files:</p>
-<ul>
-<li><strong>Private key</strong>: <code>~/.ssh/appcontrol_key</code></li>
-<li>
-<p><strong>Public key</strong>: <code>~/.ssh/appcontrol_key.pub</code></p>
-</li>
-<li>
-<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
-</li>
-</ul>
-<h5 id="windows">Windows</h5>
-<p>To generate SSH keys on Windows, you can use either <strong>Git Bash</strong> or <strong>PowerShell</strong> (with OpenSSH).</p>
-<h6 id="option-1-using-git-bash">Option 1: Using Git Bash</h6>
-<ol>
-<li>Install <a href="https://gitforwindows.org/">Git for Windows</a> if not already installed.</li>
-<li>Open <strong>Git Bash</strong>.</li>
-<li>
-<p>Run the following command to generate an SSH key pair:</p>
-<p><code>ssh-keygen -t rsa -b 2048 -f ~/.ssh/appcontrol_key</code></p>
-</li>
-<li>
-<p>When prompted, press <strong>Enter</strong> to use the default file location, and leave the passphrase empty (or add one if preferred).</p>
-</li>
-<li>
-<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>cat ~/.ssh/appcontrol_key.pub &gt;&gt; ~/.ssh/authorized_keys</code></p>
-</li>
-</ol>
-<h6 id="option-2-using-powershell-windows-1011">Option 2: Using PowerShell (Windows 10/11)</h6>
-<ol>
-<li>Open <strong>PowerShell</strong> as an administrator.</li>
-<li>
-<p>Run the following command to generate an SSH key pair:</p>
-<p><code>ssh-keygen -t rsa -b 2048 -f $env:USERPROFILE\.ssh\appcontrol_key</code></p>
-</li>
-</ol>
-<p>This will generate two files:</p>
-<ul>
-<li><strong>Private key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
-<li>
-<p><strong>Public key</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key.pub</code></p>
-</li>
-<li>
-<p>Add the <strong>public key</strong> to the <code>authorized_keys</code> file on the target machine:</p>
-<p><code>Get-Content $env:USERPROFILE\.ssh\appcontrol_key.pub | Out-File -Append -Encoding ascii $env:USERPROFILE\.ssh\authorized_keys</code></p>
-</li>
-</ul>
+<h2 id="why-choose-appcontrol-in-an-itil-approach">🔥 <strong>Why Choose AppControl in an ITIL Approach?</strong></h2>
+<table>
+<thead>
+<tr>
+<th>ITIL Criteria</th>
+<th>Without AppControl</th>
+<th>With AppControl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔍 <strong>Application Visibility</strong></td>
+<td>Incidents often disconnected from real components</td>
+<td>Incidents <strong>directly linked to IT components</strong></td>
+</tr>
+<tr>
+<td>🏗️ <strong>Cross-Team Collaboration</strong></td>
+<td>Silos between Ops, Dev, Support, and Business</td>
+<td>A <strong>unified and shared</strong> incident view</td>
+</tr>
+<tr>
+<td>⏳ <strong>MTTR (Mean Time to Repair) Reduction</strong></td>
+<td>Manual and slow analysis</td>
+<td>Rapid diagnosis via <strong>dynamic mapping</strong></td>
+</tr>
+<tr>
+<td>🔄 <strong>Continuous Improvement</strong></td>
+<td>Difficult to identify root causes</td>
+<td>Incident pattern analysis and <strong>proactive prevention</strong></td>
+</tr>
+</tbody>
+</table>
 <hr/>
-<h4 id="3-ssh-server-on-windows-optional">3. SSH Server on Windows (Optional)</h4>
-<p>For Windows systems, you can optionally deploy an SSH server to allow AppControl to connect and manage agents. <strong>OpenSSH Server</strong> is an optional feature in Windows, which you can enable via the following steps:</p>
+<h2 id="use-case-incident-management-with-appcontrol">💡 <strong>Use Case: Incident Management with AppControl</strong></h2>
+<p>🔴 <strong>Without AppControl:</strong></p>
 <ol>
-<li>Go to <strong>Settings</strong> &gt; <strong>Apps</strong> &gt; <strong>Optional Features</strong>.</li>
-<li>Scroll down and click <strong>Add a feature</strong>.</li>
-<li>Search for <strong>OpenSSH Server</strong>, select it, and click <strong>Install</strong>.</li>
+<li>An incident is detected on a critical application.</li>
+<li>The support team opens an ITSM ticket.</li>
+<li>Manual research is conducted to identify affected components.</li>
+<li>Difficulty in determining the cause and impact.</li>
+<li>Long resolution time and risk of recurrence.</li>
 </ol>
-<blockquote>
-<p>For more detailed instructions, refer to the <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">official Windows documentation</a>.</p>
-</blockquote>
-<p>Once installed, configure the SSH server, and ensure the <strong>public key</strong> is added to the <code>authorized_keys</code> file.</p>
-<hr/>
-<h3 id="4-deploy-agents-via-the-gateway">4. Deploy Agents via the Gateway</h3>
-<p>Once SSH is configured and the private key is provided, follow these steps to deploy agents using the AppControl gateway:</p>
+<p>🟢 <strong>With AppControl:</strong></p>
 <ol>
-<li>
-<p><strong>Select the Target Machines</strong>:</p>
-<ul>
-<li>In the AppControl dashboard, go to the <strong>"Deploy Agents"</strong> section and select the machines where agents should be deployed.</li>
-</ul>
-</li>
-<li>
-<p><strong>Verify Connectivity</strong>:</p>
-<ul>
-<li>AppControl will verify the SSH connection to the target machines using the private SSH key.</li>
-</ul>
-</li>
-<li>
-<p><strong>Deploy Agents</strong>:</p>
-<ul>
-<li>Once the connection is established, AppControl will automatically deploy the agents to the selected machines.</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p><strong>Installation Paths</strong>:</p>
-</blockquote>
-<ul>
-<li>On <strong>Windows</strong>: Agents will be installed in <code>C:/ProgramData/appcontrol/agent</code>.</li>
-<li>On <strong>Linux</strong>: The installation folder is <code>/opt/appcontrol/xcagent</code>.</li>
-<li>On <strong>macOS</strong>: The installation folder is <code>~/appcontrol/xcagent</code>.</li>
-</ul>
-<hr/>
-<h4 id="5-troubleshooting-ssh-connection">5. Troubleshooting SSH Connection</h4>
-<p>If you encounter issues with the SSH connection during the deployment process, check the following:</p>
-<ol>
-<li>
-<p><strong>Private SSH Key</strong>:</p>
-<ul>
-<li>Ensure that the private SSH key is properly configured and uploaded to AppControl.</li>
-</ul>
-</li>
-<li>
-<p><strong>SSH Port and User Permissions</strong>:</p>
-<ul>
-<li>Verify that the SSH port and user permissions are correctly set up on the target machine.</li>
-</ul>
-</li>
-<li>
-<p><strong>Firewall and Network Configuration</strong>:</p>
-<ul>
-<li>Check firewall rules or network configurations that might block SSH access to the target machine.</li>
-</ul>
-</li>
+<li>AppControl <strong>detects the incident</strong> and immediately identifies the <strong>impacted components</strong>.</li>
+<li>Teams receive an <strong>enriched notification</strong> with key information.</li>
+<li>Resolution is <strong>accelerated</strong> thanks to mapping and associated logs.</li>
+<li>A post-mortem analysis helps prevent similar incidents.</li>
 </ol>
 <hr/>
-<h4 id="6-provide-the-private-ssh-key-to-appcontrol">6. Provide the Private SSH Key to AppControl</h4>
-<p>AppControl requires the <strong>private SSH key</strong> for authentication during agent deployment. The <strong>public key</strong> is added to the target machines in the <code>~/.ssh/authorized_keys</code> file, and the <strong>private key</strong> remains with AppControl to establish the connection.</p>
-<ol>
-<li><strong>Locate the Private Key</strong>:<ul>
-<li><strong>Linux</strong>: <code>~/.ssh/appcontrol_key</code></li>
-<li><strong>Windows</strong>: <code>C:\Users\YourUsername\.ssh\appcontrol_key</code></li>
-</ul>
-</li>
-<li><strong>Upload the Private Key to AppControl</strong>:<ol>
-<li>Log in to the AppControl dashboard.</li>
-<li>Navigate to <strong>Gateway Configuration</strong> and select the gateway that will manage the agent deployment.</li>
-<li>Upload the private SSH key (<code>appcontrol_key</code>).</li>
-<li>AppControl will securely store the key and use it for deploying agents.</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p><strong>Note</strong>: The private SSH key remains confidential and is only used by AppControl to establish a secure SSH connection to the target machines. The corresponding public key should already be added to the <code>~/.ssh/authorized_keys</code> file on the target machines.</p>
-</blockquote>
-<p>To open the deployment form, first select the gateway, then navigate to the "Deploy Agent" tab.</p>
-<p><img alt="DeploymentForm" src="../deployagent.png"/></p>
+<h2 id="appcontrol-modernizing-itil-with-an-agile-approach">🎯 <strong>AppControl: Modernizing ITIL with an Agile Approach</strong></h2>
+<p>AppControl does not replace ITSM tools but <strong>complements them intelligently</strong>, facilitating <strong>cross-team information sharing</strong> and optimizing <strong>incident and problem resolution</strong>.</p>
+<p>✅ <strong>Unified application and infrastructure visibility</strong>.
+✅ <strong>Enhanced cross-team collaboration</strong>.
+✅ <strong>Continuous improvement and recurrence reduction</strong>.</p>
 <div class="share-buttons">
-<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/agentsdeployment', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/itil', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet
     </button>
-<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/appcontrol-documentation/agentsdeployment', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/appcontrol-documentation/itil', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-linkedin-in"></i> Share
     </button>
 </div>
@@ -780,7 +639,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Agent installation" class="md-footer__link md-footer__link--prev" href="../agents/">
+<a aria-label="Previous: Introduction" class="md-footer__link md-footer__link--prev" href="..">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -789,17 +648,17 @@
                 Previous
               </span>
 <div class="md-ellipsis">
-                Agent installation
+                Introduction
               </div>
 </div>
 </a>
-<a aria-label="Next: Gateways and Agents Installation in Azure" class="md-footer__link md-footer__link--next" href="../agentazure/">
+<a aria-label="Next: Introduction to AppControl SaaS" class="md-footer__link md-footer__link--next" href="../gettingStarted/">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 Next
               </span>
 <div class="md-ellipsis">
-                Gateways and Agents Installation in Azure
+                Introduction to AppControl SaaS
               </div>
 </div>
 <div class="md-footer__button md-icon">

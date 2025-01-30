@@ -6,6 +6,7 @@ repo_url: https://xcomponent.github.io/appcontrol-documentation/
 
 nav:
     - Introduction: index.md
+    - AppControl and ITIL: itil.md
     - Getting Started:
           - Introduction to AppControl SaaS: gettingStarted
           - Demo setup with no connection to local infrastructure: gettingStarted/#try-demo

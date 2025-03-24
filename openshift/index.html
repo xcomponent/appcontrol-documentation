@@ -605,10 +605,24 @@
 <h3 id="24-redis">2.4 Redis</h3>
 <p>AppControl uses Redis for caching and persistent storage.</p>
 <ul>
-<li><strong>Example connection string</strong>:
-    <code>redis://USER:PASSWORD@HOST:PORT</code>
-    Replace <code>YOUR_REDIS_CONNECTION_STRING</code> accordingly.</li>
+<li><strong>Installation Procedure</strong>:</li>
 </ul>
+<pre><code> export REDIS_PASSWORD=mysecurepassword
+ oc create secret generic redis-secret --from-literal=REDIS_PASSWORD="$REDIS_PASSWORD" -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-pvc.yaml -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-deployment.yaml -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-service.yaml -n appcontrol
+</code></pre>
+<p>`</p>
+<ul>
+<li><strong>Verify Installation</strong>:</li>
+</ul>
+<pre><code>  oc get pods -n appcontrol
+  oc logs deployment/redis -n appcontrol
+  oc get svc redis -n appcontrol
+</code></pre>
+<p>Later in the configuration process, you will be notified to set REDIS_CONNECTION_STRING. The REDIS_CONNECTION_STRING is :
+<code>redis:6379,password=$REDIS_PASSWORD</code></p>
 <h3 id="25-rabbitmq">2.5 RabbitMQ</h3>
 <p>A RabbitMQ instance should be set up with a dedicated virtual host.</p>
 <ul>
@@ -670,13 +684,15 @@ openssl rsa -pubout -in jwt-private.pem -out jwt-public.pem
 <p>To view all possible values before installing:</p>
 <pre><code class="language-sh">helm show values "$REPO/appcontrol-services"
 </code></pre>
-<p>To install the services with customized values:</p>
+<p>Before installation, check the helm chart version.
+To install the services with customized values:</p>
 <pre><code class="language-sh">MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
 MY_SECRET_NAME="jwt-keys"
 YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
-
+CHART_VERSION=
 helm install appcontrol-services "$REPO/appcontrol-services" \
   --namespace Appcontrol \
+  --version "$CHART_VERSION" \
   -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml \
   --set externalHostname="x4b.$MY_APPCONTROL_DOMAIN" \
   --set jwtSecretName="$MY_SECRET_NAME" \
@@ -691,9 +707,11 @@ helm install appcontrol-services "$REPO/appcontrol-services" \
 <p>To view all possible values before installing:</p>
 <pre><code class="language-sh">helm show values "$REPO/appcontrol-services"
 </code></pre>
+<p>Before installation, check the helm chart version.</p>
 <p>To install the services with customized values:</p>
 <pre><code class="language-sh">MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
 HTTTPROTOCOL=https
+CHART_VERSION=
 YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
 RABBITMQ_HOST_NAME="Your rabbitmq host eg: rabbitmq.rabbitmq.svc.cluster.local"
 RABBITMQ_USER="Your rabbitmq user"
@@ -708,13 +726,14 @@ curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/re
 # Install using the updated YAML file
 helm install appcontrol-services "$REPO/appcontrol-services" \
   --namespace Appcontrol \
+  --version "$CHART_VERSION" \
   -f /tmp/appcontrol_values.yaml
   --set jwtSecretName="$MY_SECRET_NAME" \
-  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING"
-  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME"
-  --set rabbitmq.username="$RABBITMQ_USER"
-  --set rabbitmq.password="$RABBITMQ_PASSWORD"
-  --set rabbitmq.virtualHost="$RABBITMQ_VHOST"
+  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
+  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME" \
+  --set rabbitmq.username="$RABBITMQ_USER" \
+  --set rabbitmq.password="$RABBITMQ_PASSWORD" \
+  --set rabbitmq.virtualHost="$RABBITMQ_VHOST" \
   --namespace Appcontrol
 </code></pre>
 <h2 id="5-exposing-appcontrol-in-openshift">5. Exposing AppControl in OpenShift</h2>

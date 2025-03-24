@@ -39,11 +39,29 @@ AppControl requires a Microsoft SQL Server database.
 
 AppControl uses Redis for caching and persistent storage.
 
--   **Example connection string**:
-    ```
-    redis://USER:PASSWORD@HOST:PORT
-    ```
-    Replace `YOUR_REDIS_CONNECTION_STRING` accordingly.
+-   **Installation Procedure**:
+
+```
+ export REDIS_PASSWORD=mysecurepassword
+ oc create secret generic redis-secret --from-literal=REDIS_PASSWORD="$REDIS_PASSWORD" -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-pvc.yaml -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-deployment.yaml -n appcontrol
+     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-service.yaml -n appcontrol
+```
+
+`
+
+-   **Verify Installation**:
+
+```
+  oc get pods -n appcontrol
+  oc logs deployment/redis -n appcontrol
+  oc get svc redis -n appcontrol
+```
+
+Later in the configuration process, you will be notified to set REDIS_CONNECTION_STRING. The REDIS_CONNECTION_STRING is :
+`   redis:6379,password=$REDIS_PASSWORD
+`
 
 ### 2.5 RabbitMQ
 
@@ -135,15 +153,17 @@ To view all possible values before installing:
 helm show values "$REPO/appcontrol-services"
 ```
 
+Before installation, check the helm chart version.
 To install the services with customized values:
 
 ```sh
 MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
 MY_SECRET_NAME="jwt-keys"
 YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
-
+CHART_VERSION=
 helm install appcontrol-services "$REPO/appcontrol-services" \
   --namespace Appcontrol \
+  --version "$CHART_VERSION" \
   -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml \
   --set externalHostname="x4b.$MY_APPCONTROL_DOMAIN" \
   --set jwtSecretName="$MY_SECRET_NAME" \
@@ -165,11 +185,14 @@ To view all possible values before installing:
 helm show values "$REPO/appcontrol-services"
 ```
 
+Before installation, check the helm chart version.
+
 To install the services with customized values:
 
 ```sh
 MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
 HTTTPROTOCOL=https
+CHART_VERSION=
 YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
 RABBITMQ_HOST_NAME="Your rabbitmq host eg: rabbitmq.rabbitmq.svc.cluster.local"
 RABBITMQ_USER="Your rabbitmq user"
@@ -184,13 +207,14 @@ curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/re
 # Install using the updated YAML file
 helm install appcontrol-services "$REPO/appcontrol-services" \
   --namespace Appcontrol \
+  --version "$CHART_VERSION" \
   -f /tmp/appcontrol_values.yaml
   --set jwtSecretName="$MY_SECRET_NAME" \
-  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING"
-  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME"
-  --set rabbitmq.username="$RABBITMQ_USER"
-  --set rabbitmq.password="$RABBITMQ_PASSWORD"
-  --set rabbitmq.virtualHost="$RABBITMQ_VHOST"
+  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
+  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME" \
+  --set rabbitmq.username="$RABBITMQ_USER" \
+  --set rabbitmq.password="$RABBITMQ_PASSWORD" \
+  --set rabbitmq.virtualHost="$RABBITMQ_VHOST" \
   --namespace Appcontrol
 ```
 

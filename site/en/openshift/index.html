@@ -5,11 +5,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="According to your configuration, differents badges will be displayed in the UI. The badges are indicators which are used to secure your I.S (Information System)." name="description"/>
-<link href="https://xcomponent.github.io/appcontrol-documentation/bestpractices/" rel="canonical"/>
+<meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." name="description"/>
+<link href="https://xcomponent.github.io/appcontrol-documentation/openshift/" rel="canonical"/>
 <link href="../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.28" name="generator"/>
-<title>Agents/Gateways configuration best practices - XComponent AppControl</title>
+<title>AppControl Installation Guide for OpenShift - XComponent AppControl</title>
 <link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -17,13 +17,13 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<meta content="Agents/Gateways configuration best practices" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/bestpractices" property="og:url"/><meta content="Agents/Gateways configuration best practices" property="og:title"/><meta content="According to your configuration, differents badges will be displayed in the UI. The badges are indicators which are used to secure your I.S (Information System)." property="og:description"/><meta content="images/agentsview_badge.png" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/bestpractices" property="twitter:url"/><meta content="Agents/Gateways configuration best practices" property="twitter:title"/><meta content="According to your configuration, differents badges will be displayed in the UI. The badges are indicators which are used to secure your I.S (Information System)." property="twitter:description"/><meta content="images/agentsview_badge.png" property="twitter:image"/></head>
+<meta content="AppControl Installation Guide for OpenShift" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="og:url"/><meta content="AppControl Installation Guide for OpenShift" property="og:title"/><meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." property="og:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="twitter:url"/><meta content="AppControl Installation Guide for OpenShift" property="twitter:title"/><meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." property="twitter:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="twitter:image"/></head>
 <body data-md-color-accent="#532699" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#agentsgateways-configuration-best-practices">
+<a class="md-skip" href="#appcontrol-installation-guide-for-openshift">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Agents/Gateways configuration best practices
+              AppControl Installation Guide for OpenShift
             
           </span>
 </div>
@@ -356,7 +356,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../openshift">
+<a class="md-nav__link" href=".">
 <span class="md-ellipsis">
     Install on Openshift
   </span>
@@ -394,25 +394,185 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#protocol-badges">
+<a class="md-nav__link" href="#1-introduction">
 <span class="md-ellipsis">
-      Protocol badges
+      1. Introduction
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#gateway-badges">
+<a class="md-nav__link" href="#2-requirements">
 <span class="md-ellipsis">
-      Gateway badges
+      2. Requirements
+    </span>
+</a>
+<nav aria-label="2. Requirements" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-openshift-cluster">
+<span class="md-ellipsis">
+      2.1 OpenShift Cluster
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#resilience-badges">
+<a class="md-nav__link" href="#22-openshift-ingress-default-router">
 <span class="md-ellipsis">
-      Resilience badges
+      2.2 OpenShift Ingress (Default Router)
     </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-sql-server-database">
+<span class="md-ellipsis">
+      2.3 SQL Server Database
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-redis">
+<span class="md-ellipsis">
+      2.4 Redis
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#25-rabbitmq">
+<span class="md-ellipsis">
+      2.5 RabbitMQ
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#26-configuring-the-appcontrol-domain">
+<span class="md-ellipsis">
+      2.6 Configuring the AppControl Domain
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-platform-configuration">
+<span class="md-ellipsis">
+      3. Platform Configuration
+    </span>
+</a>
+<nav aria-label="3. Platform Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-helm-repository-setup">
+<span class="md-ellipsis">
+      3.1 Helm Repository Setup
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-application-configuration">
+<span class="md-ellipsis">
+      3.2 Application Configuration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-jwt-secret-keys">
+<span class="md-ellipsis">
+      3.3 JWT Secret Keys
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-helm-chart-installation">
+<span class="md-ellipsis">
+      4. Helm Chart Installation
+    </span>
+</a>
+<nav aria-label="4. Helm Chart Installation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-install-appcontrol-services">
+<span class="md-ellipsis">
+      4.1 Install AppControl Services
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-install-appcontrol">
+<span class="md-ellipsis">
+      4.2 Install AppControl
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-exposing-appcontrol-in-openshift">
+<span class="md-ellipsis">
+      5. Exposing AppControl in OpenShift
+    </span>
+</a>
+<nav aria-label="5. Exposing AppControl in OpenShift" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-create-an-openshift-route">
+<span class="md-ellipsis">
+      5.1 Create an OpenShift Route
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-verify-the-created-route">
+<span class="md-ellipsis">
+      5.2 Verify the Created Route
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-enable-tls-if-required">
+<span class="md-ellipsis">
+      5.3 Enable TLS (If Required)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-checking-deployment-status">
+<span class="md-ellipsis">
+      6. Checking Deployment Status
+    </span>
+</a>
+<nav aria-label="6. Checking Deployment Status" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61-verify-helm-charts">
+<span class="md-ellipsis">
+      6.1 Verify Helm Charts
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#62-verify-running-pods">
+<span class="md-ellipsis">
+      6.2 Verify Running Pods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#63-verify-appcontrol-accessibility">
+<span class="md-ellipsis">
+      6.3 Verify AppControl Accessibility
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -421,89 +581,178 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="agentsgateways-configuration-best-practices">Agents/Gateways configuration best practices</h1>
-<p>According to your configuration, differents badges will be displayed in the UI. The badges are indicators which are used to secure your I.S (Information System).</p>
-<p>The badges are displayed in the <strong>Agents</strong> view.</p>
-<p><img alt="agents" src="images/agentsview_badge.png"/></p>
-<h3 id="protocol-badges">Protocol badges</h3>
+<h1 id="appcontrol-installation-guide-for-openshift">AppControl Installation Guide for OpenShift</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures.</p>
+<h2 id="2-requirements">2. Requirements</h2>
+<h3 id="21-openshift-cluster">2.1 OpenShift Cluster</h3>
+<p>Ensure that you have an OpenShift cluster with a dedicated project (namespace) for deploying AppControl. If OpenShift is not running, start it with:</p>
+<pre><code class="language-sh">crc start
+</code></pre>
+<p>To create the namespace if it does not exist:</p>
+<pre><code class="language-sh">oc new-project Appcontrol || oc project Appcontrol
+</code></pre>
+<h3 id="22-openshift-ingress-default-router">2.2 OpenShift Ingress (Default Router)</h3>
+<p>OpenShift includes an Ingress controller by default via its built-in <strong>Router</strong> (HAProxy). Instead of configuring an additional Ingress controller, we will use OpenShift's native Route system to expose the application.</p>
+<h3 id="23-sql-server-database">2.3 SQL Server Database</h3>
+<p>AppControl requires a Microsoft SQL Server database.</p>
 <ul>
-<li>The first badge encourages the use of a recent version of the Tls protocol:</li>
+<li><strong>Required version</strong>: SQL Server 2017+</li>
+<li><strong>Example connection string</strong>:
+    <code>Server=tcp:MY_SERVER_IP,1433;Initial Catalog=MYDATABASE;Persist Security Info=False;User ID=USERID;Password=PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;</code>
+    This connection string will be required in the <code>appcontrol_values.yaml</code> file, which is used when deploying AppControl with Helm.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Protocol</th>
-<th>Badge</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Tls13</td>
-<td><img alt="Screenshot" height="10%" src="images/gold_medal.png" width="10%"/></td>
-</tr>
-<tr>
-<td>Tls12</td>
-<td><img alt="Screenshot" height="10%" src="images/silver_medal.png" width="10%"/></td>
-</tr>
-<tr>
-<td>Tls - Ssl</td>
-<td><img alt="Screenshot" height="10%" src="images/bronze_medal.png" width="10%"/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="gateway-badges">Gateway badges</h3>
+<h3 id="24-redis">2.4 Redis</h3>
+<p>AppControl uses Redis for caching and persistent storage.</p>
 <ul>
-<li>The second badge encourages the use of a gateway to access agents. Indeed, the gateways are there to guarantee a stronger isolation at the network level and at the application level.</li>
+<li><strong>Example connection string</strong>:
+    <code>redis://USER:PASSWORD@HOST:PORT</code>
+    Replace <code>YOUR_REDIS_CONNECTION_STRING</code> accordingly.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Number of gateways by agent</th>
-<th>Badge</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>At least one</td>
-<td><img alt="Screenshot" height="10%" src="images/gold_medal.png" width="10%"/></td>
-</tr>
-<tr>
-<td>None</td>
-<td><img alt="Screenshot" height="10%" src="images/silver_medal.png" width="10%"/></td>
-</tr>
-</tbody>
-</table>
-<h3 id="resilience-badges">Resilience badges</h3>
+<h3 id="25-rabbitmq">2.5 RabbitMQ</h3>
+<p>A RabbitMQ instance should be set up with a dedicated virtual host.</p>
 <ul>
-<li>The third badge encourages the use of several sites (at least primary and secondary). This declaration of the different sites is configured using the "trustedservers" variable in the agent's config.dat file. If "ignoretrustedservers" a "gold medal" will be displayed.</li>
+<li><strong>Example connection details</strong>:
+    <code>Host: YOUR_RABBIT_HOST
+    Virtual Host: APPCONTROL_VIRTUAL_HOST
+    User: YOUR_USERNAME
+    Password: YOUR_PASSWORD</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Number of servers declared in "trustedserver"</th>
-<th>Badge</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>At least two</td>
-<td><img alt="Screenshot" height="10%" src="images/gold_medal.png" width="10%"/></td>
-</tr>
-<tr>
-<td>One</td>
-<td><img alt="Screenshot" height="10%" src="images/silver_medal.png" width="10%"/></td>
-</tr>
-<tr>
-<td>None</td>
-<td><img alt="Screenshot" height="10%" src="images/bronze_medal.png" width="10%"/></td>
-</tr>
-</tbody>
-</table>
+<h3 id="26-configuring-the-appcontrol-domain">2.6 Configuring the AppControl Domain</h3>
+<p>Define a DNS entry for the AppControl platform.</p>
+<p>If you are deploying elsewhere, ensure that this domain is properly configured.</p>
+<ul>
+<li><strong>Example domains</strong>:<ul>
+<li>AppControl: <code>appcontrol.MyCompany.com</code></li>
+</ul>
+</li>
+</ul>
+<p>This domain will be used later in the configuration.</p>
+<h2 id="3-platform-configuration">3. Platform Configuration</h2>
+<h3 id="31-helm-repository-setup">3.1 Helm Repository Setup</h3>
+<p>Before installing Helm charts, authenticate to the Helm registry using credentials provided by the AppControl editor:</p>
+<pre><code class="language-sh">helm registry login x4bcontainerregistry.azurecr.io --username login --password password
+</code></pre>
+<p>Set up the Helm repository:</p>
+<pre><code class="language-sh">REPO="oci://x4bcontainerregistry.azurecr.io/helm"
+</code></pre>
+<h3 id="32-application-configuration">3.2 Application Configuration</h3>
+<p>The configuration templates for AppControl are available in the repository:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json">applications-template.json</a></li>
+<li><a href="https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json">services-template.json</a></li>
+</ul>
+<p>To use them in your deployment, replace <code>MY_APPCONTROL_DOMAIN</code> dynamically:</p>
+<pre><code class="language-sh">
+MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
+
+oc create configmap appcontrol-config \
+  --from-literal=applications.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")" \
+  --from-literal=services.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")"
+</code></pre>
+<h3 id="33-jwt-secret-keys">3.3 JWT Secret Keys</h3>
+<p>The secret name used for JWT keys in OpenShift is <strong>jwt-keys</strong>. This name must be referenced later in the configuration.</p>
+<p>Generate a self-signed certificate and create a secret for JWT keys:</p>
+<pre><code class="language-sh">openssl genpkey -algorithm RSA -out jwt-private.pem
+openssl rsa -pubout -in jwt-private.pem -out jwt-public.pem
+</code></pre>
+<p>Then, create the secret in OpenShift:</p>
+<pre><code class="language-sh">oc create secret generic jwt-keys -n Appcontrol \
+  --from-file=jwt-private.pem=jwt-private.pem \
+  --from-file=jwt-public.pem=jwt-public.pem
+</code></pre>
+<h2 id="4-helm-chart-installation">4. Helm Chart Installation</h2>
+<h3 id="41-install-appcontrol-services">4.1 Install AppControl Services</h3>
+<p>The configuration template for <code>x4b-services-values.yaml</code> is available in the repository:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml">x4b-services-values.yaml</a></li>
+</ul>
+<p>To view all possible values before installing:</p>
+<pre><code class="language-sh">helm show values "$REPO/appcontrol-services"
+</code></pre>
+<p>To install the services with customized values:</p>
+<pre><code class="language-sh">MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
+MY_SECRET_NAME="jwt-keys"
+YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
+
+helm install appcontrol-services "$REPO/appcontrol-services" \
+  --namespace Appcontrol \
+  -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml \
+  --set externalHostname="x4b.$MY_APPCONTROL_DOMAIN" \
+  --set jwtSecretName="$MY_SECRET_NAME" \
+  --set sql.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING"
+  --namespace Appcontrol
+</code></pre>
+<h3 id="42-install-appcontrol">4.2 Install AppControl</h3>
+<pre><code class="language-sh">helm install appcontrol "$REPO/appcontrol" \
+  --namespace Appcontrol \
+  -f appcontrol_values.yaml
+</code></pre>
+<p>To view all possible values before installing:</p>
+<pre><code class="language-sh">helm show values "$REPO/appcontrol-services"
+</code></pre>
+<p>To install the services with customized values:</p>
+<pre><code class="language-sh">MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
+HTTTPROTOCOL=https
+YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
+RABBITMQ_HOST_NAME="Your rabbitmq host eg: rabbitmq.rabbitmq.svc.cluster.local"
+RABBITMQ_USER="Your rabbitmq user"
+RABBITMQ_PASSWORD="Your rabbitmq password"
+RABBITMQ_VHOST="Your rabbitmq vhost"
+# Download and replace all instances of MY_APPCONTROL_DOMAIN
+curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/appcontrol_values.yaml \
+  | sed "s/MY_APPCONTROL_DOMAIN/${MY_APPCONTROL_DOMAIN}/g" \
+  | sed "s/HTTTPROTOCOL/${HTTTPROTOCOL}/g" \
+  &gt; /tmp/appcontrol_values.yaml
+
+# Install using the updated YAML file
+helm install appcontrol-services "$REPO/appcontrol-services" \
+  --namespace Appcontrol \
+  -f /tmp/appcontrol_values.yaml
+  --set jwtSecretName="$MY_SECRET_NAME" \
+  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING"
+  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME"
+  --set rabbitmq.username="$RABBITMQ_USER"
+  --set rabbitmq.password="$RABBITMQ_PASSWORD"
+  --set rabbitmq.virtualHost="$RABBITMQ_VHOST"
+  --namespace Appcontrol
+</code></pre>
+<h2 id="5-exposing-appcontrol-in-openshift">5. Exposing AppControl in OpenShift</h2>
+<h3 id="51-create-an-openshift-route">5.1 Create an OpenShift Route</h3>
+<p>Instead of using an Ingress resource, OpenShift provides a built-in Router to expose services externally. To expose AppControl, create a Route:</p>
+<pre><code class="language-sh">oc expose svc/appcontrol --hostname=MY_APPCONTROL_DOMAIN
+</code></pre>
+<p>This will generate a public endpoint for AppControl.</p>
+<h3 id="52-verify-the-created-route">5.2 Verify the Created Route</h3>
+<p>Check if the Route has been created successfully:</p>
+<pre><code class="language-sh">oc get routes
+</code></pre>
+<p>Example output:</p>
+<pre><code>NAME          HOST/PORT                 PATH   SERVICES      PORT   TERMINATION   WILDCARD
+appcontrol    myapp.openshift.local            appcontrol    8080   edge
+</code></pre>
+<h3 id="53-enable-tls-if-required">5.3 Enable TLS (If Required)</h3>
+<p>To enable <strong>TLS termination</strong>, create a secure Route:</p>
+<pre><code class="language-sh">oc create route edge appcontrol --service=appcontrol --hostname=MY_APPCONTROL_DOMAIN
+</code></pre>
+<p>This ensures HTTPS is enforced at the OpenShift Router level.</p>
+<h2 id="6-checking-deployment-status">6. Checking Deployment Status</h2>
+<h3 id="61-verify-helm-charts">6.1 Verify Helm Charts</h3>
+<pre><code class="language-sh">helm ls -n Appcontrol
+helm status appcontrol
+</code></pre>
+<h3 id="62-verify-running-pods">6.2 Verify Running Pods</h3>
+<pre><code class="language-sh">oc get pods -l 'app.kubernetes.io/instance in (appcontrol-services,appcontrol)' -n Appcontrol
+</code></pre>
+<h3 id="63-verify-appcontrol-accessibility">6.3 Verify AppControl Accessibility</h3>
+<p>Open your browser and navigate to:</p>
+<pre><code>https://MY_APPCONTROL_DOMAIN
+</code></pre>
 <div class="share-buttons">
-<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/bestpractices', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/openshift', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet
     </button>
-<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/appcontrol-documentation/bestpractices', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
+<button class="share-button hover-item linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?url=https://xcomponent.github.io/appcontrol-documentation/openshift', 'LinkedinShare', 'width=550,height=730,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-linkedin-in"></i> Share
     </button>
 </div>

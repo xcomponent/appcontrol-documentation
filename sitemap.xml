@@ -76,6 +76,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/openshift/</loc>
+         <lastmod>2025-03-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xcomponent.github.io/appcontrol-documentation/repo/</loc>
          <lastmod>2025-03-24</lastmod>
          <changefreq>daily</changefreq>

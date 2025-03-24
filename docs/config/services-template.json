@@ -1,0 +1,4 @@
+{
+    "login": "https://MY_APPCONTROL_DOMAIN/login",
+    "authentication": "https://MY_APPCONTROL_DOMAIN/auth"
+}

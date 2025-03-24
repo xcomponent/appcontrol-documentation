@@ -33,6 +33,7 @@ nav:
     - Contact Us: contact.md
     - Advanced:
           - Install standalone: standalone.md
+          - Install on Openshift: openshift
           - How to import your Centreon setup into AppControl: centreon.md
           - How to integrate AppControl with a ServiceNow Cmdb: cmdb.md
 

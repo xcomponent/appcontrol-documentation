@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://xcomponent.github.io/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/agentazure/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/agentazure/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/agents/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/agents/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/agentsdeployment/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/agentsdeployment/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/bestpractices/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/bestpractices/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/centreon/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/centreon/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/cli/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/cli/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/cmdb/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/cmdb/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/contact/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/contact/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/coreconcepts/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/coreconcepts/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/dynamicMapInformations/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/dynamicMapInformations/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/gettingStarted/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/gettingStarted/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/itil/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/itil/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/mainfeatures/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/mainfeatures/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/map/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/map/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/repo/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/repo/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/standalone/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/standalone/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/x4bcli/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/x4bcli/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/Getting%20Started/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/Getting%20Started/appcontrol_worker/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/Getting%20Started/appcontrol_worker/dynamicmapinformations/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/Getting%20Started/appcontrol_worker/dynamicmapinformations/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xcomponent.github.io/openfaas/synchronous/</loc>
+         <loc>https://xcomponent.github.io/appcontrol-documentation/openfaas/synchronous/</loc>
          <lastmod>2025-01-30</lastmod>
          <changefreq>daily</changefreq>
     </url>

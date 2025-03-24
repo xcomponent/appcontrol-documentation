@@ -60,8 +60,7 @@ AppControl uses Redis for caching and persistent storage.
 ```
 
 Later in the configuration process, you will be notified to set REDIS_CONNECTION_STRING. The REDIS_CONNECTION_STRING is :
-`   redis:6379,password=$REDIS_PASSWORD
-`
+`  redis:6379,password=$REDIS_PASSWORD`
 
 ### 2.5 RabbitMQ
 
@@ -167,7 +166,7 @@ helm install appcontrol-services "$REPO/appcontrol-services" \
   -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml \
   --set externalHostname="x4b.$MY_APPCONTROL_DOMAIN" \
   --set jwtSecretName="$MY_SECRET_NAME" \
-  --set sql.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING"
+  --set sql.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
   --namespace Appcontrol
 ```
 
@@ -191,6 +190,7 @@ To install the services with customized values:
 
 ```sh
 MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
+REDIS_CONNECTION_STRING=
 HTTTPROTOCOL=https
 CHART_VERSION=
 YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
@@ -208,8 +208,9 @@ curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/re
 helm install appcontrol-services "$REPO/appcontrol-services" \
   --namespace Appcontrol \
   --version "$CHART_VERSION" \
-  -f /tmp/appcontrol_values.yaml
+  -f /tmp/appcontrol_values.yaml \
   --set jwtSecretName="$MY_SECRET_NAME" \
+  --set redisConnectionString="$REDIS_CONNECTION_STRING" \
   --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
   --set rabbitmq.hostname="$RABBITMQ_HOST_NAME" \
   --set rabbitmq.username="$RABBITMQ_USER" \

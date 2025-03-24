@@ -1,0 +1,26 @@
+externalHostname: MY_APPCONTROL_DOMAIN
+appControl:
+    tokenSalt: # Salt used to generate tokens
+adminAccountList: # ;-separated list of admin accounts
+launcher:
+    replicaCount: 1
+api:
+    replicaCount: 1
+environmentName: appcontrol # Environment name
+redisConnectionString: # Redis connection string
+ingress:
+    class: nginx # If you use an nginx ingress controller
+    tls: true # Only if you want to use ssl with a cluster issuer
+    sslredirect: true # Only if you want to use ssl with a cluster issuer
+dbaccess:
+    useDatabase: true
+    connectionString: 'YOUR_SQLSERVER_CONNECTION_STRING'
+x4b:
+    appsExternalUrl: HTTTPROTOCOL://MY_APPCONTROL_DOMAIN/apps # The external url of the X4B Apps service
+    loginExternalUrl: HTTTPROTOCOL://MY_APPCONTROL_DOMAIN/login # The external url of the X4B Login service
+    authenticationInternalUrl: http://x4b-services-prod-authentication-svc:8080 # e.g. "http://x4b-services-authentication-svc:8080"
+rabbitmq:
+    hostname: 'YOUR RABBIT HOST NAME'
+    username: 'YOUR USERNAME'
+    password: 'YOUR PASSWORD'
+    virtualHost: / 'APPCONTROL_VIRTUAL_HOST'

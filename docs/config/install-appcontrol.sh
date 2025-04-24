@@ -54,6 +54,10 @@ ISSUER_EXISTS=$(kubectl get clusterissuer letsencrypt-issuer --no-headers 2>/dev
 read -rp "Do you want to enable TLS with Let's Encrypt? [Y/n]: " ENABLE_TLS
 ENABLE_TLS=${ENABLE_TLS:-Y}
 
+APPS_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/apps"
+LOGIN_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/login"
+AUTH_INTERNAL_URL="http://x4b-services-authentication-svc:8080"
+
 if [[ "$ENABLE_TLS" =~ ^[Yy]$ ]]; then
   TLS_ENABLED=true
   SSL_REDIRECT=true
@@ -67,15 +71,13 @@ if [[ "$ENABLE_TLS" =~ ^[Yy]$ ]]; then
 else
   TLS_ENABLED=false
   SSL_REDIRECT=false
+  APPS_EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/apps"
+  LOGIN_EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/login"
 fi
 
 MY_SECRET_NAME="jwt-keys"
 CONFIGMAP_NAME="appcontrol-config"
 REPO="oci://x4bcontainerregistry.azurecr.io/helm"
-
-APPS_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/apps"
-LOGIN_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/login"
-AUTH_INTERNAL_URL="http://x4b-services-authentication-svc:8080"
 
 # === Confirmation ===
 echo -e "\n📋 Summary:"
@@ -160,7 +162,7 @@ EOF
 
 # === Deploy Helm charts ===
 echo "🚀 Installing x4b-services..."
-helm install appcontrol-services "$REPO/appcontrol-services" \
+helm install appcontrol-services "$REPO/x4b-services" \
   --namespace "$NAMESPACE" \
   --version "$CHART_X4B_SERVICES_VERSION" \
   -f generated/x4b-services-values.yaml

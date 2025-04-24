@@ -8,16 +8,12 @@ This guide describes the installation process for AppControl on an OpenShift clu
 
 ### 2.1 OpenShift Cluster
 
-Ensure that you have an OpenShift cluster with a dedicated project (namespace) for deploying AppControl. If OpenShift is not running, start it with:
-
-```sh
-crc start
-```
+Ensure that you have an OpenShift cluster with a dedicated project (namespace) for deploying AppControl.
 
 To create the namespace if it does not exist:
 
 ```sh
-oc new-project Appcontrol || oc project Appcontrol
+oc new-project Appcontrol
 ```
 
 ### 2.2 OpenShift Ingress (Default Router)
@@ -26,255 +22,322 @@ OpenShift includes an Ingress controller by default via its built-in **Router** 
 
 ### 2.3 SQL Server Database
 
-AppControl requires a Microsoft SQL Server database.
+AppControl requires a **Microsoft SQL Server** database to operate.
 
--   **Required version**: SQL Server 2017+
--   **Example connection string**:
+-   **Required version**: SQL Server **2017 or newer**
+-   **Example connection string** (used in `appcontrol_values.yaml` when deploying with Helm):
+
+    ```yaml
+    connectionString: >
+        Server=tcp:MY_SERVER_IP,1433;Initial Catalog=MYDATABASE;
+        Persist Security Info=False;User ID=USERID;Password=PASSWORD;
+        MultipleActiveResultSets=False;Encrypt=True;
+        TrustServerCertificate=False;Connection Timeout=30;
     ```
-    Server=tcp:MY_SERVER_IP,1433;Initial Catalog=MYDATABASE;Persist Security Info=False;User ID=USERID;Password=PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-    ```
-    This connection string will be required in the `appcontrol_values.yaml` file, which is used when deploying AppControl with Helm.
+
+    This connection string must be provided in the appcontrol_values.yaml file before deploying AppControl via Helm.
+
+#### Running SQL Server in OpenShift
+
+```
+⚠️ Important Note:
+Microsoft SQL Server cannot be easily deployed on OpenShift using the official Docker image due to OpenShift-specific constraints (e.g., the requirement for containers to run as non-root users).
+```
+
+However, if you still want to deploy SQL Server within your OpenShift cluster, Microsoft provides a dedicated approach that is compatible with OpenShift. You can follow the instructions in the official workshop documentation:
+
+🔗 [Deploy SQL Server on OpenShift – Microsoft Workshop](https://github.com/microsoft/sqlworkshops-sqlonopenshift/blob/master/sqlonopenshift/01_Deploy.md)
 
 ### 2.4 Redis
 
-AppControl uses Redis for caching and persistent storage.
+AppControl also requires a **Redis** instance, which it uses for both **caching** and **persistent storage** of runtime data.
 
--   **Installation Procedure**:
+-   **Example connection string**:
+    ```
+    redis://USER:PASSWORD@HOST:PORT
+    ```
+    Replace `YOUR_REDIS_CONNECTION_STRING` accordingly.
 
+This connection string will be requested **later during the installation process**, so make sure you have it ready.
+
+#### Installing Redis (Quick Start Script)
+
+If you don’t already have a Redis instance available, you can deploy one easily using our helper script.
+
+Run the following one-liner to install Redis in your Openshift cluster:
+
+```bash
+REDIS_PASSWORD=yourpassword NAMESPACE=your-namespace \
+bash <(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-redis.sh)
 ```
- export REDIS_PASSWORD=mysecurepassword
- oc create secret generic redis-secret --from-literal=REDIS_PASSWORD="$REDIS_PASSWORD" -n appcontrol
-     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-pvc.yaml -n appcontrol
-     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-deployment.yaml -n appcontrol
-     oc apply -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/redis-service.yaml -n appcontrol
+
+Make sure your cluster has internet access so that the script can be fetched and executed properly.
+
+**Notes**:
+
+-   If NAMESPACE is not specified, the current Kubernetes namespace will be used.
+
+-   If REDIS_PASSWORD is not provided, the script will use the default password:
+    `appcontrolpwd`
+
+#### Redis Connection from Inside the Cluster
+
+Once Redis is installed, you can connect to it from inside the cluster using:
+
+```bash
+redis://default:appcontrolpwd@redis-service:6379
+default: the default Redis username
 ```
 
-`
+`appcontrolpwd`: the default password (or the one you specified)
 
--   **Verify Installation**:
+`redis-service`: the internal Kubernetes service name (DNS-resolvable by other pods)
 
-```
-  oc get pods -n appcontrol
-  oc logs deployment/redis -n appcontrol
-  oc get svc redis -n appcontrol
-```
+`6379`: the default Redis port
 
-Later in the configuration process, you will be notified to set REDIS_CONNECTION_STRING. The REDIS_CONNECTION_STRING is :
-`  redis:6379,password=$REDIS_PASSWORD`
+This internal connection string will be used by AppControl during installation.
 
 ### 2.5 RabbitMQ
 
-A RabbitMQ instance should be set up with a dedicated virtual host.
+AppControl requires a **RabbitMQ** instance for message queuing and internal communication.
 
--   **Example connection details**:
-    ```
-    Host: YOUR_RABBIT_HOST
-    Virtual Host: APPCONTROL_VIRTUAL_HOST
-    User: YOUR_USERNAME
-    Password: YOUR_PASSWORD
-    ```
+## Installing RabbitMQ (Quick Start)
 
-### 2.6 Configuring the AppControl Domain
+To install RabbitMQ in your Kubernetes/OpenShift cluster without editing any files locally, run:
 
-Define a DNS entry for the AppControl platform.
-
-If you are deploying elsewhere, ensure that this domain is properly configured.
-
--   **Example domains**:
-    -   AppControl: `appcontrol.MyCompany.com`
-
-This domain will be used later in the configuration.
-
-## 3. Platform Configuration
-
-### 3.1 Helm Repository Setup
-
-Before installing Helm charts, authenticate to the Helm registry using credentials provided by the AppControl editor:
-
-```sh
-helm registry login x4bcontainerregistry.azurecr.io --username login --password password
+```bash
+RABBITMQ_USER=myuser RABBITMQ_PASS=mypassword \
+curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
+envsubst | kubectl apply -f -
 ```
 
-Set up the Helm repository:
+💡 You can omit the variables to use defaults:
 
-```sh
-REPO="oci://x4bcontainerregistry.azurecr.io/helm"
+Username: `admin`
+Password: `admin123`
+
+This setup includes:
+
+-   A Secret with credentials (customizable via environment variables)
+
+-   A RabbitMQ Deployment
+
+-   An internal Service for AMQP traffic
+
+-   An OpenShift Route for accessing the Web UI (port 15672)
+
+#### RabbitMQ Connection from Inside the Cluster
+
+AppControl will connect using:
+
+```yaml
+Host: rabbitmq
+Port: 5672
+Virtual Host: /
+Username: your-username
+Password: your-password
 ```
 
-### 3.2 Application Configuration
+### 2.6 DNS Configuration for AppControl Deployment
 
-The configuration templates for AppControl are available in the repository:
+AppControl requires **two distinct DNS entries** to operate:
 
--   [applications-template.json](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json)
--   [services-template.json](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json)
+-   `x4b.mycompany.com` – for the X4B core platform
+-   `appcontrol.mycompany.com` – for the AppControl web interface
 
-To use them in your deployment, replace `MY_APPCONTROL_DOMAIN` dynamically:
+---
 
-```sh
+#### ✅ Define the Primary Domain
 
-MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
+In your configuration, you only need to define the **main domain** (e.g. `mycompany.com`):
 
-oc create configmap appcontrol-config \
-  --from-literal=applications.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")" \
-  --from-literal=services.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")"
+```bash
+export MY_APPCONTROL_DOMAIN=mycompany.com
 ```
 
-### 3.3 JWT Secret Keys
+The system will automatically derive the necessary subdomains:
 
-The secret name used for JWT keys in OpenShift is **jwt-keys**. This name must be referenced later in the configuration.
+-   x4b.${MY_APPCONTROL_DOMAIN} for the X4B backend
 
-Generate a self-signed certificate and create a secret for JWT keys:
+-   appcontrol.${MY_APPCONTROL_DOMAIN} for the AppControl frontend
 
-```sh
-openssl genpkey -algorithm RSA -out jwt-private.pem
-openssl rsa -pubout -in jwt-private.pem -out jwt-public.pem
+💡 This simplifies DNS configuration and ensures consistency.
+
+#### If You Are Deploying on a Different Domain
+
+If you're deploying AppControl on another domain, make sure that:
+
+-   x4b.<your-domain> and appcontrol.<your-domain> are correctly configured as DNS records
+
+-   Both entries point to the public IP or ingress controller of your Kubernetes/OpenShift cluster
+
+## 3. AppControl Platform Installer
+
+This page explains how to deploy the AppControl platform and its required services using the interactive installation script: `install-appcontrol.sh`.
+
+The script sets up everything automatically, including:
+
+-   Helm registry authentication
+-   Kubernetes namespace creation
+-   JWT key generation and secret
+-   Redis and RabbitMQ integration
+-   SQL Server connection
+-   Configuration injection via ConfigMap
+-   Helm chart deployment for:
+    -   `x4b-services`
+    -   `appcontrol`
+
+---
+
+## ⚙️ Requirements
+
+-   `oc` (OpenShift CLI)
+-   `helm` (Helm 3+)
+-   `openssl` (for JWT key generation)
+-   Access to the Helm OCI registry (`x4bcontainerregistry.azurecr.io`)
+
+---
+
+## 🔐 SSL Configuration
+
+AppControl supports HTTPS access to its web interfaces, and you have **two options** to enable SSL:
+
+### Option 1: SSL via Kubernetes Ingress (Let's Encrypt)
+
+If you are using an **Ingress controller** (e.g. nginx) inside your cluster:
+
+-   AppControl is preconfigured to support Let's Encrypt
+-   You **must create a `ClusterIssuer` named `letsencrypt-issuer`**
+-   The certificate will be automatically generated and renewed by `cert-manager`
+
+#### ✅ Example: Let's Encrypt ClusterIssuer (Staging)
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    name: letsencrypt-issuer
+spec:
+    acme:
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
+        email: your-email@yourdomain.com
+        privateKeySecretRef:
+            name: letsencrypt-account-key
+        solvers:
+            - http01:
+                  ingress:
+                      class: nginx
 ```
 
-Then, create the secret in OpenShift:
+💡 Replace with the production ACME server for production use.
 
-```sh
-oc create secret generic jwt-keys -n Appcontrol \
-  --from-file=jwt-private.pem=jwt-private.pem \
-  --from-file=jwt-public.pem=jwt-public.pem
+### Option 2: SSL via External Gateway or Load Balancer
+
+If your architecture includes an external API gateway, reverse proxy, or cloud load balancer (e.g., Azure Front Door, AWS ELB, NGINX outside k8s):
+
+You can terminate SSL there
+
+Disable TLS in the Helm values:
+
+```yaml
+ingress:
+  tls: false
+  sslredirect: false
+This lets you delegate SSL management to your gateway, while still using AppControl inside the cluster over HTTP.
 ```
 
-## 4. Helm Chart Installation
+Default Ingress Settings in the Script
+The script generates:
 
-### 4.1 Install AppControl Services
-
-The configuration template for `x4b-services-values.yaml` is available in the repository:
-
--   [x4b-services-values.yaml](https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml)
-
-To view all possible values before installing:
-
-```sh
-helm show values "$REPO/appcontrol-services"
+```yaml
+ingress:
+    class: nginx
+    tls: true
+    sslredirect: true
 ```
 
-Before installation, check the helm chart version.
-To install the services with customized values:
+This works out-of-the-box with cert-manager and letsencrypt-issuer.
+If you're using an external gateway, update these settings before installation or edit appcontrol-values.yaml.
 
-```sh
-MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
-MY_SECRET_NAME="jwt-keys"
-YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
-CHART_VERSION=
-helm install appcontrol-services "$REPO/appcontrol-services" \
-  --namespace Appcontrol \
-  --version "$CHART_VERSION" \
-  -f https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/x4b-services-values.yaml \
-  --set externalHostname="x4b.$MY_APPCONTROL_DOMAIN" \
-  --set jwtSecretName="$MY_SECRET_NAME" \
-  --set sql.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
-  --namespace Appcontrol
+## 🧪 Inputs Prompted by the Script
+
+| Input                          | Description                                        | Example               | Default                  |
+| ------------------------------ | -------------------------------------------------- | --------------------- | ------------------------ |
+| `MY_APPCONTROL_DOMAIN`         | Your domain (base DNS)                             | `mycompany.com`       | _required_               |
+| Namespace                      | Kubernetes namespace for install                   | `appcontrol`          | Current namespace        |
+| Helm registry credentials      | Used to authenticate to the OCI Helm registry      | `login / password`    | _required_               |
+| SQL Server info                | Connection details to your SQL database            | `sql.prod.local` etc. | _required_               |
+| Token salt                     | Salt used for JWT generation                       | Random base64 string  | _auto-generated_         |
+| Redis host/port                | Redis service used by AppControl                   | `redis-service:6379`  | `redis-service:6379`     |
+| RabbitMQ host/port/vhost/user  | RabbitMQ messaging broker used by X4B & AppControl | `rabbitmq`, `5672`    | Defaults + prompt values |
+| Helm chart X4B Service version | Version of Helm chart to install                   | `40.6.0`              | `40.6.0`                 |
+| Helm chart Appcontrol version  | Version of Helm chart to install                   | `90.3.0`              | `90.3.0`                 |
+
+---
+
+## 📂 Generated Files
+
+| File                       | Purpose                                  |
+| -------------------------- | ---------------------------------------- |
+| `x4b-services-values.yaml` | Values for the `x4b-services` Helm chart |
+| `appcontrol-values.yaml`   | Values for the `appcontrol` Helm chart   |
+
+---
+
+## 📦 What the Script Does
+
+1. Detects or prompts for a Openshift namespace
+2. Logs into the AppControl Helm OCI registry
+3. Creates a `ConfigMap` for AppControl config files
+4. Generates RSA keys and creates a JWT `Secret`
+5. Generates 2 values files (`*.yaml`)
+6. Installs:
+    - `appcontrol-services` chart (X4B platform)
+    - `appcontrol` chart (AppControl interface)
+
+---
+
+## 🟢 Usage
+
+```bash
+curl -sL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-appcontrol.sh | bash
 ```
 
-### 4.2 Install AppControl
+Follow the interactive prompts. The deployment takes just a few minutes.
 
-```sh
-helm install appcontrol "$REPO/appcontrol" \
-  --namespace Appcontrol \
-  -f appcontrol_values.yaml
-```
+✅ Result
 
-To view all possible values before installing:
+## ✅ Once Installed
 
-```sh
-helm show values "$REPO/appcontrol-services"
-```
+Depending on whether you enabled TLS during installation:
 
-Before installation, check the helm chart version.
+### 🔒 If TLS was enabled:
 
-To install the services with customized values:
+-   AppControl is available at **https://appcontrol.mycompany.com**
+-   X4B backend is available at **https://x4b.mycompany.com**
 
-```sh
-MY_APPCONTROL_DOMAIN="appcontrol.MyCompany.com"
-REDIS_CONNECTION_STRING=
-HTTTPROTOCOL=https
-CHART_VERSION=
-YOUR_SQLSERVER_CONNECTION_STRING="your_sqlserver_connection_string"
-RABBITMQ_HOST_NAME="Your rabbitmq host eg: rabbitmq.rabbitmq.svc.cluster.local"
-RABBITMQ_USER="Your rabbitmq user"
-RABBITMQ_PASSWORD="Your rabbitmq password"
-RABBITMQ_VHOST="Your rabbitmq vhost"
-# Download and replace all instances of MY_APPCONTROL_DOMAIN
-curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/appcontrol_values.yaml \
-  | sed "s/MY_APPCONTROL_DOMAIN/${MY_APPCONTROL_DOMAIN}/g" \
-  | sed "s/HTTTPROTOCOL/${HTTTPROTOCOL}/g" \
-  > /tmp/appcontrol_values.yaml
+### 🌐 If TLS was not enabled:
 
-# Install using the updated YAML file
-helm install appcontrol-services "$REPO/appcontrol-services" \
-  --namespace Appcontrol \
-  --version "$CHART_VERSION" \
-  -f /tmp/appcontrol_values.yaml \
-  --set jwtSecretName="$MY_SECRET_NAME" \
-  --set redisConnectionString="$REDIS_CONNECTION_STRING" \
-  --set dbaccess.connectionString="$YOUR_SQLSERVER_CONNECTION_STRING" \
-  --set rabbitmq.hostname="$RABBITMQ_HOST_NAME" \
-  --set rabbitmq.username="$RABBITMQ_USER" \
-  --set rabbitmq.password="$RABBITMQ_PASSWORD" \
-  --set rabbitmq.virtualHost="$RABBITMQ_VHOST" \
-  --namespace Appcontrol
-```
+-   AppControl is available at **http://appcontrol.mycompany.com**
+-   X4B backend is available at **http://x4b.mycompany.com**
 
-## 5. Exposing AppControl in OpenShift
+### 👤 Accessing the Platform
 
-### 5.1 Create an OpenShift Route
+After installation is complete, a **default administrator account** is created automatically:
 
-Instead of using an Ingress resource, OpenShift provides a built-in Router to expose services externally. To expose AppControl, create a Route:
+-   **Username:** `admin`
+-   **Password:** `KoordinatorAdmin`
 
-```sh
-oc expose svc/appcontrol --hostname=MY_APPCONTROL_DOMAIN
-```
+You can log in to the AppControl web interface using this account.
 
-This will generate a public endpoint for AppControl.
+> ⚠️ **Important:** For security reasons, it is strongly recommended to change the default password after your first login.
 
-### 5.2 Verify the Created Route
+You can update the password directly from the **user settings page** inside the AppControl UI.
 
-Check if the Route has been created successfully:
+📎 Notes
 
-```sh
-oc get routes
-```
+-   Redis and RabbitMQ should be running in the cluster or externally accessible.
 
-Example output:
+-   SSL and Ingress settings are pre-configured for a typical nginx setup.
 
-```
-NAME          HOST/PORT                 PATH   SERVICES      PORT   TERMINATION   WILDCARD
-appcontrol    myapp.openshift.local            appcontrol    8080   edge
-```
-
-### 5.3 Enable TLS (If Required)
-
-To enable **TLS termination**, create a secure Route:
-
-```sh
-oc create route edge appcontrol --service=appcontrol --hostname=MY_APPCONTROL_DOMAIN
-```
-
-This ensures HTTPS is enforced at the OpenShift Router level.
-
-## 6. Checking Deployment Status
-
-### 6.1 Verify Helm Charts
-
-```sh
-helm ls -n Appcontrol
-helm status appcontrol
-```
-
-### 6.2 Verify Running Pods
-
-```sh
-oc get pods -l 'app.kubernetes.io/instance in (appcontrol-services,appcontrol)' -n Appcontrol
-```
-
-### 6.3 Verify AppControl Accessibility
-
-Open your browser and navigate to:
-
-```
-https://MY_APPCONTROL_DOMAIN
-```
+-   Make sure your DNS entries are correctly pointed before accessing the web UI.

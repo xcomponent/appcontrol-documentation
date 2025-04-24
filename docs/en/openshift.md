@@ -300,7 +300,9 @@ If you're using an external gateway, update these settings before installation o
 ## 🟢 Usage
 
 ```bash
-curl -sL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-appcontrol.sh | bash
+curl -sLO https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-appcontrol.sh
+chmod +x install-appcontrol.sh
+./install-appcontrol.sh
 ```
 
 Follow the interactive prompts. The deployment takes just a few minutes.

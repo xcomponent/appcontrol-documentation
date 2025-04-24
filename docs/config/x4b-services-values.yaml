@@ -15,3 +15,5 @@ sql:
 ingress:
     class: nginx # If you use an nginx ingress controller
     tls: true # Only if you want to use ssl with a cluster issuer
+apps:
+    appsConfigMapName: x4b-config  # Name of the ConfigMap for X4B Apps 

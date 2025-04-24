@@ -32,7 +32,7 @@ REDIS_HOST=${REDIS_HOST:-redis-service}
 read -rp "🔢 Redis port [6379]: " REDIS_PORT
 REDIS_PORT=${REDIS_PORT:-6379}
 REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
-
+read -srp "🔐 Redis password (leave empty if none): " REDIS_PASSWORD
 read -rp "📬 RabbitMQ hostname [rabbitmq]: " RABBIT_HOST
 RABBIT_HOST=${RABBIT_HOST:-rabbitmq}
 read -rp "📬 RabbitMQ username: " RABBIT_USER
@@ -110,6 +110,12 @@ oc create secret generic "$MY_SECRET_NAME" -n "$NAMESPACE" \
   --from-file=jwt-public.pem=jwt-public.pem
 rm jwt-private.pem jwt-public.pem
 
+if [[ -n "$REDIS_PASSWORD" ]]; then
+  REDIS_URI="redis://:${REDIS_PASSWORD}@$REDIS_HOSTNAME"
+else
+  REDIS_URI="redis://$REDIS_HOSTNAME"
+fi
+
 mkdir -p generated
 
 # === Generate x4b-services-values.yaml ===
@@ -129,7 +135,7 @@ appControl:
   tokenSalt: "$TOKEN_SALT"
   adminAccountList: ""
   environmentName: "prod"
-  redisConnectionString: "$REDIS_HOSTNAME"
+  redisConnectionString: "$REDIS_URI"
 launcher:
   replicaCount: 1
 api:

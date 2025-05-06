@@ -705,9 +705,13 @@ default: the default Redis username
 <p>AppControl requires a <strong>RabbitMQ</strong> instance for message queuing and internal communication.</p>
 <h2 id="installing-rabbitmq-quick-start">Installing RabbitMQ (Quick Start)</h2>
 <p>To install RabbitMQ in your Kubernetes/OpenShift cluster without editing any files locally, run:</p>
-<pre><code class="language-bash">RABBITMQ_USER=myuser RABBITMQ_PASS=mypassword \
+<pre><code class="language-bash">NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
+NAMESPACE=${NAMESPACE:-default}
+
+RABBITMQ_USER=myuser RABBITMQ_PASS=mypassword \
 curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-envsubst | kubectl apply -f -
+envsubst | oc apply -n "$NAMESPACE" -f -
+
 </code></pre>
 <p>💡 You can omit the variables to use defaults:</p>
 <p>Username: <code>admin</code>

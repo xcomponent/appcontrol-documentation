@@ -2,49 +2,78 @@
 
 set -e
 
+if [ -f ".env" ]; then
+    echo "Loading variables from .env..."
+    set -o allexport
+    source .env
+    set +o allexport
+fi
+
 echo "🔧 AppControl Interactive Installer"
 
 # === Detect current namespace ===
 DEFAULT_NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
-read -rp "📛 Namespace to install AppControl [${DEFAULT_NAMESPACE:-appcontrol}]: " NAMESPACE
-NAMESPACE=${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}
+read -rp "📛 Namespace to install AppControl [${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}]: " input_namespace
+NAMESPACE="${input_namespace:-${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}}"
 
 # === Prompt user input ===
-read -rp "🌐 Enter your main domain (e.g., mycompany.com): " MY_APPCONTROL_DOMAIN
-read -rp "🔑 Helm registry username: " HELM_USERNAME
-read -rp "🔑 Helm registry password: " HELM_PASSWORD
+read -rp "🌐 Enter your main domain (e.g., mycompany.com) [${MY_APPCONTROL_DOMAIN:-}]: " input_domain
+MY_APPCONTROL_DOMAIN="${input_domain:-${MY_APPCONTROL_DOMAIN:-}}"
+
+read -rp "🔑 Helm registry username [${HELM_USERNAME:-}]: " input_helm_user
+HELM_USERNAME="${input_helm_user:-${HELM_USERNAME:-}}"
+
+read -rp "🔑 Helm registry password [${HELM_PASSWORD:-}]: " input_helm_pass
+HELM_PASSWORD="${input_helm_pass:-${HELM_PASSWORD:-}}"
 
 echo "🗃 SQL Server configuration:"
-read -rp "  - Server: " SQL_SERVER
-read -rp "  - User: " SQL_USER
-read -srp "  - Password: " SQL_PASSWORD
+read -rp "  - Server [${SQL_SERVER:-}]: " input_sql_server
+SQL_SERVER="${input_sql_server:-${SQL_SERVER:-}}"
+
+read -rp "  - User [${SQL_USER:-}]: " input_sql_user
+SQL_USER="${input_sql_user:-${SQL_USER:-}}"
+
+read -srp "  - Password (hidden) [hidden if already set]: " input_sql_password
 echo
+SQL_PASSWORD="${input_sql_password:-${SQL_PASSWORD:-}}"
+
 SQL_CONNECTION_STRING_SERVICES="Server=$SQL_SERVER;Database=xc-x4b-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;"
 SQL_CONNECTION_STRING_APPCONTROL="Server=$SQL_SERVER;Database=xc-appcontrol-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;"
 
-# Generate default salt
+# Generate default salt if not provided
 DEFAULT_SALT=$(openssl rand -base64 32)
-read -rp "🪙 Token salt [auto-generated]: " TOKEN_SALT
-TOKEN_SALT=${TOKEN_SALT:-$DEFAULT_SALT}
+read -rp "🪙 Token salt [${TOKEN_SALT:-auto-generated}]: " input_token_salt
+TOKEN_SALT="${input_token_salt:-${TOKEN_SALT:-$DEFAULT_SALT}}"
 
-read -rp "🧠 Redis hostname [redis-service]: " REDIS_HOST
-REDIS_HOST=${REDIS_HOST:-redis-service}
-read -rp "🔢 Redis port [6379]: " REDIS_PORT
-REDIS_PORT=${REDIS_PORT:-6379}
+read -rp "🧠 Redis hostname [${REDIS_HOST:-redis-service}]: " input_redis_host
+REDIS_HOST="${input_redis_host:-${REDIS_HOST:-redis-service}}"
+
+read -rp "🔢 Redis port [${REDIS_PORT:-6379}]: " input_redis_port
+REDIS_PORT="${input_redis_port:-${REDIS_PORT:-6379}}"
+
 REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
-read -srp "🔐 Redis password (leave empty if none): " REDIS_PASSWORD
-read -rp "📬 RabbitMQ hostname [rabbitmq]: " RABBIT_HOST
-RABBIT_HOST=${RABBIT_HOST:-rabbitmq}
-read -rp "📬 RabbitMQ username: " RABBIT_USER
-read -rp "📬 RabbitMQ password: " RABBIT_PASSWORD
-read -rp "📬 RabbitMQ virtual host [/]:" RABBIT_VHOST
-RABBIT_VHOST=${RABBIT_VHOST:-/}
 
-read -rp "📦 Helm chart X4B Services version [40.6.0]: " CHART_X4B_SERVICES_VERSION
-CHART_X4B_SERVICES_VERSION=${CHART_X4B_SERVICES_VERSION:-40.6.0}
+read -srp "🔐 Redis password (leave empty if none) [hidden if already set]: " input_redis_password
+echo
+REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
 
-read -rp "📦 Helm chart Appcontrol version [90.3.0]: " CHART_APPCONTROL_VERSION
-CHART_APPCONTROL_VERSION=${CHART_APPCONTROL_VERSION:-90.3.0}
+read -rp "📬 RabbitMQ hostname [${RABBIT_HOST:-rabbitmq}]: " input_rabbit_host
+RABBIT_HOST="${input_rabbit_host:-${RABBIT_HOST:-rabbitmq}}"
+
+read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
+RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
+
+read -rp "📬 RabbitMQ password [hidden if already set]: " input_rabbit_password
+RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
+
+read -rp "📬 RabbitMQ virtual host [${RABBIT_VHOST:-/}]: " input_rabbit_vhost
+RABBIT_VHOST="${input_rabbit_vhost:-${RABBIT_VHOST:-/}}"
+
+read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-40.6.0}]: " input_x4b_version
+CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-40.6.0}}"
+
+read -rp "📦 Helm chart Appcontrol version [${CHART_APPCONTROL_VERSION:-90.3.0}]: " input_appcontrol_version
+CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-90.3.0}}"
 
 # === TLS prompt with detection ===
 echo -e "\n🔐 TLS Configuration (Let's Encrypt via cert-manager)"
@@ -54,9 +83,8 @@ ISSUER_EXISTS=$(kubectl get clusterissuer letsencrypt-issuer --no-headers 2>/dev
 read -rp "Do you want to enable TLS with Let's Encrypt? [Y/n]: " ENABLE_TLS
 ENABLE_TLS=${ENABLE_TLS:-Y}
 
-APPS_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/apps"
-LOGIN_EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/login"
-AUTH_INTERNAL_URL="http://x4b-services-authentication-svc:8080"
+EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/"
+
 
 if [[ "$ENABLE_TLS" =~ ^[Yy]$ ]]; then
   TLS_ENABLED=true
@@ -71,9 +99,14 @@ if [[ "$ENABLE_TLS" =~ ^[Yy]$ ]]; then
 else
   TLS_ENABLED=false
   SSL_REDIRECT=false
-  APPS_EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/apps"
-  LOGIN_EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/login"
+  EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/"
 fi
+
+APPS_EXTERNAL_URL="${EXTERNAL_URL}apps"
+AUTHENTICATION_URL="${EXTERNAL_URL}authentication"
+LOGIN_EXTERNAL_URL="${EXTERNAL_URL}login"
+AUTH_INTERNAL_URL="http://x4b-services-authentication-svc:8080"
+REDIRECT_REGISTRATION_URL="${LOGIN_EXTERNAL_URL}/registration"
 
 MY_SECRET_NAME="jwt-keys"
 CONFIGMAP_NAME="appcontrol-config"
@@ -122,12 +155,25 @@ mkdir -p generated
 
 # === Generate x4b-services-values.yaml ===
 cat <<EOF > generated/x4b-services-values.yaml
-externalHostname: x4b.$MY_APPCONTROL_DOMAIN
-jwtSecretName: $MY_SECRET_NAME
+externalHostname: "x4b.${MY_APPCONTROL_DOMAIN}"
+x4bSpecificDnszone: "x4b.${MY_APPCONTROL_DOMAIN}"
+jwtSecretName: "${MY_SECRET_NAME}"
+pullSecretName: ""
+devSubDomain: ""
+settings:
+  appsServiceUrl: "${APPS_EXTERNAL_URL}"
+  authenticationUrl: "${AUTHENTICATION_URL}"
 sql:
-  connectionString: "$SQL_CONNECTION_STRING_SERVICES"
+  connectionString: "${SQL_CONNECTION_STRING_SERVICES}"
 apps:
-  appsConfigMapName: "$CONFIGMAP_NAME"
+  appsConfigMapName: "${CONFIGMAP_NAME}"
+  serverRemoteUrl: "${EXTERNAL_URL}"
+authentication:
+  OtlpCollectorAddr: ''
+  serverRemoteUrl: "${EXTERNAL_URL}"
+  redirectRegistrationUrl: "${REDIRECT_REGISTRATION_URL}"
+  loginPageUrl: "${LOGIN_EXTERNAL_URL}"
+  secretName: $MY_SECRET_NAME
 EOF
 
 # === Generate appcontrol-values.yaml ===
@@ -160,17 +206,29 @@ rabbitmq:
   virtualHost: "$RABBIT_VHOST"
 EOF
 
+uninstall_if_exists() {
+  local release=$1
+  if helm status "$release" -n "$NAMESPACE" &>/dev/null; then
+    echo "⛔ Uninstalling existing release: $release"
+    helm uninstall "$release" -n "$NAMESPACE"
+  fi
+}
+
+echo "🔍 Checking for existing releases..."
+uninstall_if_exists "appcontrol-services"
+uninstall_if_exists "appcontrol"
+
 # === Deploy Helm charts ===
 echo "🚀 Installing x4b-services..."
 helm install appcontrol-services "$REPO/x4b-services" \
   --namespace "$NAMESPACE" \
   --version "$CHART_X4B_SERVICES_VERSION" \
-  -f generated/x4b-services-values.yaml
+  -f generated/x4b-services-values.yaml 
 
 echo "🚀 Installing AppControl..."
 helm install appcontrol "$REPO/appcontrol" \
   --namespace "$NAMESPACE" \
   --version "$CHART_APPCONTROL_VERSION" \
-  -f generated/appcontrol-values.yaml
+  -f generated/appcontrol-values.yaml 
 
 echo "✅ AppControl platform successfully deployed!"

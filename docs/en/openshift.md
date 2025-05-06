@@ -106,9 +106,13 @@ AppControl requires a **RabbitMQ** instance for message queuing and internal com
 To install RabbitMQ in your Kubernetes/OpenShift cluster without editing any files locally, run:
 
 ```bash
+NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
+NAMESPACE=${NAMESPACE:-default}
+
 RABBITMQ_USER=myuser RABBITMQ_PASS=mypassword \
 curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-envsubst | kubectl apply -f -
+envsubst | oc apply -n "$NAMESPACE" -f -
+
 ```
 
 💡 You can omit the variables to use defaults:

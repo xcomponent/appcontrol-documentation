@@ -4,8 +4,8 @@ metadata:
     name: rabbitmq-secret
 type: Opaque
 stringData:
-    RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
-    RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-admin123}
+    RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+    RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
 ---
 apiVersion: apps/v1
 kind: Deployment

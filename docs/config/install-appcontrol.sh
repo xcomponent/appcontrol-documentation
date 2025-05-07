@@ -33,7 +33,7 @@ SQL_SERVER="${input_sql_server:-${SQL_SERVER:-}}"
 read -rp "  - User [${SQL_USER:-}]: " input_sql_user
 SQL_USER="${input_sql_user:-${SQL_USER:-}}"
 
-read -srp "  - Password (hidden) [hidden if already set]: " input_sql_password
+read -rp "  - Password [${SQL_PASSWORD:-}]: " input_sql_password
 echo
 SQL_PASSWORD="${input_sql_password:-${SQL_PASSWORD:-}}"
 
@@ -45,15 +45,15 @@ DEFAULT_SALT=$(openssl rand -base64 32)
 read -rp "🪙 Token salt [${TOKEN_SALT:-auto-generated}]: " input_token_salt
 TOKEN_SALT="${input_token_salt:-${TOKEN_SALT:-$DEFAULT_SALT}}"
 
-read -rp "🧠 Redis hostname [${REDIS_HOST:-redis-service}]: " input_redis_host
-REDIS_HOST="${input_redis_host:-${REDIS_HOST:-redis-service}}"
+read -rp "🧠 Redis hostname [${REDIS_HOST:-redis}]: " input_redis_host
+REDIS_HOST="${input_redis_host:-${REDIS_HOST:-redis}}"
 
 read -rp "🔢 Redis port [${REDIS_PORT:-6379}]: " input_redis_port
 REDIS_PORT="${input_redis_port:-${REDIS_PORT:-6379}}"
 
 REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
 
-read -srp "🔐 Redis password (leave empty if none) [hidden if already set]: " input_redis_password
+read -rp "🔐 Redis password [${REDIS_PASSWORD:-}]: " input_redis_password
 echo
 REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
 
@@ -63,7 +63,7 @@ RABBIT_HOST="${input_rabbit_host:-${RABBIT_HOST:-rabbitmq}}"
 read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
 RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
 
-read -rp "📬 RabbitMQ password [hidden if already set]: " input_rabbit_password
+read -rp "📬 RabbitMQ password [${RABBIT_PASSWORD:-}]: " input_rabbit_password
 RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
 
 read -rp "📬 RabbitMQ virtual host [${RABBIT_VHOST:-/}]: " input_rabbit_vhost
@@ -145,12 +145,12 @@ oc create secret generic "$MY_SECRET_NAME" -n "$NAMESPACE" \
   --from-file=jwt-public.pem=jwt-public.pem
 rm jwt-private.pem jwt-public.pem
 
+REDIS_CONNECTION_STRING="${REDIS_HOSTNAME}"
 if [[ -n "$REDIS_PASSWORD" ]]; then
-  REDIS_URI="redis://:${REDIS_PASSWORD}@$REDIS_HOSTNAME"
-else
-  REDIS_URI="redis://$REDIS_HOSTNAME"
+  REDIS_CONNECTION_STRING="${REDIS_CONNECTION_STRING},password=${REDIS_PASSWORD}"
 fi
 
+echo "REDIS_CONNECTION_STRING: $REDIS_CONNECTION_STRING"
 mkdir -p generated
 
 # === Generate x4b-services-values.yaml ===
@@ -179,11 +179,12 @@ EOF
 # === Generate appcontrol-values.yaml ===
 cat <<EOF > generated/appcontrol-values.yaml
 externalHostname: appcontrol.$MY_APPCONTROL_DOMAIN
+redisConnectionString: "$REDIS_CONNECTION_STRING"
+pullSecretName: ""
 appControl:
   tokenSalt: "$TOKEN_SALT"
   adminAccountList: ""
   environmentName: "prod"
-  redisConnectionString: "$REDIS_URI"
 launcher:
   replicaCount: 1
 api:
@@ -201,9 +202,13 @@ x4b:
   authenticationInternalUrl: "$AUTH_INTERNAL_URL"
 rabbitmq:
   hostname: "$RABBIT_HOST"
-  username: "$RABBIT_USER"
+  user: "$RABBIT_USER"
   password: "$RABBIT_PASSWORD"
   virtualHost: "$RABBIT_VHOST"
+restartPolicy:
+  namespace: $NAMESPACE
+  enabled: false
+  schedule: "0 */6 * * *"
 EOF
 
 uninstall_if_exists() {

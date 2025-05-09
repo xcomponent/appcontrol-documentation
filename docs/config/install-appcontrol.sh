@@ -37,8 +37,9 @@ read -rp "  - Password [${SQL_PASSWORD:-}]: " input_sql_password
 echo
 SQL_PASSWORD="${input_sql_password:-${SQL_PASSWORD:-}}"
 
-SQL_CONNECTION_STRING_SERVICES="Server=$SQL_SERVER;Database=xc-x4b-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;"
-SQL_CONNECTION_STRING_APPCONTROL="Server=$SQL_SERVER;Database=xc-appcontrol-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;"
+SQL_CONNECTION_STRING_SERVICES="Server=$SQL_SERVER,1433;Initial Catalog=xc-x4b-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
+SQL_CONNECTION_STRING_APPCONTROL="Server=$SQL_SERVER,1433;Initial Catalog=xc-appcontrol-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=300;ConnectRetryCount=30"
+
 
 # Generate default salt if not provided
 DEFAULT_SALT=$(openssl rand -base64 32)
@@ -204,11 +205,14 @@ rabbitmq:
   hostname: "$RABBIT_HOST"
   user: "$RABBIT_USER"
   password: "$RABBIT_PASSWORD"
-  virtualHost: "$RABBIT_VHOST"
+  vhost: "$RABBIT_VHOST"
 restartPolicy:
   namespace: $NAMESPACE
   enabled: false
   schedule: "0 */6 * * *"
+healthcheckhub:
+  enabled: false
+
 EOF
 
 uninstall_if_exists() {

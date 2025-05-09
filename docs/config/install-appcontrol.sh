@@ -212,6 +212,8 @@ restartPolicy:
   schedule: "0 */6 * * *"
 healthcheckhub:
   enabled: false
+agent:
+  image: xcomponent/appcontrol-agent:90.5-ubi8
 
 EOF
 

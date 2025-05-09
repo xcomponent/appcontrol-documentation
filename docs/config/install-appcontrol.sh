@@ -11,6 +11,8 @@ fi
 
 echo "🔧 AppControl Interactive Installer"
 
+AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:90.6-ubi8}
+
 # === Detect current namespace ===
 DEFAULT_NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
 read -rp "📛 Namespace to install AppControl [${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}]: " input_namespace
@@ -213,7 +215,7 @@ restartPolicy:
 healthcheckhub:
   enabled: false
 agent:
-  image: xcomponent/appcontrol-agent:90.5-ubi8
+  image: $AGENT_IMAGE
 
 EOF
 

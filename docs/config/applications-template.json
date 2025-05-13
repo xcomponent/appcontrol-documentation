@@ -12,7 +12,7 @@
     {
         "id": "x4b-settings",
         "label": "Settings",
-        "url": "(http || https)://x4b.MY_APPCONTROL_DOMAIN/settings",
+        "url": "(http || https)://MY_APPCONTROL_DOMAIN/settings",
         "logo": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<svg version=\"1.1\" id=\"Calque_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n viewBox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\" xml:space=\"preserve\">\n<style type=\"text/css\">\n\t.st0{fill:#555454;}\n\t.st1{fill:url(#SVGID_1_);}\n</style>\n<g>\n\t<path class=\"st0\" d=\"M162,236.5L13.6,88.1C2.9,77.4,2.9,59.3,13.6,48l35-35C59.3,2.3,77.4,2.3,88.7,13l148.4,148.4\n\tc10.7,10.7,10.7,28.8,0,40.1l-35,35C190.8,247.8,173.3,247.8,162,236.5z\"/>\n\t<path class=\"st0\" d=\"M13.6,423.9L162,275.5c10.7-10.7,28.8-10.7,40.1,0l35,35c10.7,10.7,10.7,28.8,0,40.1L88.7,499\n\tc-10.7,10.7-28.8,10.7-40.1,0l-35-35C2.3,452.7,2.3,434.6,13.6,423.9z\"/>\n\t<path class=\"st0\" d=\"M350,274.9l148.4,148.4c10.7,10.7,10.7,28.8,0,40.1l-35,35c-10.7,10.7-28.8,10.7-40.1,0L274.9,350\n\tc-10.7-10.7-10.7-28.8,0-40.1l35-35C321.2,264.2,338.7,264.2,350,274.9z\"/>\n\t<linearGradient id=\"SVGID_1_\" gradientUnits=\"userSpaceOnUse\" x1=\"266.864\" y1=\"389.2141\" x2=\"506.8589\" y2=\"389.2141\" gradientTransform=\"matrix(1 0 0 -1 0 514)\">\n\t\t<stop offset=\"0\" style=\"stop-color:#3B4898\"/>\n\t\t<stop offset=\"1\" style=\"stop-color:#2188CA\"/>\n\t</linearGradient>\n\t<path class=\"st1\" d=\"M498.4,88.1L350,236.5c-10.7,10.7-28.8,10.7-40.1,0l-35-35c-10.7-10.7-10.7-28.8,0-40.1L423.3,13\n\tc10.7-10.7,28.8-10.7,40.1,0l35,35C509.7,59.3,509.7,77.4,498.4,88.1z\"/>\n</g>\n</svg>",
         "environment": "appcontrol",
         "authorizationUrl": null,

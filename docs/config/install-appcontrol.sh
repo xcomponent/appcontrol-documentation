@@ -11,12 +11,239 @@ fi
 
 echo "🔧 AppControl Interactive Installer"
 
-AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:90.6-ubi8}
-
 # === Detect current namespace ===
 DEFAULT_NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
 read -rp "📛 Namespace to install AppControl [${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}]: " input_namespace
 NAMESPACE="${input_namespace:-${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}}"
+
+echo "🧹 Removing previous installation of Redis and RabbitMQ in namespace '$NAMESPACE'..."
+
+# Supprimer Redis
+oc delete deployment redis -n "$NAMESPACE" --ignore-not-found
+oc delete service redis -n "$NAMESPACE" --ignore-not-found
+oc delete configmap redis-config -n "$NAMESPACE" --ignore-not-found
+oc delete route redis -n "$NAMESPACE" --ignore-not-found
+
+# Supprimer RabbitMQ
+oc delete deployment rabbitmq -n "$NAMESPACE" --ignore-not-found
+oc delete service rabbitmq -n "$NAMESPACE" --ignore-not-found
+oc delete configmap rabbitmq-config -n "$NAMESPACE" --ignore-not-found
+oc delete secret rabbitmq-secret -n "$NAMESPACE" --ignore-not-found
+oc delete pvc -l app=rabbitmq -n "$NAMESPACE" --ignore-not-found
+oc delete route rabbitmq -n "$NAMESPACE" --ignore-not-found
+
+echo "⏳ Waiting for complete deletion of Redis and RabbitMQ..."
+
+timeout=60
+elapsed=0
+interval=2
+
+while true; do
+  count=$(oc get pods -n "$NAMESPACE" --no-headers 2>/dev/null | grep -E 'redis|rabbitmq' | wc -l || true)
+
+  if [[ "$count" -eq 0 ]]; then
+    echo "✅ RabbitMQ and Redis pods have been removed."
+    break
+  fi
+
+  if (( elapsed >= timeout )); then
+    echo "⚠️ Timeout: Redis or RabbitMQ pods still present."
+    oc get pods -n "$NAMESPACE" | grep -E 'redis|rabbitmq' || true
+    break
+  fi
+
+  echo "⌛ Still waiting... ($count remaining)"
+  sleep $interval
+  elapsed=$((elapsed + interval))
+done
+
+
+
+echo "Installing Redis..."
+
+read -rp "🔐 Redis password [${REDIS_PASSWORD:-}]: " input_redis_password
+echo
+REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
+
+echo "🔐 Creating secret in namespace: $NAMESPACE"
+oc delete secret redis-secret -n "$NAMESPACE" 2>/dev/null || true
+
+cat <<EOF | oc apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-secret
+  namespace: ${NAMESPACE}
+type: Opaque
+stringData:
+  redis.conf: |
+    requirepass ${REDIS_PASSWORD}
+EOF
+
+echo "📦 Applying Redis deployment and service..."
+cat <<EOF | oc apply -n "$NAMESPACE" -f -
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7
+          args: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-config
+              mountPath: /usr/local/etc/redis
+              readOnly: true
+            - name: redis-storage
+              mountPath: /data
+      volumes:
+        - name: redis-config
+          secret:
+            secretName: redis-secret
+        - name: redis-storage
+          persistentVolumeClaim:
+            claimName: redis-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+EOF
+
+echo "✅ Redis deployed successfully in namespace '$NAMESPACE'."
+echo "⏳ Waiting for Redis pod to be ready..."
+
+# Wait until Redis pod reaches 'Running' state
+while true; do
+  pod=$(oc get pods -n "$NAMESPACE" -l app=redis -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+  status=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
+
+  if [[ "$status" == "Running" ]]; then
+    echo "✅ Redis pod is running: $pod"
+    break
+  fi
+
+  echo "⌛ Waiting... (status: ${status:-pending})"
+  sleep 2
+done
+
+echo "📄 Streaming logs for Redis pod: $pod"
+echo "------------------------------------"
+
+# Stream logs and break when readiness message is found
+oc logs -f pod/"$pod" -n "$NAMESPACE" | while read -r line; do
+  echo "$line"
+  if echo "$line" | grep -q "Ready to accept connections"; then
+    echo "✅ Redis is ready (log confirmed)."
+     pkill -P $$ oc  # ⬅️ tue uniquement le 'oc logs -f' enfant de ce script
+    break  # ⬅️ Quitte seulement la boucle, pas le script
+  fi
+done
+
+
+REDIS_HOST="redis"
+REDIS_PORT=6379
+REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
+
+
+echo "▶️ Redis is up and running, installing RabbitMq...."
+
+read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
+RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
+
+read -rp "📬 RabbitMQ password [${RABBIT_PASSWORD:-}]: " input_rabbit_password
+RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
+
+curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
+  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
+  oc apply -n "$NAMESPACE" -f -
+
+echo "📦 Déploiement de RabbitMQ dans le namespace '$NAMESPACE'..."
+
+curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
+  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
+  oc apply -n "$NAMESPACE" -f -
+
+echo "⏳ Waiting for RabbitMQ Pod..."
+
+timeout_seconds=180
+elapsed=0
+interval=3
+
+while true; do
+  pod=$(oc get pods -n "$NAMESPACE" -l app=rabbitmq -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+
+  if [[ -n "$pod" ]]; then
+    status=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
+    ready=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null)
+
+    if [[ "$status" == "Running" && "$ready" == "true" ]]; then
+      echo "✅ RabbitMQ Pod Ready : $pod"
+      break
+    fi
+
+    echo "⌛ Found Pod ($pod), waiting ... (status: $status, ready: $ready)"
+  else
+    echo "🔍 Waiting for RabbitMQ Pod ..."
+  fi
+
+  sleep $interval
+  elapsed=$((elapsed + interval))
+
+  if (( elapsed >= timeout_seconds )); then
+    echo "❌ Timed out : RabbitMQ is not ready." >&2
+    oc get pods -n "$NAMESPACE" -l app=rabbitmq
+    exit 1
+  fi
+done
+
+RABBIT_HOST="rabbitmq"
+RABBIT_VHOST="my-vhost"
+
+AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:90.6-ubi8}
+
+SECRET_NAME=regcred
+
+oc delete secret "$SECRET_NAME" -n "$NAMESPACE" --ignore-not-found
+
+if ! oc get secret "$SECRET_NAME" -n "$NAMESPACE" &>/dev/null; then
+  echo "🔐 Creating dummy imagePullSecret '$SECRET_NAME' in namespace '$NAMESPACE'..."
+  oc create secret generic "$SECRET_NAME" \
+    -n "$NAMESPACE" \
+    --dry-run=client -o yaml | oc apply -f -
+else
+  echo "ℹ️ Secret '$SECRET_NAME' already exists in namespace '$NAMESPACE'."
+fi
 
 # === Prompt user input ===
 read -rp "🌐 Enter your main domain (e.g., mycompany.com) [${MY_APPCONTROL_DOMAIN:-}]: " input_domain
@@ -48,29 +275,6 @@ DEFAULT_SALT=$(openssl rand -base64 32)
 read -rp "🪙 Token salt [${TOKEN_SALT:-auto-generated}]: " input_token_salt
 TOKEN_SALT="${input_token_salt:-${TOKEN_SALT:-$DEFAULT_SALT}}"
 
-read -rp "🧠 Redis hostname [${REDIS_HOST:-redis}]: " input_redis_host
-REDIS_HOST="${input_redis_host:-${REDIS_HOST:-redis}}"
-
-read -rp "🔢 Redis port [${REDIS_PORT:-6379}]: " input_redis_port
-REDIS_PORT="${input_redis_port:-${REDIS_PORT:-6379}}"
-
-REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
-
-read -rp "🔐 Redis password [${REDIS_PASSWORD:-}]: " input_redis_password
-echo
-REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
-
-read -rp "📬 RabbitMQ hostname [${RABBIT_HOST:-rabbitmq}]: " input_rabbit_host
-RABBIT_HOST="${input_rabbit_host:-${RABBIT_HOST:-rabbitmq}}"
-
-read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
-RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
-
-read -rp "📬 RabbitMQ password [${RABBIT_PASSWORD:-}]: " input_rabbit_password
-RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
-
-read -rp "📬 RabbitMQ virtual host [${RABBIT_VHOST:-/}]: " input_rabbit_vhost
-RABBIT_VHOST="${input_rabbit_vhost:-${RABBIT_VHOST:-/}}"
 
 read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-40.6.0}]: " input_x4b_version
 CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-40.6.0}}"
@@ -79,36 +283,27 @@ read -rp "📦 Helm chart Appcontrol version [${CHART_APPCONTROL_VERSION:-90.3.0
 CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-90.3.0}}"
 
 # === TLS prompt with detection ===
-echo -e "\n🔐 TLS Configuration (Let's Encrypt via cert-manager)"
-CERT_MANAGER_OK=$(kubectl get pods -n cert-manager --no-headers 2>/dev/null | wc -l)
-ISSUER_EXISTS=$(kubectl get clusterissuer letsencrypt-issuer --no-headers 2>/dev/null | wc -l)
+echo -e "\n🔐 TLS Configuration"
 
-read -rp "Do you want to enable TLS with Let's Encrypt? [Y/n]: " ENABLE_TLS
+read -rp "Do you want to enable TLS ? [Y/n]: " ENABLE_TLS
 ENABLE_TLS=${ENABLE_TLS:-Y}
 
-EXTERNAL_URL="https://x4b.$MY_APPCONTROL_DOMAIN/"
+EXTERNAL_URL="https://$MY_APPCONTROL_DOMAIN"
 
 
 if [[ "$ENABLE_TLS" =~ ^[Yy]$ ]]; then
   TLS_ENABLED=true
   SSL_REDIRECT=true
-
-  if [[ "$CERT_MANAGER_OK" -eq 0 || "$ISSUER_EXISTS" -eq 0 ]]; then
-    echo "⚠️  Warning: cert-manager or letsencrypt-issuer not detected."
-    echo "   TLS will be enabled in the values.yaml but you must configure it in your cluster manually."
-    read -rp "Continue with TLS enabled? [y/N]: " CONTINUE_TLS
-    [[ "$CONTINUE_TLS" =~ ^[Yy]$ ]] || exit 1
-  fi
 else
   TLS_ENABLED=false
   SSL_REDIRECT=false
-  EXTERNAL_URL="http://x4b.$MY_APPCONTROL_DOMAIN/"
+  EXTERNAL_URL="http://$MY_APPCONTROL_DOMAIN"
 fi
 
-APPS_EXTERNAL_URL="${EXTERNAL_URL}apps"
-AUTHENTICATION_URL="${EXTERNAL_URL}authentication"
-LOGIN_EXTERNAL_URL="${EXTERNAL_URL}login"
-AUTH_INTERNAL_URL="http://x4b-services-authentication-svc:8080"
+APPS_EXTERNAL_URL="${EXTERNAL_URL}/apps"
+AUTHENTICATION_URL="${EXTERNAL_URL}/authentication"
+LOGIN_EXTERNAL_URL="${EXTERNAL_URL}/login"
+AUTH_INTERNAL_URL="http://appcontrol-services-x4b-services-authentication-svc:8080"
 REDIRECT_REGISTRATION_URL="${LOGIN_EXTERNAL_URL}/registration"
 
 MY_SECRET_NAME="jwt-keys"
@@ -121,8 +316,6 @@ echo "Namespace: $NAMESPACE"
 echo "Domain: $MY_APPCONTROL_DOMAIN"
 echo "Redis: $REDIS_HOSTNAME"
 echo "RabbitMQ: $RABBIT_USER@$RABBIT_HOST (vhost=$RABBIT_VHOST)"
-read -rp "✅ Proceed with installation? [y/N]: " confirm
-[[ "$confirm" =~ ^[Yy]$ ]] || exit 0
 
 # === Helm registry login ===
 helm registry login x4bcontainerregistry.azurecr.io --username "$HELM_USERNAME" --password "$HELM_PASSWORD"
@@ -133,9 +326,14 @@ oc get namespace "$NAMESPACE" >/dev/null 2>&1 || oc create namespace "$NAMESPACE
 # === Create ConfigMap ===
 echo "🧩 Creating AppControl config map..."
 oc delete configmap "$CONFIGMAP_NAME" -n "$NAMESPACE" --ignore-not-found
+
+applications_json=$(curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json | sed "s|MY_APPCONTROL_DOMAIN|$EXTERNAL_URL|g")
+
+services_json=$(curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json | sed "s|MY_APPCONTROL_DOMAIN|$EXTERNAL_URL|g")
+
 oc create configmap "$CONFIGMAP_NAME" -n "$NAMESPACE" \
-  --from-literal=applications.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/applications-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")" \
-  --from-literal=services.json="$(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/services-template.json | sed "s/MY_APPCONTROL_DOMAIN/$MY_APPCONTROL_DOMAIN/g")"
+  --from-literal=applications.json="$applications_json" \
+  --from-literal=services.json="$services_json"
 
 # === Generate JWT keys ===
 echo "🔐 Creating JWT secret..."
@@ -158,16 +356,20 @@ mkdir -p generated
 
 # === Generate x4b-services-values.yaml ===
 cat <<EOF > generated/x4b-services-values.yaml
-externalHostname: "x4b.${MY_APPCONTROL_DOMAIN}"
-x4bSpecificDnszone: "x4b.${MY_APPCONTROL_DOMAIN}"
+externalHostname: "${MY_APPCONTROL_DOMAIN}"
+x4bSpecificDnszone: "${MY_APPCONTROL_DOMAIN}"
 jwtSecretName: "${MY_SECRET_NAME}"
-pullSecretName: ""
 devSubDomain: ""
 settings:
   appsServiceUrl: "${APPS_EXTERNAL_URL}"
   authenticationUrl: "${AUTHENTICATION_URL}"
 sql:
   connectionString: "${SQL_CONNECTION_STRING_SERVICES}"
+ingress:
+  enabled: false
+  class: nginx
+  tls: $TLS_ENABLED
+  sslredirect: $SSL_REDIRECT
 apps:
   appsConfigMapName: "${CONFIGMAP_NAME}"
   serverRemoteUrl: "${EXTERNAL_URL}"
@@ -181,18 +383,19 @@ EOF
 
 # === Generate appcontrol-values.yaml ===
 cat <<EOF > generated/appcontrol-values.yaml
-externalHostname: appcontrol.$MY_APPCONTROL_DOMAIN
+externalHostname: $MY_APPCONTROL_DOMAIN
 redisConnectionString: "$REDIS_CONNECTION_STRING"
-pullSecretName: ""
+adminAccountList: "admin"
+environmentName: "prod"
 appControl:
   tokenSalt: "$TOKEN_SALT"
-  adminAccountList: ""
-  environmentName: "prod"
 launcher:
   replicaCount: 1
+  connectionString: "$SQL_CONNECTION_STRING_APPCONTROL"
 api:
   replicaCount: 1
 ingress:
+  enabled: false
   class: nginx
   tls: $TLS_ENABLED
   sslredirect: $SSL_REDIRECT
@@ -214,6 +417,7 @@ restartPolicy:
   schedule: "0 */6 * * *"
 healthcheckhub:
   enabled: false
+  commandconnectionString: "$SQL_CONNECTION_STRING_APPCONTROL"
 agent:
   image: $AGENT_IMAGE
 
@@ -243,5 +447,219 @@ helm install appcontrol "$REPO/appcontrol" \
   --namespace "$NAMESPACE" \
   --version "$CHART_APPCONTROL_VERSION" \
   -f generated/appcontrol-values.yaml 
+
+wait_for_all_pods_ready() {
+  local namespace=${1:-default}
+  local timeout_seconds=${2:-300}
+  local interval_seconds=5
+  local elapsed=0
+
+  echo "⏳ Waiting for all pods in '$namespace' to be running and ready..."
+
+  while true; do
+    # List non-Completed pods
+    pods=$(oc get pods -n "$namespace" --no-headers | grep -v 'Completed' || true)
+
+    # Count pods not in 'Running'
+    not_running=$(echo "$pods" | awk '$3 != "Running"' | wc -l)
+
+    # Count pods whose containers are not all Ready (e.g. 1/1, 2/2)
+    containers_not_ready=$(echo "$pods" | awk '{print $2}' | grep -vE '^([0-9]+)/\1$' | wc -l)
+
+    if [[ "$not_running" -eq 0 && "$containers_not_ready" -eq 0 ]]; then
+      echo "✅ All pods are running and ready."
+      return 0
+    fi
+
+    if [[ "$elapsed" -ge "$timeout_seconds" ]]; then
+      echo "❌ Timeout: Some pods are not ready:"
+      oc get pods -n "$namespace"
+      return 1
+    fi
+
+    echo "⌛ Still waiting... ($not_running not running, $containers_not_ready not ready)"
+    sleep "$interval_seconds"
+    elapsed=$((elapsed + interval_seconds))
+  done
+}
+
+
+# Juste avant les routes :
+wait_for_all_pods_ready "$NAMESPACE" 300 || exit 1
+
+echo "🔁 Removing existing routes..."
+ROUTES=(
+  appcontrol-api
+  appcontrol-hermes-svc
+  appcontrol-services-x4b-services-apps-svc
+  appcontrol-services-x4b-services-authentication-svc
+  appcontrol-services-x4b-services-login-clearexpired
+  appcontrol-services-x4b-services-login-svc
+  appcontrol-services-x4b-services-settings-svc
+  appcontrol-webapp
+  route-agentmanagerbridge
+)
+
+for route in "${ROUTES[@]}"; do
+  oc delete route "$route" -n "$NAMESPACE" --ignore-not-found
+done
+
+
+echo "🚀 Creation of new routes..."
+
+cat <<EOF | oc apply -f -
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-api
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /core
+  to:
+    kind: Service
+    name: appcontrol-api
+  port:
+    targetPort: 7890
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-hermes-svc
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /notif/
+  to:
+    kind: Service
+    name: appcontrol-hermes-svc
+  port:
+    targetPort: 5500
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-services-x4b-services-apps-svc
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /apps
+  to:
+    kind: Service
+    name: appcontrol-services-x4b-services-apps-svc
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-services-x4b-services-authentication-svc
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /authentication
+  to:
+    kind: Service
+    name: appcontrol-services-x4b-services-authentication-svc
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-services-x4b-services-login-clearexpired
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /authentication/api/RefreshTokens/ClearExpired
+  to:
+    kind: Service
+    name: appcontrol-services-x4b-services-login-svc
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-services-x4b-services-login-svc
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /login
+  to:
+    kind: Service
+    name: appcontrol-services-x4b-services-login-svc
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-services-x4b-services-settings-svc
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /settings
+  to:
+    kind: Service
+    name: appcontrol-services-x4b-services-settings-svc
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appcontrol-webapp
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /
+  to:
+    kind: Service
+    name: appcontrol-webapp
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: route-agentmanagerbridge
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/timeout: 2h
+    haproxy.router.openshift.io/balance: source
+spec:
+  host: ${MY_APPCONTROL_DOMAIN}
+  path: /agentmanager
+  to:
+    kind: Service
+    name: appcontrol-agentmanagerbridge
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+EOF
+
+echo "✅ Routes are successfully created for the domain : ${MY_APPCONTROL_DOMAIN}"
+
+
 
 echo "✅ AppControl platform successfully deployed!"

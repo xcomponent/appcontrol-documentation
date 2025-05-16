@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." name="description"/>
+<meta content="This guide describes the updated installation process for AppControl on an OpenShift cluster. It uses a single script (install-appcontrol.sh) to deploy all components, including Redis and RabbitMQ, which are installed automatically. DNS configuration has also been simplified: only one domain is required." name="description"/>
 <link href="https://xcomponent.github.io/appcontrol-documentation/openshift/" rel="canonical"/>
 <link href="../favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.28" name="generator"/>
@@ -17,7 +17,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<meta content="AppControl Installation Guide for OpenShift" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="og:url"/><meta content="AppControl Installation Guide for OpenShift" property="og:title"/><meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." property="og:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="twitter:url"/><meta content="AppControl Installation Guide for OpenShift" property="twitter:title"/><meta content="This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures." property="twitter:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="twitter:image"/></head>
+<meta content="AppControl Installation Guide for OpenShift" name="title"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/><meta content="website" property="og:type"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="og:url"/><meta content="AppControl Installation Guide for OpenShift" property="og:title"/><meta content="This guide describes the updated installation process for AppControl on an OpenShift cluster. It uses a single script (install-appcontrol.sh) to deploy all components, including Redis and RabbitMQ, which are installed automatically. DNS configuration has also been simplified: only one domain is required." property="og:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="og:image"/><meta content="summary_large_image" property="twitter:card"/><meta content="https://xcomponent.github.io/appcontrol-documentation/openshift" property="twitter:url"/><meta content="AppControl Installation Guide for OpenShift" property="twitter:title"/><meta content="This guide describes the updated installation process for AppControl on an OpenShift cluster. It uses a single script (install-appcontrol.sh) to deploy all components, including Redis and RabbitMQ, which are installed automatically. DNS configuration has also been simplified: only one domain is required." property="twitter:description"/><meta content="https://appcontrol.xcomponent.com/favicon.ico" property="twitter:image"/></head>
 <body data-md-color-accent="#532699" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -416,9 +416,9 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22-openshift-ingress-default-router">
+<a class="md-nav__link" href="#22-openshift-router">
 <span class="md-ellipsis">
-      2.2 OpenShift Ingress (Default Router)
+      2.2 OpenShift Router
     </span>
 </a>
 </li>
@@ -428,12 +428,29 @@
       2.3 SQL Server Database
     </span>
 </a>
-<nav aria-label="2.3 SQL Server Database" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#24-tools-required">
+<span class="md-ellipsis">
+      2.4 Tools Required
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-installation-overview">
+<span class="md-ellipsis">
+      3. Installation Overview
+    </span>
+</a>
+<nav aria-label="3. Installation Overview" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#running-sql-server-in-openshift">
+<a class="md-nav__link" href="#env-file-for-default-values">
 <span class="md-ellipsis">
-      Running SQL Server in OpenShift
+      ⚙️ .env File for Default Values
     </span>
 </a>
 </li>
@@ -441,192 +458,39 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#24-redis">
+<a class="md-nav__link" href="#4-dns-configuration">
 <span class="md-ellipsis">
-      2.4 Redis
-    </span>
-</a>
-<nav aria-label="2.4 Redis" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#installing-redis-quick-start-script">
-<span class="md-ellipsis">
-      Installing Redis (Quick Start Script)
+      4. DNS Configuration
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#redis-connection-from-inside-the-cluster">
+<a class="md-nav__link" href="#5-script-usage">
 <span class="md-ellipsis">
-      Redis Connection from Inside the Cluster
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#25-rabbitmq">
-<span class="md-ellipsis">
-      2.5 RabbitMQ
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#installing-rabbitmq-quick-start">
-<span class="md-ellipsis">
-      Installing RabbitMQ (Quick Start)
-    </span>
-</a>
-<nav aria-label="Installing RabbitMQ (Quick Start)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#rabbitmq-connection-from-inside-the-cluster">
-<span class="md-ellipsis">
-      RabbitMQ Connection from Inside the Cluster
+      5. Script Usage
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#26-dns-configuration-for-appcontrol-deployment">
+<a class="md-nav__link" href="#6-tls-https-access">
 <span class="md-ellipsis">
-      2.6 DNS Configuration for AppControl Deployment
-    </span>
-</a>
-<nav aria-label="2.6 DNS Configuration for AppControl Deployment" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#define-the-primary-domain">
-<span class="md-ellipsis">
-      ✅ Define the Primary Domain
+      6. TLS / HTTPS Access
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#if-you-are-deploying-on-a-different-domain">
+<a class="md-nav__link" href="#7-default-admin-access">
 <span class="md-ellipsis">
-      If You Are Deploying on a Different Domain
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-appcontrol-platform-installer">
-<span class="md-ellipsis">
-      3. AppControl Platform Installer
+      7. Default Admin Access
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#requirements">
+<a class="md-nav__link" href="#8-summary">
 <span class="md-ellipsis">
-      ⚙️ Requirements
+      8. Summary
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ssl-configuration">
-<span class="md-ellipsis">
-      🔐 SSL Configuration
-    </span>
-</a>
-<nav aria-label="🔐 SSL Configuration" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#option-1-ssl-via-kubernetes-ingress-lets-encrypt">
-<span class="md-ellipsis">
-      Option 1: SSL via Kubernetes Ingress (Let's Encrypt)
-    </span>
-</a>
-<nav aria-label="Option 1: SSL via Kubernetes Ingress (Let's Encrypt)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-lets-encrypt-clusterissuer-staging">
-<span class="md-ellipsis">
-      ✅ Example: Let's Encrypt ClusterIssuer (Staging)
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#option-2-ssl-via-external-gateway-or-load-balancer">
-<span class="md-ellipsis">
-      Option 2: SSL via External Gateway or Load Balancer
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#inputs-prompted-by-the-script">
-<span class="md-ellipsis">
-      🧪 Inputs Prompted by the Script
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#generated-files">
-<span class="md-ellipsis">
-      📂 Generated Files
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-the-script-does">
-<span class="md-ellipsis">
-      📦 What the Script Does
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#usage">
-<span class="md-ellipsis">
-      🟢 Usage
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#once-installed">
-<span class="md-ellipsis">
-      ✅ Once Installed
-    </span>
-</a>
-<nav aria-label="✅ Once Installed" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#if-tls-was-enabled">
-<span class="md-ellipsis">
-      🔒 If TLS was enabled:
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#if-tls-was-not-enabled">
-<span class="md-ellipsis">
-      🌐 If TLS was not enabled:
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#accessing-the-platform">
-<span class="md-ellipsis">
-      👤 Accessing the Platform
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -637,355 +501,114 @@
 <article class="md-content__inner md-typeset">
 <h1 id="appcontrol-installation-guide-for-openshift">AppControl Installation Guide for OpenShift</h1>
 <h2 id="1-introduction">1. Introduction</h2>
-<p>This guide describes the installation process for AppControl on an OpenShift cluster. It covers Helm charts, configuration steps, and verification procedures.</p>
+<p>This guide describes the updated installation process for AppControl on an OpenShift cluster. It uses a <strong>single script</strong> (<code>install-appcontrol.sh</code>) to deploy all components, including Redis and RabbitMQ, which are installed automatically. DNS configuration has also been simplified: only <strong>one domain</strong> is required.</p>
+<blockquote>
+<p>✅ The <code>install-appcontrol.sh</code> script has been tested successfully on <strong>Red Hat OpenShift Sandbox</strong>, a free, managed OpenShift environment provided by Red Hat.</p>
+<p>If you're new to OpenShift, we recommend using the sandbox to try AppControl with minimal setup:
+🔗 https://developers.redhat.com/developer-sandbox</p>
+</blockquote>
 <h2 id="2-requirements">2. Requirements</h2>
 <h3 id="21-openshift-cluster">2.1 OpenShift Cluster</h3>
 <p>Ensure that you have an OpenShift cluster with a dedicated project (namespace) for deploying AppControl.</p>
 <p>To create the namespace if it does not exist:</p>
-<pre><code class="language-sh">oc new-project Appcontrol
+<pre><code class="language-sh">oc new-project appcontrol
 </code></pre>
-<h3 id="22-openshift-ingress-default-router">2.2 OpenShift Ingress (Default Router)</h3>
-<p>OpenShift includes an Ingress controller by default via its built-in <strong>Router</strong> (HAProxy). Instead of configuring an additional Ingress controller, we will use OpenShift's native Route system to expose the application.</p>
+<h3 id="22-openshift-router">2.2 OpenShift Router</h3>
+<p>OpenShift’s native <strong>Route</strong> mechanism is used to expose services — no additional ingress controller is required.</p>
 <h3 id="23-sql-server-database">2.3 SQL Server Database</h3>
-<p>AppControl requires a <strong>Microsoft SQL Server</strong> database to operate.</p>
-<ul>
-<li><strong>Required version</strong>: SQL Server <strong>2017 or newer</strong></li>
-<li>
-<p><strong>Example connection string</strong> (used in <code>appcontrol_values.yaml</code> when deploying with Helm):</p>
-<p><code>yaml
-connectionString: &gt;
-    Server=tcp:MY_SERVER_IP,1433;Initial Catalog=MYDATABASE;
-    Persist Security Info=False;User ID=USERID;Password=PASSWORD;
-    MultipleActiveResultSets=False;Encrypt=True;
-    TrustServerCertificate=False;Connection Timeout=30;</code></p>
-<p>This connection string must be provided in the appcontrol_values.yaml file before deploying AppControl via Helm.</p>
-</li>
-</ul>
-<h4 id="running-sql-server-in-openshift">Running SQL Server in OpenShift</h4>
-<pre><code>⚠️ Important Note:
-Microsoft SQL Server cannot be easily deployed on OpenShift using the official Docker image due to OpenShift-specific constraints (e.g., the requirement for containers to run as non-root users).
+<p>AppControl requires a <strong>Microsoft SQL Server</strong> database (2017 or newer).</p>
+<p>Example connection string (prompted during installation):</p>
+<pre><code class="language-txt">Server=tcp:MY_SERVER_IP,1433;Initial Catalog=MYDATABASE;
+Persist Security Info=False;User ID=USERID;Password=PASSWORD;
+MultipleActiveResultSets=False;Encrypt=True;
+TrustServerCertificate=False;Connection Timeout=30;
 </code></pre>
-<p>However, if you still want to deploy SQL Server within your OpenShift cluster, Microsoft provides a dedicated approach that is compatible with OpenShift. You can follow the instructions in the official workshop documentation:</p>
-<p>🔗 <a href="https://github.com/microsoft/sqlworkshops-sqlonopenshift/blob/master/sqlonopenshift/01_Deploy.md">Deploy SQL Server on OpenShift – Microsoft Workshop</a></p>
-<h3 id="24-redis">2.4 Redis</h3>
-<p>AppControl also requires a <strong>Redis</strong> instance, which it uses for both <strong>caching</strong> and <strong>persistent storage</strong> of runtime data.</p>
-<ul>
-<li><strong>Example connection string</strong>:
-    <code>redis://USER:PASSWORD@HOST:PORT</code>
-    Replace <code>YOUR_REDIS_CONNECTION_STRING</code> accordingly.</li>
-</ul>
-<p>This connection string will be requested <strong>later during the installation process</strong>, so make sure you have it ready.</p>
-<h4 id="installing-redis-quick-start-script">Installing Redis (Quick Start Script)</h4>
-<p>If you don’t already have a Redis instance available, you can deploy one easily using our helper script.</p>
-<p>Run the following one-liner to install Redis in your Openshift cluster:</p>
-<pre><code class="language-bash">REDIS_PASSWORD=yourpassword NAMESPACE=your-namespace \
-bash &lt;(curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-redis.sh)
-</code></pre>
-<p>Make sure your cluster has internet access so that the script can be fetched and executed properly.</p>
-<p><strong>Notes</strong>:</p>
-<ul>
-<li>
-<p>If NAMESPACE is not specified, the current Kubernetes namespace will be used.</p>
-</li>
-<li>
-<p>If REDIS_PASSWORD is not provided, the script will use the default password:
-    <code>appcontrolpwd</code></p>
-</li>
-</ul>
-<h4 id="redis-connection-from-inside-the-cluster">Redis Connection from Inside the Cluster</h4>
-<p>Once Redis is installed, you can connect to it from inside the cluster using:</p>
-<pre><code class="language-bash">redis://default:appcontrolpwd@redis-service:6379
-default: the default Redis username
-</code></pre>
-<p><code>appcontrolpwd</code>: the default password (or the one you specified)</p>
-<p><code>redis-service</code>: the internal Kubernetes service name (DNS-resolvable by other pods)</p>
-<p><code>6379</code>: the default Redis port</p>
-<p>This internal connection string will be used by AppControl during installation.</p>
-<h3 id="25-rabbitmq">2.5 RabbitMQ</h3>
-<p>AppControl requires a <strong>RabbitMQ</strong> instance for message queuing and internal communication.</p>
-<h2 id="installing-rabbitmq-quick-start">Installing RabbitMQ (Quick Start)</h2>
-<p>To install RabbitMQ in your Kubernetes/OpenShift cluster without editing any files locally, run:</p>
-<pre><code class="language-bash">export RABBITMQ_USER=${RABBITMQ_USER:-admin}
-export RABBITMQ_PASS=${RABBITMQ_PASS:-admin123}
-
-NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
-NAMESPACE=${NAMESPACE:-default}
-RABBITMQ_USER=$RABBITMQ_USER RABBITMQ_PASS=$RABBITMQ_PASS \
-curl -s https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-envsubst | oc apply -n "$NAMESPACE" -f -
-
-
-</code></pre>
-<p>💡 You can omit the variables to use defaults:</p>
-<p>Username: <code>admin</code>
-Password: <code>admin123</code></p>
-<p>This setup includes:</p>
-<ul>
-<li>
-<p>A Secret with credentials (customizable via environment variables)</p>
-</li>
-<li>
-<p>A RabbitMQ Deployment</p>
-</li>
-<li>
-<p>An internal Service for AMQP traffic</p>
-</li>
-<li>
-<p>An OpenShift Route for accessing the Web UI (port 15672)</p>
-</li>
-</ul>
-<h4 id="rabbitmq-connection-from-inside-the-cluster">RabbitMQ Connection from Inside the Cluster</h4>
-<p>AppControl will connect using:</p>
-<pre><code class="language-yaml">Host: rabbitmq
-Port: 5672
-Virtual Host: /
-Username: your-username
-Password: your-password
-</code></pre>
-<h3 id="26-dns-configuration-for-appcontrol-deployment">2.6 DNS Configuration for AppControl Deployment</h3>
-<p>AppControl requires <strong>two distinct DNS entries</strong> to operate:</p>
-<ul>
-<li><code>x4b.mycompany.com</code> – for the X4B core platform</li>
-<li><code>appcontrol.mycompany.com</code> – for the AppControl web interface</li>
-</ul>
-<hr/>
-<h4 id="define-the-primary-domain">✅ Define the Primary Domain</h4>
-<p>In your configuration, you only need to define the <strong>main domain</strong> (e.g. <code>mycompany.com</code>):</p>
-<pre><code class="language-bash">export MY_APPCONTROL_DOMAIN=mycompany.com
-</code></pre>
-<p>The system will automatically derive the necessary subdomains:</p>
-<ul>
-<li>
-<p>x4b.${MY_APPCONTROL_DOMAIN} for the X4B backend</p>
-</li>
-<li>
-<p>appcontrol.${MY_APPCONTROL_DOMAIN} for the AppControl frontend</p>
-</li>
-</ul>
-<p>💡 This simplifies DNS configuration and ensures consistency.</p>
-<h4 id="if-you-are-deploying-on-a-different-domain">If You Are Deploying on a Different Domain</h4>
-<p>If you're deploying AppControl on another domain, make sure that:</p>
-<ul>
-<li>
-<p>x4b.<your-domain> and appcontrol.<your-domain> are correctly configured as DNS records</your-domain></your-domain></p>
-</li>
-<li>
-<p>Both entries point to the public IP or ingress controller of your Kubernetes/OpenShift cluster</p>
-</li>
-</ul>
-<h2 id="3-appcontrol-platform-installer">3. AppControl Platform Installer</h2>
-<p>This page explains how to deploy the AppControl platform and its required services using the interactive installation script: <code>install-appcontrol.sh</code>.</p>
-<p>The script sets up everything automatically, including:</p>
-<ul>
-<li>Helm registry authentication</li>
-<li>Kubernetes namespace creation</li>
-<li>JWT key generation and secret</li>
-<li>Redis and RabbitMQ integration</li>
-<li>SQL Server connection</li>
-<li>Configuration injection via ConfigMap</li>
-<li>Helm chart deployment for:<ul>
-<li><code>x4b-services</code></li>
-<li><code>appcontrol</code></li>
-</ul>
-</li>
-</ul>
-<hr/>
-<h2 id="requirements">⚙️ Requirements</h2>
+<blockquote>
+<p>📝 Note: SQL Server is not bundled with the install script. If you need to deploy it inside OpenShift, refer to Microsoft’s official workshop:<br/>
+🔗 <a href="https://github.com/microsoft/sqlworkshops-sqlonopenshift/blob/master/sqlonopenshift/01_Deploy.md">Deploy SQL Server on OpenShift – Microsoft Workshop</a></p>
+</blockquote>
+<h3 id="24-tools-required">2.4 Tools Required</h3>
 <ul>
 <li><code>oc</code> (OpenShift CLI)</li>
-<li><code>helm</code> (Helm 3+)</li>
-<li><code>openssl</code> (for JWT key generation)</li>
-<li>Access to the Helm OCI registry (<code>x4bcontainerregistry.azurecr.io</code>)</li>
+<li><code>helm</code> (version 3 or above)</li>
+<li><code>openssl</code> (for generating JWT secrets)</li>
 </ul>
-<hr/>
-<h2 id="ssl-configuration">🔐 SSL Configuration</h2>
-<p>AppControl supports HTTPS access to its web interfaces, and you have <strong>two options</strong> to enable SSL:</p>
-<h3 id="option-1-ssl-via-kubernetes-ingress-lets-encrypt">Option 1: SSL via Kubernetes Ingress (Let's Encrypt)</h3>
-<p>If you are using an <strong>Ingress controller</strong> (e.g. nginx) inside your cluster:</p>
+<h2 id="3-installation-overview">3. Installation Overview</h2>
+<p>The <code>install-appcontrol.sh</code> script automates the full deployment of AppControl. It:</p>
 <ul>
-<li>AppControl is preconfigured to support Let's Encrypt</li>
-<li>You <strong>must create a <code>ClusterIssuer</code> named <code>letsencrypt-issuer</code></strong></li>
-<li>The certificate will be automatically generated and renewed by <code>cert-manager</code></li>
+<li>Authenticates to the Helm registry</li>
+<li>Creates namespace (if needed)</li>
+<li>Installs Redis and RabbitMQ</li>
+<li>Creates required Secrets and ConfigMaps</li>
+<li>Generates JWT keys</li>
+<li>Deploys Helm charts for <code>x4b-services</code> and <code>appcontrol</code></li>
 </ul>
-<h4 id="example-lets-encrypt-clusterissuer-staging">✅ Example: Let's Encrypt ClusterIssuer (Staging)</h4>
-<pre><code class="language-yaml">apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-    name: letsencrypt-issuer
-spec:
-    acme:
-        server: https://acme-staging-v02.api.letsencrypt.org/directory
-        email: your-email@yourdomain.com
-        privateKeySecretRef:
-            name: letsencrypt-account-key
-        solvers:
-            - http01:
-                  ingress:
-                      class: nginx
+<h3 id="env-file-for-default-values">⚙️ .env File for Default Values</h3>
+<p>A <code>.env</code> file can be used to predefine environment variables such as domain, SQL connection string, or Helm registry credentials. These values are picked up by the script.</p>
+<p>Example:</p>
+<pre><code class="language-env">MY_APPCONTROL_DOMAIN=mydomain.com
+HELM_USERNAME=
+HELM_PASSWORD=
+SQL_SERVER=
+SQL_USER=
+SQL_PASSWORD=
+REDIS_PASSWORD=appcontrolpwd
+RABBIT_USER=admin
+RABBIT_PASSWORD=admin123
+CHART_X4B_SERVICES_VERSION=50.6.0
+CHART_APPCONTROL_VERSION=90.9.0
+AGENT_IMAGE=xcomponent/appcontrol-agent:90.7-ubi8
 </code></pre>
-<p>💡 Replace with the production ACME server for production use.</p>
-<h3 id="option-2-ssl-via-external-gateway-or-load-balancer">Option 2: SSL via External Gateway or Load Balancer</h3>
-<p>If your architecture includes an external API gateway, reverse proxy, or cloud load balancer (e.g., Azure Front Door, AWS ELB, NGINX outside k8s):</p>
-<p>You can terminate SSL there</p>
-<p>Disable TLS in the Helm values:</p>
-<pre><code class="language-yaml">ingress:
-  tls: false
-  sslredirect: false
-This lets you delegate SSL management to your gateway, while still using AppControl inside the cluster over HTTP.
-</code></pre>
-<p>Default Ingress Settings in the Script
-The script generates:</p>
-<pre><code class="language-yaml">ingress:
-    class: nginx
-    tls: true
-    sslredirect: true
-</code></pre>
-<p>This works out-of-the-box with cert-manager and letsencrypt-issuer.
-If you're using an external gateway, update these settings before installation or edit appcontrol-values.yaml.</p>
-<h2 id="inputs-prompted-by-the-script">🧪 Inputs Prompted by the Script</h2>
-<table>
-<thead>
-<tr>
-<th>Input</th>
-<th>Description</th>
-<th>Example</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MY_APPCONTROL_DOMAIN</code></td>
-<td>Your domain (base DNS)</td>
-<td><code>mycompany.com</code></td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td>Namespace</td>
-<td>Kubernetes namespace for install</td>
-<td><code>appcontrol</code></td>
-<td>Current namespace</td>
-</tr>
-<tr>
-<td>Helm registry credentials</td>
-<td>Used to authenticate to the OCI Helm registry</td>
-<td><code>login / password</code></td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td>SQL Server info</td>
-<td>Connection details to your SQL database</td>
-<td><code>sql.prod.local</code> etc.</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td>Token salt</td>
-<td>Salt used for JWT generation</td>
-<td>Random base64 string</td>
-<td><em>auto-generated</em></td>
-</tr>
-<tr>
-<td>Redis host/port</td>
-<td>Redis service used by AppControl</td>
-<td><code>redis-service:6379</code></td>
-<td><code>redis-service:6379</code></td>
-</tr>
-<tr>
-<td>RabbitMQ host/port/vhost/user</td>
-<td>RabbitMQ messaging broker used by X4B &amp; AppControl</td>
-<td><code>rabbitmq</code>, <code>5672</code></td>
-<td>Defaults + prompt values</td>
-</tr>
-<tr>
-<td>Helm chart X4B Service version</td>
-<td>Version of Helm chart to install</td>
-<td><code>40.6.0</code></td>
-<td><code>40.6.0</code></td>
-</tr>
-<tr>
-<td>Helm chart Appcontrol version</td>
-<td>Version of Helm chart to install</td>
-<td><code>90.3.0</code></td>
-<td><code>90.3.0</code></td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="generated-files">📂 Generated Files</h2>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>x4b-services-values.yaml</code></td>
-<td>Values for the <code>x4b-services</code> Helm chart</td>
-</tr>
-<tr>
-<td><code>appcontrol-values.yaml</code></td>
-<td>Values for the <code>appcontrol</code> Helm chart</td>
-</tr>
-</tbody>
-</table>
-<hr/>
-<h2 id="what-the-script-does">📦 What the Script Does</h2>
-<ol>
-<li>Detects or prompts for a Openshift namespace</li>
-<li>Logs into the AppControl Helm OCI registry</li>
-<li>Creates a <code>ConfigMap</code> for AppControl config files</li>
-<li>Generates RSA keys and creates a JWT <code>Secret</code></li>
-<li>Generates 2 values files (<code>*.yaml</code>)</li>
-<li>Installs:<ul>
-<li><code>appcontrol-services</code> chart (X4B platform)</li>
-<li><code>appcontrol</code> chart (AppControl interface)</li>
-</ul>
-</li>
-</ol>
-<hr/>
-<h2 id="usage">🟢 Usage</h2>
-<pre><code class="language-bash">curl -sLO https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-appcontrol.sh
+<h2 id="4-dns-configuration">4. DNS Configuration</h2>
+<p>You only need <strong>one base domain</strong> (e.g. <code>mycompany.com</code>).</p>
+<p>Ensure these are pointed to your OpenShift public route endpoint.</p>
+<h2 id="5-script-usage">5. Script Usage</h2>
+<p>Download and execute:</p>
+<pre><code class="language-sh">curl -sLO https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/install-appcontrol.sh
 chmod +x install-appcontrol.sh
 ./install-appcontrol.sh
 </code></pre>
-<p>Follow the interactive prompts. The deployment takes just a few minutes.</p>
-<p>✅ Result</p>
-<h2 id="once-installed">✅ Once Installed</h2>
-<p>Depending on whether you enabled TLS during installation:</p>
-<h3 id="if-tls-was-enabled">🔒 If TLS was enabled:</h3>
+<p>Before launching the script, you can optionally create a .env file in the same directory as install-appcontrol.sh to predefine values that will be used during installation. This file allows you to automate and reuse configurations without manually entering them each time.</p>
+<p>The script will prompt for:</p>
 <ul>
-<li>AppControl is available at <strong>https://appcontrol.mycompany.com</strong></li>
-<li>X4B backend is available at <strong>https://x4b.mycompany.com</strong></li>
+<li>Domain name</li>
+<li>Namespace (or use current)</li>
+<li>Helm credentials</li>
+<li>SQL connection</li>
+<li>Redis and RabbitMQ info</li>
 </ul>
-<h3 id="if-tls-was-not-enabled">🌐 If TLS was not enabled:</h3>
+<p>Defaults are provided where possible. Redis and RabbitMQ are now installed <strong>automatically</strong>.</p>
+<h2 id="6-tls-https-access">6. TLS / HTTPS Access</h2>
+<p>Routes created by the script use OpenShift’s native Route system.</p>
+<p>You can:</p>
 <ul>
-<li>AppControl is available at <strong>http://appcontrol.mycompany.com</strong></li>
-<li>X4B backend is available at <strong>http://x4b.mycompany.com</strong></li>
+<li>Use OpenShift-managed TLS</li>
+<li>Terminate SSL externally (e.g., at Azure Front Door)</li>
 </ul>
-<h3 id="accessing-the-platform">👤 Accessing the Platform</h3>
-<p>After installation is complete, a <strong>default administrator account</strong> is created automatically:</p>
+<p>Example if TLS enabled:</p>
+<ul>
+<li>AppControl UI: https://mycompany.com</li>
+</ul>
+<h2 id="7-default-admin-access">7. Default Admin Access</h2>
+<p>After install, log in using:</p>
 <ul>
 <li><strong>Username:</strong> <code>admin</code></li>
 <li><strong>Password:</strong> <code>KoordinatorAdmin</code></li>
 </ul>
-<p>You can log in to the AppControl web interface using this account.</p>
 <blockquote>
-<p>⚠️ <strong>Important:</strong> For security reasons, it is strongly recommended to change the default password after your first login.</p>
+<p>⚠️ Change this password immediately after login via the AppControl user administration page.</p>
 </blockquote>
-<p>You can update the password directly from the <strong>user settings page</strong> inside the AppControl UI.</p>
-<p>📎 Notes</p>
+<h2 id="8-summary">8. Summary</h2>
 <ul>
-<li>
-<p>Redis and RabbitMQ should be running in the cluster or externally accessible.</p>
-</li>
-<li>
-<p>SSL and Ingress settings are pre-configured for a typical nginx setup.</p>
-</li>
-<li>
-<p>Make sure your DNS entries are correctly pointed before accessing the web UI.</p>
-</li>
+<li>One unified script: <code>install-appcontrol.sh</code></li>
+<li>Redis and RabbitMQ installed automatically</li>
+<li>DNS simplified: only 1 domain needed</li>
+<li>Uses OpenShift native Routes (no ingress)</li>
+<li>Configuration handled via <code>.env</code> or interactive prompts</li>
+<li>Helm charts deployed: <code>x4b-services</code> and <code>appcontrol</code></li>
 </ul>
+<hr/>
+<p>Need help? Contact the AppControl team or consult the <a href="https://github.com/xcomponent/appcontrol-documentation">documentation site</a>.</p>
 <div class="share-buttons">
 <button class="share-button hover-item" onclick="window.open('https://twitter.com/intent/tweet?url=https://xcomponent.github.io/appcontrol-documentation/openshift', 'TwitterShare', 'width=550,height=680,menubar=no,toolbar=no'); return false;">
 <i class="fa-brands fa-x-twitter"></i> Tweet

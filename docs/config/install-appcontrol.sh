@@ -2,6 +2,12 @@
 
 set -e
 
+echo "============================================================================="
+echo "🧬 XComponent AppControl - Installation Script"
+echo "# © 2025 Invivoo Software - All rights reserved"
+echo "# ============================================================================="
+
+
 if [ -f ".env" ]; then
     echo "Loading variables from .env..."
     set -o allexport
@@ -9,12 +15,59 @@ if [ -f ".env" ]; then
     set +o allexport
 fi
 
-echo "🔧 AppControl Interactive Installer"
 
 # === Detect current namespace ===
 DEFAULT_NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
 read -rp "📛 Namespace to install AppControl [${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}]: " input_namespace
 NAMESPACE="${input_namespace:-${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}}"
+
+read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-40.6.0}]: " input_x4b_version
+CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-40.6.0}}"
+
+read -rp "📦 Helm chart Appcontrol version [${CHART_APPCONTROL_VERSION:-90.3.0}]: " input_appcontrol_version
+CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-90.3.0}}"
+
+
+read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
+RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
+
+read -rp "📬 RabbitMQ password [${RABBIT_PASSWORD:-}]: " input_rabbit_password
+RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
+
+read -rp "🔐 Redis password [${REDIS_PASSWORD:-}]: " input_redis_password
+echo
+REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
+
+read -rp "🌐 Enter your main domain (e.g., mycompany.com) [${MY_APPCONTROL_DOMAIN:-}]: " input_domain
+MY_APPCONTROL_DOMAIN="${input_domain:-${MY_APPCONTROL_DOMAIN:-}}"
+
+read -rp "🔑 Helm registry username [${HELM_USERNAME:-}]: " input_helm_user
+HELM_USERNAME="${input_helm_user:-${HELM_USERNAME:-}}"
+
+read -rp "🔑 Helm registry password [${HELM_PASSWORD:-}]: " input_helm_pass
+HELM_PASSWORD="${input_helm_pass:-${HELM_PASSWORD:-}}"
+
+echo "🗃 SQL Server configuration:"
+read -rp "  - Server [${SQL_SERVER:-}]: " input_sql_server
+SQL_SERVER="${input_sql_server:-${SQL_SERVER:-}}"
+
+read -rp "  - User [${SQL_USER:-}]: " input_sql_user
+SQL_USER="${input_sql_user:-${SQL_USER:-}}"
+
+read -rp "  - Password [${SQL_PASSWORD:-}]: " input_sql_password
+SQL_PASSWORD="${input_sql_password:-${SQL_PASSWORD:-}}"
+
+# Generate default salt if not provided
+DEFAULT_SALT=$(openssl rand -base64 32)
+read -rp "🪙 Token salt [${TOKEN_SALT:-auto-generated}]: " input_token_salt
+TOKEN_SALT="${input_token_salt:-${TOKEN_SALT:-$DEFAULT_SALT}}"
+
+# === TLS prompt with detection ===
+echo -e "\n🔐 TLS Configuration"
+
+read -rp "Do you want to enable TLS ? [Y/n]: " ENABLE_TLS
+ENABLE_TLS=${ENABLE_TLS:-Y}
+
 
 echo "🧹 Removing previous installation of Redis and RabbitMQ in namespace '$NAMESPACE'..."
 
@@ -57,13 +110,55 @@ while true; do
   elapsed=$((elapsed + interval))
 done
 
+echo "▶️ RabbitMq installation in namespace '$NAMESPACE'"
+
+curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
+  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
+  oc apply -n "$NAMESPACE" -f -
 
 
-echo "Installing Redis..."
+curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
+  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
+  oc apply -n "$NAMESPACE" -f -
 
-read -rp "🔐 Redis password [${REDIS_PASSWORD:-}]: " input_redis_password
-echo
-REDIS_PASSWORD="${input_redis_password:-${REDIS_PASSWORD:-}}"
+echo "⏳ Waiting for RabbitMQ Pod..."
+
+timeout_seconds=180
+elapsed=0
+interval=3
+
+while true; do
+  pod=$(oc get pods -n "$NAMESPACE" -l app=rabbitmq -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
+
+  if [[ -n "$pod" ]]; then
+    status=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
+    ready=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null)
+
+    if [[ "$status" == "Running" && "$ready" == "true" ]]; then
+      echo "✅ RabbitMQ Pod Ready : $pod"
+      break
+    fi
+
+    echo "⌛ Found Pod ($pod), waiting ... (status: $status, ready: $ready)"
+  else
+    echo "🔍 Waiting for RabbitMQ Pod ..."
+  fi
+
+  sleep $interval
+  elapsed=$((elapsed + interval))
+
+  if (( elapsed >= timeout_seconds )); then
+    echo "❌ Timed out : RabbitMQ is not ready." >&2
+    oc get pods -n "$NAMESPACE" -l app=rabbitmq
+    exit 1
+  fi
+done
+
+RABBIT_HOST="rabbitmq"
+RABBIT_VHOST="my-vhost"
+
+
+echo "▶️ Redis installation in namespace '$NAMESPACE'"
 
 echo "🔐 Creating secret in namespace: $NAMESPACE"
 oc delete secret redis-secret -n "$NAMESPACE" 2>/dev/null || true
@@ -140,7 +235,6 @@ spec:
       targetPort: 6379
 EOF
 
-echo "✅ Redis deployed successfully in namespace '$NAMESPACE'."
 echo "⏳ Waiting for Redis pod to be ready..."
 
 # Wait until Redis pod reaches 'Running' state
@@ -176,59 +270,6 @@ REDIS_PORT=6379
 REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
 
 
-echo "▶️ Redis is up and running, installing RabbitMq...."
-
-read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
-RABBIT_USER="${input_rabbit_user:-${RABBIT_USER:-}}"
-
-read -rp "📬 RabbitMQ password [${RABBIT_PASSWORD:-}]: " input_rabbit_password
-RABBIT_PASSWORD="${input_rabbit_password:-${RABBIT_PASSWORD:-}}"
-
-curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
-  oc apply -n "$NAMESPACE" -f -
-
-echo "📦 Déploiement de RabbitMQ dans le namespace '$NAMESPACE'..."
-
-curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
-  oc apply -n "$NAMESPACE" -f -
-
-echo "⏳ Waiting for RabbitMQ Pod..."
-
-timeout_seconds=180
-elapsed=0
-interval=3
-
-while true; do
-  pod=$(oc get pods -n "$NAMESPACE" -l app=rabbitmq -o jsonpath='{.items[0].metadata.name}' 2>/dev/null)
-
-  if [[ -n "$pod" ]]; then
-    status=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
-    ready=$(oc get pod "$pod" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[0].ready}' 2>/dev/null)
-
-    if [[ "$status" == "Running" && "$ready" == "true" ]]; then
-      echo "✅ RabbitMQ Pod Ready : $pod"
-      break
-    fi
-
-    echo "⌛ Found Pod ($pod), waiting ... (status: $status, ready: $ready)"
-  else
-    echo "🔍 Waiting for RabbitMQ Pod ..."
-  fi
-
-  sleep $interval
-  elapsed=$((elapsed + interval))
-
-  if (( elapsed >= timeout_seconds )); then
-    echo "❌ Timed out : RabbitMQ is not ready." >&2
-    oc get pods -n "$NAMESPACE" -l app=rabbitmq
-    exit 1
-  fi
-done
-
-RABBIT_HOST="rabbitmq"
-RABBIT_VHOST="my-vhost"
 
 AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:90.6-ubi8}
 
@@ -245,48 +286,10 @@ else
   echo "ℹ️ Secret '$SECRET_NAME' already exists in namespace '$NAMESPACE'."
 fi
 
-# === Prompt user input ===
-read -rp "🌐 Enter your main domain (e.g., mycompany.com) [${MY_APPCONTROL_DOMAIN:-}]: " input_domain
-MY_APPCONTROL_DOMAIN="${input_domain:-${MY_APPCONTROL_DOMAIN:-}}"
-
-read -rp "🔑 Helm registry username [${HELM_USERNAME:-}]: " input_helm_user
-HELM_USERNAME="${input_helm_user:-${HELM_USERNAME:-}}"
-
-read -rp "🔑 Helm registry password [${HELM_PASSWORD:-}]: " input_helm_pass
-HELM_PASSWORD="${input_helm_pass:-${HELM_PASSWORD:-}}"
-
-echo "🗃 SQL Server configuration:"
-read -rp "  - Server [${SQL_SERVER:-}]: " input_sql_server
-SQL_SERVER="${input_sql_server:-${SQL_SERVER:-}}"
-
-read -rp "  - User [${SQL_USER:-}]: " input_sql_user
-SQL_USER="${input_sql_user:-${SQL_USER:-}}"
-
-read -rp "  - Password [${SQL_PASSWORD:-}]: " input_sql_password
-echo
-SQL_PASSWORD="${input_sql_password:-${SQL_PASSWORD:-}}"
-
-SQL_CONNECTION_STRING_SERVICES="Server=$SQL_SERVER,1433;Initial Catalog=xc-x4b-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"
+SQL_CONNECTION_STRING_SERVICES="Server=$SQL_SERVER,1433;Initial Catalog=xc-appcontrol-services-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=300;"
 SQL_CONNECTION_STRING_APPCONTROL="Server=$SQL_SERVER,1433;Initial Catalog=xc-appcontrol-db;User ID=$SQL_USER;Password=$SQL_PASSWORD;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=300;ConnectRetryCount=30"
 
 
-# Generate default salt if not provided
-DEFAULT_SALT=$(openssl rand -base64 32)
-read -rp "🪙 Token salt [${TOKEN_SALT:-auto-generated}]: " input_token_salt
-TOKEN_SALT="${input_token_salt:-${TOKEN_SALT:-$DEFAULT_SALT}}"
-
-
-read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-40.6.0}]: " input_x4b_version
-CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-40.6.0}}"
-
-read -rp "📦 Helm chart Appcontrol version [${CHART_APPCONTROL_VERSION:-90.3.0}]: " input_appcontrol_version
-CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-90.3.0}}"
-
-# === TLS prompt with detection ===
-echo -e "\n🔐 TLS Configuration"
-
-read -rp "Do you want to enable TLS ? [Y/n]: " ENABLE_TLS
-ENABLE_TLS=${ENABLE_TLS:-Y}
 
 EXTERNAL_URL="https://$MY_APPCONTROL_DOMAIN"
 
@@ -309,13 +312,6 @@ REDIRECT_REGISTRATION_URL="${LOGIN_EXTERNAL_URL}/registration"
 MY_SECRET_NAME="jwt-keys"
 CONFIGMAP_NAME="appcontrol-config"
 REPO="oci://x4bcontainerregistry.azurecr.io/helm"
-
-# === Confirmation ===
-echo -e "\n📋 Summary:"
-echo "Namespace: $NAMESPACE"
-echo "Domain: $MY_APPCONTROL_DOMAIN"
-echo "Redis: $REDIS_HOSTNAME"
-echo "RabbitMQ: $RABBIT_USER@$RABBIT_HOST (vhost=$RABBIT_VHOST)"
 
 # === Helm registry login ===
 helm registry login x4bcontainerregistry.azurecr.io --username "$HELM_USERNAME" --password "$HELM_PASSWORD"
@@ -351,7 +347,6 @@ if [[ -n "$REDIS_PASSWORD" ]]; then
   REDIS_CONNECTION_STRING="${REDIS_CONNECTION_STRING},password=${REDIS_PASSWORD}"
 fi
 
-echo "REDIS_CONNECTION_STRING: $REDIS_CONNECTION_STRING"
 mkdir -p generated
 
 # === Generate x4b-services-values.yaml ===
@@ -365,6 +360,9 @@ settings:
   authenticationUrl: "${AUTHENTICATION_URL}"
 sql:
   connectionString: "${SQL_CONNECTION_STRING_SERVICES}"
+migrate:
+  env:
+    targets: 'X4B,xc-appcontrol-services-db||AppControl,xc-appcontrol-db'
 ingress:
   enabled: false
   class: nginx
@@ -420,6 +418,8 @@ healthcheckhub:
   commandconnectionString: "$SQL_CONNECTION_STRING_APPCONTROL"
 agent:
   image: $AGENT_IMAGE
+webapp:
+  enableSms: false
 
 EOF
 
@@ -441,6 +441,56 @@ helm install appcontrol-services "$REPO/x4b-services" \
   --namespace "$NAMESPACE" \
   --version "$CHART_X4B_SERVICES_VERSION" \
   -f generated/x4b-services-values.yaml 
+
+echo "⏳ Waiting for migration pod to complete (prefix: appcontrol-services-x4b-services-migrate)..."
+
+timeout_seconds=300
+elapsed=0
+interval=5
+
+# Find the migration pod
+while true; do
+  migrate_pod=$(oc get pods -n "$NAMESPACE" --no-headers | awk '/^appcontrol-services-x4b-services-migrate/ {print $1; exit}')
+  
+  if [[ -n "$migrate_pod" ]]; then
+    echo "🔍 Found pod: $migrate_pod"
+    break
+  fi
+
+  if (( elapsed >= timeout_seconds )); then
+    echo "❌ Timeout: migration pod not found."
+    exit 1
+  fi
+
+  echo "⌛ Waiting for migration pod to appear..."
+  sleep "$interval"
+  elapsed=$((elapsed + interval))
+done
+
+elapsed=0
+while true; do
+  phase=$(oc get pod "$migrate_pod" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null)
+
+  if [[ "$phase" == "Succeeded" ]]; then
+    echo "✅ Migration pod completed successfully."
+    break
+  elif [[ "$phase" == "Failed" ]]; then
+    echo "❌ Migration pod failed."
+    oc logs "$migrate_pod" -n "$NAMESPACE"
+    exit 1
+  fi
+
+  if (( elapsed >= timeout_seconds )); then
+    echo "❌ Timeout: migration pod did not complete."
+    oc describe pod "$migrate_pod" -n "$NAMESPACE"
+    exit 1
+  fi
+
+  echo "⌛ Pod still running... (status: $phase)"
+  sleep "$interval"
+  elapsed=$((elapsed + interval))
+done
+
 
 echo "🚀 Installing AppControl..."
 helm install appcontrol "$REPO/appcontrol" \
@@ -529,9 +579,11 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: appcontrol-hermes-svc
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
 spec:
   host: ${MY_APPCONTROL_DOMAIN}
-  path: /notif/
+  path: /notif
   to:
     kind: Service
     name: appcontrol-hermes-svc
@@ -659,6 +711,60 @@ spec:
 EOF
 
 echo "✅ Routes are successfully created for the domain : ${MY_APPCONTROL_DOMAIN}"
+
+echo "🔐 Creating SQL credentials secret..."
+
+oc delete secret sql-credentials -n "$NAMESPACE" --ignore-not-found
+
+oc create secret generic sql-credentials -n "$NAMESPACE" \
+  --from-literal=sql-server="$SQL_SERVER" \
+  --from-literal=sql-user="$SQL_USER" \
+  --from-literal=sql-password="$SQL_PASSWORD"
+
+echo "🕒 Creating CronJob to call SQL status page stored procedure every hour..."
+
+oc apply -n "$NAMESPACE" -f - <<EOF
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: call-sql-statuspageproc-hourly
+spec:
+  schedule: "0 * * * *"  # every hour
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sql-job
+            image: mcr.microsoft.com/mssql-tools
+            command: ["/bin/sh", "-c"]
+            args:
+              - >
+                /opt/mssql-tools/bin/sqlcmd -S tcp:\$(SQL_SERVER),1433
+                -U \$(SQL_USER)
+                -P "\$(SQL_PASSWORD)"
+                -d xc-appcontrol-db
+                -Q "EXEC [dbo].[FillTimesUpDataToDay];"
+            env:
+            - name: SQL_SERVER
+              valueFrom:
+                secretKeyRef:
+                  name: sql-credentials
+                  key: sql-server
+            - name: SQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sql-credentials
+                  key: sql-user
+            - name: SQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sql-credentials
+                  key: sql-password
+            - name: ACCEPT_EULA
+              value: "Y"
+          restartPolicy: Never
+EOF
 
 
 

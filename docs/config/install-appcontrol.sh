@@ -21,11 +21,11 @@ DEFAULT_NAMESPACE=$(oc config view --minify --output 'jsonpath={..namespace}')
 read -rp "📛 Namespace to install AppControl [${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}]: " input_namespace
 NAMESPACE="${input_namespace:-${NAMESPACE:-${DEFAULT_NAMESPACE:-appcontrol}}}"
 
-read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-40.6.0}]: " input_x4b_version
-CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-40.6.0}}"
+read -rp "📦 Helm chart X4B Services version [${CHART_X4B_SERVICES_VERSION:-50.9.0}]: " input_x4b_version
+CHART_X4B_SERVICES_VERSION="${input_x4b_version:-${CHART_X4B_SERVICES_VERSION:-50.9.0}}"
 
 read -rp "📦 Helm chart Appcontrol version [${CHART_APPCONTROL_VERSION:-90.3.0}]: " input_appcontrol_version
-CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-90.3.0}}"
+CHART_APPCONTROL_VERSION="${input_appcontrol_version:-${CHART_APPCONTROL_VERSION:-100.5.0}}"
 
 
 read -rp "📬 RabbitMQ username [${RABBIT_USER:-}]: " input_rabbit_user
@@ -271,7 +271,7 @@ REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
 
 
 
-AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:90.6-ubi8}
+AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:100.5-ubi8}
 
 SECRET_NAME=regcred
 

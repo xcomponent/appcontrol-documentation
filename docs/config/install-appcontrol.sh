@@ -69,13 +69,22 @@ read -rp "Do you want to enable TLS ? [Y/n]: " ENABLE_TLS
 ENABLE_TLS=${ENABLE_TLS:-Y}
 
 
-echo "🧹 Removing previous installation of Redis and RabbitMQ in namespace '$NAMESPACE'..."
+echo "Remove previous jobs, redis and rabbitmq"
+oc delete cronjob --all -n "$NAMESPACE"
+
+oc get jobs -n "$NAMESPACE" -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.status.succeeded}{"\t"}{.status.failed}{"\n"}' | while IFS=$'\t' read -r name succeeded failed; do
+  if [[ "$succeeded" -ge 1 || "$failed" -ge 1 ]]; then
+    echo "🧹 Removing job : $name"
+    oc delete job "$name" -n "$NAMESPACE"
+  fi
+done
 
 # Supprimer Redis
 oc delete deployment redis -n "$NAMESPACE" --ignore-not-found
 oc delete service redis -n "$NAMESPACE" --ignore-not-found
 oc delete configmap redis-config -n "$NAMESPACE" --ignore-not-found
 oc delete route redis -n "$NAMESPACE" --ignore-not-found
+oc delete secret redis-secret -n "$NAMESPACE"  --ignore-not-found
 
 # Supprimer RabbitMQ
 oc delete deployment rabbitmq -n "$NAMESPACE" --ignore-not-found
@@ -112,10 +121,10 @@ done
 
 echo "▶️ RabbitMq installation in namespace '$NAMESPACE'"
 
-curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
-  oc apply -n "$NAMESPACE" -f -
-
+echo "🔐 Creation of rabbitmq-secret in namespace $NAMESPACE..."
+oc create secret generic "rabbitmq-secret" -n "$NAMESPACE" \
+  --from-literal=RABBITMQ_DEFAULT_USER="$RABBIT_USER" \
+  --from-literal=RABBITMQ_DEFAULT_PASS="$RABBIT_PASSWORD"
 
 curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
   RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
@@ -161,7 +170,6 @@ RABBIT_VHOST="my-vhost"
 echo "▶️ Redis installation in namespace '$NAMESPACE'"
 
 echo "🔐 Creating secret in namespace: $NAMESPACE"
-oc delete secret redis-secret -n "$NAMESPACE" 2>/dev/null || true
 
 cat <<EOF | oc apply -f -
 apiVersion: v1
@@ -732,6 +740,7 @@ spec:
   schedule: "0 * * * *"  # every hour
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: 300  # ✅ auto-suppression du Job après 5 minutes
       template:
         spec:
           containers:
@@ -769,3 +778,4 @@ EOF
 
 
 echo "✅ AppControl platform successfully deployed!"
+

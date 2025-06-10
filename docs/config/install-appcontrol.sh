@@ -127,7 +127,7 @@ oc create secret generic "rabbitmq-secret" -n "$NAMESPACE" \
   --from-literal=RABBITMQ_DEFAULT_PASS="$RABBIT_PASSWORD"
 
 curl -fsSL https://raw.githubusercontent.com/xcomponent/appcontrol-documentation/refs/heads/main/docs/config/rabbitmq.yaml | \
-  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" envsubst | \
+  RABBITMQ_USER="$RABBITMQ_USER" RABBITMQ_PASS="$RABBITMQ_PASS" RABBITMQ_IMAGE="xcomponent/rabbitmq-ubi:${CHART_APPCONTROL_VERSION%.0}" envsubst | \
   oc apply -n "$NAMESPACE" -f -
 
 echo "⏳ Waiting for RabbitMQ Pod..."
@@ -212,7 +212,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:7
+          image: xcomponent/redis-ubi:${CHART_APPCONTROL_VERSION%.0}
           args: ["redis-server", "/usr/local/etc/redis/redis.conf"]
           ports:
             - containerPort: 6379
@@ -279,7 +279,7 @@ REDIS_HOSTNAME="$REDIS_HOST:$REDIS_PORT"
 
 
 
-AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:100.5-ubi8}
+AGENT_IMAGE=${AGENT_IMAGE:-xcomponent/appcontrol-agent:${CHART_APPCONTROL_VERSION%.0}-ubi8}
 
 SECRET_NAME=regcred
 

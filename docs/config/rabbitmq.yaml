@@ -23,7 +23,7 @@ spec:
         spec:
             containers:
                 - name: rabbitmq
-                  image: xcomponent/rabbitmq-ubi:90.9
+                  image: ${RABBITMQ_IMAGE}
                   env:
                       - name: HOME
                         value: /var/lib/rabbitmq

@@ -393,6 +393,7 @@ externalHostname: $MY_APPCONTROL_DOMAIN
 redisConnectionString: "$REDIS_CONNECTION_STRING"
 adminAccountList: "admin"
 environmentName: "prod"
+image: xcomponent/appcontrol-server-light:${CHART_APPCONTROL_VERSION%.0}
 appControl:
   tokenSalt: "$TOKEN_SALT"
 launcher:

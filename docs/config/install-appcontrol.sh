@@ -429,6 +429,7 @@ agent:
   image: $AGENT_IMAGE
 webapp:
   enableSms: false
+  authenticationUrl: "$AUTHENTICATION_URL"
 
 EOF
 
